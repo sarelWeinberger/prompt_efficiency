@@ -80,34 +80,58 @@ def record(model, harness, condition, turns_usage, delay_s=None, cwd=None):
     return rec
 
 
+def _safe(fn, model, condition):
+    try:
+        fn()
+    except Exception as e:
+        append_jsonl(OUT, {"model": model, "harness": "pi",
+                           "session_condition": condition, "status": "infra_error",
+                           "experiment": "experiment_c", "error": str(e)[:200],
+                           "timestamp": datetime.now(timezone.utc).isoformat()})
+        print(f"{condition}: ERROR {str(e)[:80]}", flush=True)
+
+
 def pi_conditions(model, reps=2):
     SLOT_A.mkdir(parents=True, exist_ok=True)
     SLOT_B.mkdir(parents=True, exist_ok=True)
     for rep in range(reps):
-        record(model, "pi", "cold", [pi_turn(model, P1, SLOT_A)], cwd=SLOT_A)
+        _safe(lambda: record(model, "pi", "cold",
+                             [pi_turn(model, P1, SLOT_A)], cwd=SLOT_A),
+              model, "cold")
 
-        sess = SLOT_A / f".sess-{uuid.uuid4().hex[:6]}"
-        u1 = pi_turn(model, P1, SLOT_A, sess)
-        u2 = pi_turn(model, P2_SHORT, SLOT_A, sess, cont=True)
-        record(model, "pi", "continuous_short", [u1, u2], cwd=SLOT_A)
+        def cont_short():
+            sess = SLOT_A / f".sess-{uuid.uuid4().hex[:6]}"
+            u1 = pi_turn(model, P1, SLOT_A, sess)
+            u2 = pi_turn(model, P2_SHORT, SLOT_A, sess, cont=True)
+            record(model, "pi", "continuous_short", [u1, u2], cwd=SLOT_A)
+        _safe(cont_short, model, "continuous_short")
 
-        sess = SLOT_A / f".sess-{uuid.uuid4().hex[:6]}"
-        u1 = pi_turn(model, P1, SLOT_A, sess)
-        u2 = pi_turn(model, f"To restate the full request completely: {P1} "
-                            f"Also: {P2_SHORT}", SLOT_A, sess, cont=True)
-        record(model, "pi", "continuous_full_restatement", [u1, u2], cwd=SLOT_A)
+        def cont_restate():
+            sess = SLOT_A / f".sess-{uuid.uuid4().hex[:6]}"
+            u1 = pi_turn(model, P1, SLOT_A, sess)
+            u2 = pi_turn(model, f"To restate the full request completely: {P1} "
+                                f"Also: {P2_SHORT}", SLOT_A, sess, cont=True)
+            record(model, "pi", "continuous_full_restatement", [u1, u2], cwd=SLOT_A)
+        _safe(cont_restate, model, "continuous_full_restatement")
 
-        u1 = pi_turn(model, P1, SLOT_A)
-        u2 = pi_turn(model, P1, SLOT_A)
-        record(model, "pi", "stable_prefix_new_session", [u1, u2], cwd=SLOT_A)
+        def stable_prefix():
+            u1 = pi_turn(model, P1, SLOT_A)
+            u2 = pi_turn(model, P1, SLOT_A)
+            record(model, "pi", "stable_prefix_new_session", [u1, u2], cwd=SLOT_A)
+        _safe(stable_prefix, model, "stable_prefix_new_session")
 
-        record(model, "pi", "changed_cwd", [pi_turn(model, P1, SLOT_B)], cwd=SLOT_B)
+        _safe(lambda: record(model, "pi", "changed_cwd",
+                             [pi_turn(model, P1, SLOT_B)], cwd=SLOT_B),
+              model, "changed_cwd")
 
-        sess = SLOT_A / f".sess-{uuid.uuid4().hex[:6]}"
-        u1 = pi_turn(model, P1, SLOT_A, sess)
-        time.sleep(60)
-        u2 = pi_turn(model, P2_SHORT, SLOT_A, sess, cont=True)
-        record(model, "pi", "delayed_follow_up_60s", [u1, u2], delay_s=60, cwd=SLOT_A)
+        def delayed():
+            sess = SLOT_A / f".sess-{uuid.uuid4().hex[:6]}"
+            u1 = pi_turn(model, P1, SLOT_A, sess)
+            time.sleep(60)
+            u2 = pi_turn(model, P2_SHORT, SLOT_A, sess, cont=True)
+            record(model, "pi", "delayed_follow_up_60s", [u1, u2], delay_s=60,
+                   cwd=SLOT_A)
+        _safe(delayed, model, "delayed_follow_up_60s")
 
 
 def cc_turn(model_alias, model_id, prompt, home, work, cont=False, timeout=150):

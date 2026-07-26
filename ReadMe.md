@@ -68,3 +68,27 @@ See [pi-request.log](pi-request.log) for the result.
 - API keys live in `.env` (git-ignored) and `~/.pi/agent/auth.json` — never committed.
 - Default provider/model are set in `~/.pi/agent/settings.json`.
 - List all available Together AI models: `pi --list-models together`
+
+---
+
+## The prompt-waste benchmark (phase 2)
+
+The measurements above grew into a controlled benchmark: **which prompt
+formulations make large reasoning models waste reasoning tokens, tool calls,
+turns, and money — under PI.DEV vs Claude Code, on the same Together AI models?**
+
+| Document | What it holds |
+|---|---|
+| [EXPERIMENT-DESIGN.md](EXPERIMENT-DESIGN.md) | Pre-registered hypotheses (H1–H8, H12–H17), metrics, waste definitions, protocols |
+| [BENCHMARK-RUNBOOK.md](BENCHMARK-RUNBOOK.md) | How to run every part of the benchmark |
+| [PI_HARNESS_OVERHEAD.md](PI_HARNESS_OVERHEAD.md) | PI.DEV fixed-prefix calibration per model |
+| [CLAUDE_CODE_HARNESS_OVERHEAD.md](CLAUDE_CODE_HARNESS_OVERHEAD.md) | Claude Code fixed-prefix calibration (12–15× pi) + gateway metadata loss |
+| [HARNESS-COMPARISON.md](HARNESS-COMPARISON.md) | PI.DEV vs Claude Code comparison findings |
+| [RESULTS.md](RESULTS.md) | Pilot results: prompt effects per model |
+| [PROMPT-WASTE-RULES.md](PROMPT-WASTE-RULES.md) | Practical guidance distilled from the data |
+
+Infrastructure: [benchmark/](benchmark/) (frozen configs, 24 tasks, fixtures,
+hidden evaluators, LiteLLM gateway), [src/](src/) (runners, parsers, orchestrator),
+[analysis/](analysis/), [tests/](tests/), machine-readable outputs under
+[results/](results/) (`runs.jsonl`, `summaries/*.csv`, compatibility and
+schema-discovery records).
