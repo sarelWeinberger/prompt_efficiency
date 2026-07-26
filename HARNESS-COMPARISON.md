@@ -1,5 +1,11 @@
 # Harness Comparison: PI.DEV vs Claude Code on Together AI models
 
+**Phase 1 (infrastructure + pilot benchmark) evidence.** Compatibility results
+and metadata-preservation findings (§2–§4, §6) are direct measurements and
+stand on their own; the behavioral comparison (§5) is pilot-scale — matched
+cells with small n for some models — and awaits the preregistered screening
+and holdout phases before final conclusions (RESULTS.md §8).
+
 How the same six Together AI models behave on the same tasks and user prompts
 when operated by PI.DEV 0.82.1 (direct) versus Claude Code 2.1.220 (through a
 protocol gateway). Data: pilot runs in results/runs.jsonl; calibration in
@@ -77,7 +83,7 @@ regenerates this table from runs.jsonl:
 
 (Numbers are pilot medians; refresh with build_report.py after any new runs.)
 
-Findings:
+Findings (pilot-scale for §5 rows; see banner):
 
 1. **Success parity, radically different cost.** Both harnesses solved the
    matched pilot cells at ≈100%, but Claude Code cost **5–30× more per

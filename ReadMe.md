@@ -71,7 +71,11 @@ See [pi-request.log](pi-request.log) for the result.
 
 ---
 
-## The prompt-waste benchmark (phase 2)
+## The prompt-waste benchmark
+
+**Status: Phase 1 — completed infrastructure and pilot benchmark.** The
+preregistered full screening and frozen-holdout phases have not run yet
+(see RESULTS.md §8); pilot findings are labeled as such.
 
 The measurements above grew into a controlled benchmark: **which prompt
 formulations make large reasoning models waste reasoning tokens, tool calls,
@@ -83,8 +87,8 @@ turns, and money — under PI.DEV vs Claude Code, on the same Together AI models
 | [BENCHMARK-RUNBOOK.md](BENCHMARK-RUNBOOK.md) | How to run every part of the benchmark |
 | [PI_HARNESS_OVERHEAD.md](PI_HARNESS_OVERHEAD.md) | PI.DEV fixed-prefix calibration per model |
 | [CLAUDE_CODE_HARNESS_OVERHEAD.md](CLAUDE_CODE_HARNESS_OVERHEAD.md) | Claude Code fixed-prefix calibration (12–15× pi) + gateway metadata loss |
-| [HARNESS-COMPARISON.md](HARNESS-COMPARISON.md) | PI.DEV vs Claude Code comparison findings |
-| [RESULTS.md](RESULTS.md) | Pilot results: prompt effects per model |
+| [HARNESS-COMPARISON.md](HARNESS-COMPARISON.md) | PI.DEV vs Claude Code: measured compatibility/metadata findings + pilot-scale behavioral comparison |
+| [RESULTS.md](RESULTS.md) | Phase 1 pilot results + remaining preregistered work |
 | [PROMPT-WASTE-RULES.md](PROMPT-WASTE-RULES.md) | Practical guidance distilled from the data |
 
 Infrastructure: [benchmark/](benchmark/) (frozen configs, 24 tasks, fixtures,

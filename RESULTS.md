@@ -1,6 +1,15 @@
-# Pilot Results — Prompt-Induced Waste under PI.DEV and Claude Code
+# Phase 1 Results — Infrastructure and Pilot Benchmark
 
-Initial results from the cost-bounded pilots defined in
+**Milestone status: Phase 1 (completed infrastructure and pilot benchmark).**
+The preregistered program is NOT complete: the full six-model screening
+(§21 of the design brief), the frozen holdout confirmation, and the multi-turn
+stress variants have not been executed. Every "confirmed" label below means
+**confirmed at pilot scale** — a paired, CI-supported effect on the pilot
+tasks — and still requires screening + holdout validation before it should be
+treated as a final benchmark conclusion. See §8 for the remaining
+preregistered work.
+
+Results from the cost-bounded pilots defined in
 [EXPERIMENT-DESIGN.md](EXPERIMENT-DESIGN.md). Regenerate every table with
 `python3 analysis/analyze_results.py && python3 analysis/build_report.py`.
 
@@ -22,7 +31,7 @@ Initial results from the cost-bounded pilots defined in
 Thinking was enabled everywhere (`--thinking medium` for pi). Labeled caveat:
 pi maps medium to `reasoning_effort: "high"` for DeepSeek only (PI_HARNESS_OVERHEAD.md).
 
-## 2. Fixed overhead (H8 — confirmed, quantified)
+## 2. Fixed overhead (H8 — directly measured calibration)
 
 pi fresh-request prefix: 1,147–1,642 tokens; Claude Code: 15,983–20,330 —
 **12–15× per request, on every tokenizer** (calibration reports). For low-complexity
@@ -57,34 +66,37 @@ the §24 rule — **W** wasteful, **H!** harmful, · neutral, ? inconclusive:
 (The 12.91× K2.7-Code bounded_efficiency cell is a single thrashing run pair —
 reported as inconclusive, not evidence against H4.)
 
-## 4. Answers to the pre-registered hypotheses (pilot evidence)
+## 4. Pre-registered hypotheses: pilot-scale status
 
-- **H1 deep-thinking cues — CONFIRMED, the most consistent waste source.**
+"CONFIRMED (pilot)" = paired effect with CI support on the pilot tasks;
+subject to screening + holdout confirmation. Nothing here is a final verdict.
+
+- **H1 deep-thinking cues — CONFIRMED (pilot), the most consistent waste source.**
   Wasteful on 4/4 pi models (1.8–3.2×, CI lower bounds > 1.1, ≥4 tasks each,
   zero success gain) and on K2.7-Code under CC. Doubles wall time (11→18 s
   median) with identical tool behavior: pure reasoning burn.
-- **H2 exhaustive exploration — model-specific.** Wasteful on GLM-5.2
+- **H2 exhaustive exploration — model-specific (pilot).** Wasteful on GLM-5.2
   (2.40×, and the only pi variant that *lowered* success, −6%); +1 file
   inspected and +1 search command (median) everywhere; large but underpowered
   effects under CC (4–4.8× on three models).
-- **H3 scope expansion — CONFIRMED on behavior, partially on reasoning.**
+- **H3 scope expansion — CONFIRMED (pilot) on behavior, partially on reasoning.**
   `adjacent_cleanup` is one of only two variants producing out-of-scope
   changes (6% of runs; `no_questions_autonomy` 7%; all others 0%), and is
   reasoning-wasteful on Kimi-K2.6 and nemotron.
-- **H4 bounded prompting — CONFIRMED as safe.** 0.91–1.19× reasoning at
+- **H4 bounded prompting — CONFIRMED (pilot) as safe.** 0.91–1.19× reasoning at
   unchanged success on every pi model: explicit stop conditions and scope cost
   nothing (against an already-precise baseline they also save little).
-- **H6 cache-cost divergence — CONFIRMED.** Cache hits changed billing by
+- **H6 cache-cost divergence — CONFIRMED (pilot).** Cache hits changed billing by
   ~58% overall while reasoning tokens, tool calls, and logical input were
   unchanged (cache fields never enter the behavioral metrics).
-- **H8 fixed-overhead dominance — CONFIRMED** (§2).
-- **H12 harness interaction — CONFIRMED.** Same model, same task, same
+- **H8 fixed-overhead dominance — CONFIRMED (pilot; calibration-backed)** (§2).
+- **H12 harness interaction — CONFIRMED (pilot).** Same model, same task, same
   prompt: DeepSeek reasons *less* under CC than pi (0.9k vs 1.3k median)
   while Kimi-K2.6 reasons *more* (8.6k vs 3.3k); turn counts diverge 5–7 (pi)
   vs 10–41 (CC). Prompt guidance cannot be assumed to transfer across harnesses.
-- **H13 autonomy cues — supported (small n).** `no_questions_autonomy` has the
+- **H13 autonomy cues — supported (pilot, small n).** `no_questions_autonomy` has the
   highest out-of-scope rate (7%) and 3.2–3.5× reasoning on two CC models.
-- **H16 gateway metadata loss — CONFIRMED** (HARNESS-COMPARISON.md §3).
+- **H16 gateway metadata loss — CONFIRMED (measured directly; not sample-limited)** (HARNESS-COMPARISON.md §3).
 - H5, H7, H14, H15, H17: insufficient pilot power — carried to screening.
 
 ## 5. Cache behavior (Experiment C + pilot; details in cache_behavior.csv)
@@ -132,3 +144,31 @@ reported as inconclusive, not evidence against H4.)
 - Cross-model reasoning comparisons are within-model normalized only.
 - The §24 classification thresholds are provisional; prompt_sensitivity.csv
   carries CIs so alternative thresholds can be re-applied offline.
+
+## 8. Remaining preregistered work (Phase 2+)
+
+Phase 1 delivered the infrastructure and the pilots only. Still outstanding
+from the preregistered design:
+
+1. **Full six-model screening** — all 6 models × 16 development tasks ×
+   selected variants × ≥2 reps, both harnesses (design §21/§18), with
+   worst-case no-cache costing and run-count confirmation before launch.
+2. **Frozen holdout confirmation** — per model, the 3 most waste-inducing
+   features + baseline + bounded_efficiency on the 8 holdout tasks, ≥5 reps,
+   with prompts/thresholds/evaluators/analysis code frozen beforehand (§22).
+3. **Per-model Claude Code budget pools** — Pilot B's shared pool starved
+   GLM-5.2 (5 runs) and Kimi-K2.6 (6); screening must budget per model.
+4. **Longer Claude Code turn limits** — 10% of CC pilot runs were
+   right-censored at --max-turns 40; screening should raise the ceiling (and
+   record subtype) so turn/cost distributions are uncensored.
+5. **Multi-turn stress variants** — split_across_turns and
+   full_restatement_per_turn need runner v2 session support (pi -c /
+   claude --resume) before the stress family can run.
+6. **Replication across a different day, region, and/or gateway** — all
+   Phase 1 data is one day, one region, one gateway (LiteLLM 1.93.0); cache
+   and latency findings especially need temporal/geographic replication,
+   and H16/H17 deserve a second translator implementation.
+
+Also carried: H5/H7/H14/H15/H17 (underpowered at pilot scale), harder tasks to
+break the ~100% success ceiling, the §9 normalized-harness comparison, the §14
+permission-mode contrast, and cache-eviction timing beyond 60 s.

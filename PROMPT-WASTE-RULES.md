@@ -1,6 +1,8 @@
 # Prompt-Waste Rules — practical guidance from the pilot
 
-Distilled from RESULTS.md (460 valid runs, 6 models, 2 harnesses). Confidence
+**Phase 1 (pilot) guidance** distilled from RESULTS.md (460 valid runs,
+6 models, 2 harnesses). These are working rules pending the preregistered
+screening and frozen-holdout phases (RESULTS.md §8), not final conclusions. Confidence
 labels: **strong** = classified wasteful/neutral with CI support on multiple
 tasks; *tentative* = consistent direction, underpowered pilot cells. All of it
 is pilot-scale evidence on small coding tasks; screening + holdout may revise.
