@@ -1,0 +1,20 @@
+{
+ "task_id": "py-high-02",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event.\nScope: events/dispatcher.py only\nAcceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event.\nScope: events/dispatcher.py only\nAcceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 678,
+ "byte_count": 678,
+ "est_prompt_tokens": 169,
+ "sha256": "8c8a091641ba2b7f23f5fc8a16d4d503ea19d9f1b3cb2f77bf95826815c8909b",
+ "generator_version": 1,
+ "task_criteria": "self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes",
+ "task_scope": "events/dispatcher.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-03",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 537,
+ "byte_count": 537,
+ "est_prompt_tokens": 134,
+ "sha256": "947598e55ca42e45d7505946fcc1f3fa48054ee22e443b450248275eb68a6b23",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

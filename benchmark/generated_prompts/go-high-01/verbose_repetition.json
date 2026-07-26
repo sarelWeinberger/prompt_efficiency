@@ -1,0 +1,21 @@
+{
+ "task_id": "go-high-01",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (counter/counter.go only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains go test ./.... In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (counter/counter.go only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains go test ./.... In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 838,
+ "byte_count": 838,
+ "est_prompt_tokens": 209,
+ "sha256": "971a6c6924148128c297cc021e0aad374d00df5926f482202de60b154013748d",
+ "generator_version": 1,
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

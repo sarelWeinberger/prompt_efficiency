@@ -1,0 +1,23 @@
+{
+ "task_id": "py-high-02",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event. Scope: events/dispatcher.py only Acceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event. Scope: events/dispatcher.py only Acceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event. Scope: events/dispatcher.py only Acceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event. Scope: events/dispatcher.py only Acceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 1080,
+ "byte_count": 1080,
+ "est_prompt_tokens": 270,
+ "sha256": "a4f9a170a6d962d101728fe76578b28e5ae085d2b831bbbd5ae520420a931b16",
+ "generator_version": 1,
+ "task_criteria": "self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes",
+ "task_scope": "events/dispatcher.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

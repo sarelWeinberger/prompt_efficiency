@@ -1,0 +1,23 @@
+{
+ "task_id": "py-low-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself. Scope: shop/discount.py only Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself. Scope: shop/discount.py only Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself. Scope: shop/discount.py only Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself. Scope: shop/discount.py only Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 818,
+ "byte_count": 818,
+ "est_prompt_tokens": 204,
+ "sha256": "53f74e6609c71566548bc1e6dcc67831d0811e0ca620094888e2bc51561773ec",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

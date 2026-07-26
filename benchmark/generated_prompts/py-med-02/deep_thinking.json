@@ -1,0 +1,20 @@
+{
+ "task_id": "py-med-02",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 708,
+ "byte_count": 708,
+ "est_prompt_tokens": 177,
+ "sha256": "63ea4156f00e842d72700aa290b1173e25439bf7c440e700481b98f95126210e",
+ "generator_version": 1,
+ "task_criteria": "parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes",
+ "task_scope": "config/parser.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

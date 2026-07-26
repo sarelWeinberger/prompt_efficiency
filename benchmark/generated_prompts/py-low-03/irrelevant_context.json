@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-03",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nInvestigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nInvestigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.",
+ "char_count": 1038,
+ "byte_count": 1038,
+ "est_prompt_tokens": 259,
+ "sha256": "b1a86c5fb58b947ed3589f235fcbbcd7d0271454a2336be430c15b0b0d9ce423",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

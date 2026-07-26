@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-02",
+ "variant": "conflicting_constraints",
+ "family": "stress",
+ "features": [
+  "stress",
+  "conflict"
+ ],
+ "turns": [
+  "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js",
+ "char_count": 523,
+ "byte_count": 525,
+ "est_prompt_tokens": 130,
+ "sha256": "0e3a89880c9fcd1958f2af1714279f34f0b3282c5ede5c31a5698842bf9f13f7",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

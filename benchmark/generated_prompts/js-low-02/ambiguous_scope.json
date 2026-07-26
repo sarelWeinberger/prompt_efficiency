@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-02",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: API response fields. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: API response fields. Improve the situation.",
+ "char_count": 127,
+ "byte_count": 127,
+ "est_prompt_tokens": 31,
+ "sha256": "2d2a52b67ebeb942222264598cd78d0f5df1a40d3c04961e2f435a9f9fe0d84f",
+ "generator_version": 1,
+ "task_criteria": "serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes",
+ "task_scope": "src/serializer.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

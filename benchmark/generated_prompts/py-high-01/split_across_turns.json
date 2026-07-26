@@ -1,0 +1,22 @@
+{
+ "task_id": "py-high-01",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package",
+  "Also: and fix it: preferences stored for one user must never appear for another user. Acceptance criteria: preferences are isolated per user; every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass."
+ ],
+ "text": "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package\n<TURN-BREAK>\nAlso: and fix it: preferences stored for one user must never appear for another user. Acceptance criteria: preferences are isolated per user; every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass.",
+ "char_count": 363,
+ "byte_count": 363,
+ "est_prompt_tokens": 90,
+ "sha256": "481debf7087f60fc38ff472ef321521bab06a848ceb400373023f2ee08f5835b",
+ "generator_version": 1,
+ "task_criteria": "preferences are isolated per user; every test under tests/ passes",
+ "task_scope": "the cachekit package (cachekit/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,19 @@
+{
+ "language": "go",
+ "complexity": "medium",
+ "split": "holdout",
+ "pilot": false,
+ "objective": "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged.",
+ "objective_vague": "the fetch client API",
+ "misleading_hint": "changing the existing Fetcher interface in place",
+ "scope": "the client package (client/)",
+ "allowed_paths": [
+  "client/client.go",
+  "client/limited.go"
+ ],
+ "criteria": "existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes",
+ "test_cmd": "go test ./...",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 2,
+ "id": "go-med-02"
+}

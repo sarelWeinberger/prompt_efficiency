@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-01",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.",
+ "char_count": 911,
+ "byte_count": 911,
+ "est_prompt_tokens": 227,
+ "sha256": "dbdf31b964ba5c73b3329ac1b13583e059092e96e4eaa928e3f7624abd82ff87",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

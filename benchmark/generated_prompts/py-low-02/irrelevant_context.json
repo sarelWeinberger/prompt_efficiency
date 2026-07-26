@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-02",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.\nScope: users/validate.py only\nAcceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.\nScope: users/validate.py only\nAcceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.",
+ "char_count": 1027,
+ "byte_count": 1027,
+ "est_prompt_tokens": 256,
+ "sha256": "4528fe2a0bfc0a7e987bd5b460b7ab70fd2793fcb9e97d1fb27373c6248bb57d",
+ "generator_version": 1,
+ "task_criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "task_scope": "users/validate.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

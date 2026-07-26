@@ -1,0 +1,20 @@
+{
+ "task_id": "go-high-02",
+ "variant": "no_questions_autonomy",
+ "family": "primary",
+ "features": [
+  "autonomy_cue"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDo not ask me any questions. Infer any missing details yourself and do whatever is\nnecessary to complete the task autonomously."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDo not ask me any questions. Infer any missing details yourself and do whatever is\nnecessary to complete the task autonomously.",
+ "char_count": 568,
+ "byte_count": 568,
+ "est_prompt_tokens": 142,
+ "sha256": "767668939b31da280fefab0314d28f85dca32652db07a49b40ef660a0ec8837d",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

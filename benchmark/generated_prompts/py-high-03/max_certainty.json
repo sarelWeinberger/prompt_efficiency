@@ -1,0 +1,20 @@
+{
+ "task_id": "py-high-03",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 564,
+ "byte_count": 564,
+ "est_prompt_tokens": 141,
+ "sha256": "4e877545a473ee075581ad04ced0b09dfee018d2abcaa53216a85f719759a42d",
+ "generator_version": 1,
+ "task_criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "task_scope": "the pipeline package (pipeline/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

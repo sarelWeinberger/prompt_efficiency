@@ -1,0 +1,23 @@
+{
+ "task_id": "js-low-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page). Scope: src/paginate.js only Acceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page). Scope: src/paginate.js only Acceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page). Scope: src/paginate.js only Acceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page). Scope: src/paginate.js only Acceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 652,
+ "byte_count": 652,
+ "est_prompt_tokens": 163,
+ "sha256": "47ec97950ead2f135f59dfdec78c4e4632e8dc3b9f551434d6c6edb18753f7ff",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,20 @@
+{
+ "language": "python",
+ "complexity": "high",
+ "split": "holdout",
+ "pilot": false,
+ "objective": "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.",
+ "objective_vague": "report totals",
+ "misleading_hint": "the transform stage (pipeline/transform.py)",
+ "scope": "the pipeline package (pipeline/)",
+ "allowed_paths": [
+  "pipeline/loader.py",
+  "pipeline/transform.py",
+  "pipeline/report.py"
+ ],
+ "criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "test_cmd": "python3 -m unittest discover -s tests -t . -v",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "py-high-03"
+}

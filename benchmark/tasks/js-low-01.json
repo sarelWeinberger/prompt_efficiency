@@ -1,0 +1,18 @@
+{
+ "language": "javascript",
+ "complexity": "low",
+ "split": "dev",
+ "pilot": false,
+ "objective": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).",
+ "objective_vague": "pagination",
+ "misleading_hint": "the slice bounds in pageItems",
+ "scope": "src/paginate.js only",
+ "allowed_paths": [
+  "src/paginate.js"
+ ],
+ "criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "test_cmd": "node --test tests/*.test.js",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "js-low-01"
+}

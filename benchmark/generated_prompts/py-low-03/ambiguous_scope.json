@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-03",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: size parsing output. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: size parsing output. Improve the situation.",
+ "char_count": 127,
+ "byte_count": 127,
+ "est_prompt_tokens": 31,
+ "sha256": "5c4e8d6e35413573f0a576b02f51ded803d447a7d7dcf772e9f9a29b21fcb21c",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

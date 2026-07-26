@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-02",
+ "variant": "conflicting_constraints",
+ "family": "stress",
+ "features": [
+  "stress",
+  "conflict"
+ ],
+ "turns": [
+  "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js",
+ "char_count": 396,
+ "byte_count": 396,
+ "est_prompt_tokens": 99,
+ "sha256": "6cd6094ada56479c250c67c451dec5df80ace43ab8eb6340ca2c98547f8e41cd",
+ "generator_version": 1,
+ "task_criteria": "serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes",
+ "task_scope": "src/serializer.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

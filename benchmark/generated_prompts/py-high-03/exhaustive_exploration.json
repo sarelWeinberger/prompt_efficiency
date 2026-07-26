@@ -1,0 +1,20 @@
+{
+ "task_id": "py-high-03",
+ "variant": "exhaustive_exploration",
+ "family": "primary",
+ "features": [
+  "exhaustive_exploration_cue"
+ ],
+ "turns": [
+  "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase."
+ ],
+ "text": "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase.",
+ "char_count": 600,
+ "byte_count": 600,
+ "est_prompt_tokens": 150,
+ "sha256": "95b322055a39a4468119c8d8948f637dcbfcff13affa699aa21293cb885b30e4",
+ "generator_version": 1,
+ "task_criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "task_scope": "the pipeline package (pipeline/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

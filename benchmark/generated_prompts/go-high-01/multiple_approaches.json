@@ -1,0 +1,20 @@
+{
+ "task_id": "go-high-01",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 545,
+ "byte_count": 545,
+ "est_prompt_tokens": 136,
+ "sha256": "151d6498f1f80d89da6a8b5972a7bb05906984b3b59b2b2f4402630b80b38b55",
+ "generator_version": 1,
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

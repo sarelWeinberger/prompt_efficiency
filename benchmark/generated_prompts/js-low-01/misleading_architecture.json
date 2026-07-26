@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-01",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nNote: we believe the problem is caused by the the slice bounds in pageItems \u2014 start there.\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nNote: we believe the problem is caused by the the slice bounds in pageItems \u2014 start there.\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js",
+ "char_count": 317,
+ "byte_count": 319,
+ "est_prompt_tokens": 79,
+ "sha256": "7afd1a38718c6bdf41dcca03aa5b895e14aa18046bb53195b2a06234eb702f4b",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,20 @@
+{
+ "task_id": "go-med-01",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 653,
+ "byte_count": 653,
+ "est_prompt_tokens": 163,
+ "sha256": "8116ecd93023d4275b0084cb460a12db466bc9954a85a3fe6756364e2e3cd086",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

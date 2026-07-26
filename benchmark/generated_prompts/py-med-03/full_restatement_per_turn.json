@@ -1,0 +1,23 @@
+{
+ "task_id": "py-med-03",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts. Scope: store/serialize.py only Acceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts. Scope: store/serialize.py only Acceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts. Scope: store/serialize.py only Acceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts. Scope: store/serialize.py only Acceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 1124,
+ "byte_count": 1124,
+ "est_prompt_tokens": 281,
+ "sha256": "b866324b458ad00d36b9d11e1d986cf31d39cf054e4695f035998c7465a1bc06",
+ "generator_version": 1,
+ "task_criteria": "roundtrip equality for flat and nested records with datetime values; every test under tests/ passes",
+ "task_scope": "store/serialize.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

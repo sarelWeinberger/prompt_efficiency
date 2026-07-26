@@ -1,0 +1,22 @@
+{
+ "task_id": "js-low-02",
+ "variant": "baseline",
+ "family": "primary",
+ "features": [
+  "precise",
+  "scoped",
+  "stop_condition"
+ ],
+ "turns": [
+  "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nScope: src/serializer.js only\nAcceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nScope: src/serializer.js only\nAcceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.",
+ "char_count": 408,
+ "byte_count": 408,
+ "est_prompt_tokens": 102,
+ "sha256": "95397972906eabf882728bab546d6cb99b673b47c85b1b5a74e2536b992a91f8",
+ "generator_version": 1,
+ "task_criteria": "serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes",
+ "task_scope": "src/serializer.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

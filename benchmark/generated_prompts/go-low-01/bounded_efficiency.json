@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 588,
+ "byte_count": 588,
+ "est_prompt_tokens": 147,
+ "sha256": "2ddd659e22d05ce875b8247d23a0a7284606c790d31679e521daa3553b4ed5cc",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

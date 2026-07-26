@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-03",
+ "variant": "conflicting_constraints",
+ "family": "stress",
+ "features": [
+  "stress",
+  "conflict"
+ ],
+ "turns": [
+  "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js",
+ "char_count": 466,
+ "byte_count": 466,
+ "est_prompt_tokens": 116,
+ "sha256": "e992565050444c93bd5a43014f87b142a9d3ae1a8f087761d80d5b49c917ea9d",
+ "generator_version": 1,
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

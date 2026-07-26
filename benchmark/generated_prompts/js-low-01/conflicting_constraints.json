@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-01",
+ "variant": "conflicting_constraints",
+ "family": "stress",
+ "features": [
+  "stress",
+  "conflict"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: node --test tests/*.test.js",
+ "char_count": 314,
+ "byte_count": 314,
+ "est_prompt_tokens": 78,
+ "sha256": "12abc79e5a57b4c43c6ac189cb669dfdc81b42f318be94e0abe1cb78e66184ef",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

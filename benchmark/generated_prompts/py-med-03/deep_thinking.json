@@ -1,0 +1,20 @@
+{
+ "task_id": "py-med-03",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts.\nScope: store/serialize.py only\nAcceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts.\nScope: store/serialize.py only\nAcceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 691,
+ "byte_count": 691,
+ "est_prompt_tokens": 172,
+ "sha256": "f94e26aa069e19dc175ea7b8ed51c3372254e56f5fc67d5f339d9a6b4a7d6554",
+ "generator_version": 1,
+ "task_criteria": "roundtrip equality for flat and nested records with datetime values; every test under tests/ passes",
+ "task_scope": "store/serialize.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

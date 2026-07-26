@@ -1,0 +1,23 @@
+{
+ "task_id": "js-low-03",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens. Scope: src/slugify.js only Acceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens. Scope: src/slugify.js only Acceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens. Scope: src/slugify.js only Acceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens. Scope: src/slugify.js only Acceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 912,
+ "byte_count": 912,
+ "est_prompt_tokens": 228,
+ "sha256": "da1d890bf3169c181173109b508ce6ffabf3b0822be7fe509556c8bebd8f272d",
+ "generator_version": 1,
+ "task_criteria": "slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes",
+ "task_scope": "src/slugify.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,20 @@
+{
+ "task_id": "go-med-01",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 644,
+ "byte_count": 644,
+ "est_prompt_tokens": 161,
+ "sha256": "e79549bfa156d2dcfec331fe19e323f677972bb0058ffc70150385d113d83efc",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

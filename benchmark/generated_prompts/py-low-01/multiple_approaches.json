@@ -1,0 +1,20 @@
+{
+ "task_id": "py-low-01",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 498,
+ "byte_count": 498,
+ "est_prompt_tokens": 124,
+ "sha256": "820999071ae682b8e772d6ece8563a5c04b294ee0ac79281006633211aee13af",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

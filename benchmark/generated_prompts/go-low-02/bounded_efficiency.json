@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-02",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces.\nScope: textutil/normalize.go only\nAcceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces.\nScope: textutil/normalize.go only\nAcceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 649,
+ "byte_count": 649,
+ "est_prompt_tokens": 162,
+ "sha256": "9d9a5fe6dce152d0ac5924d8c2565e60d8d34fe0f2f3c19c0ab1602dfdd5d407",
+ "generator_version": 1,
+ "task_criteria": "Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes",
+ "task_scope": "textutil/normalize.go only",
+ "task_test_cmd": "go test ./..."
+}

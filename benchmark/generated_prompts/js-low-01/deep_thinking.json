@@ -1,0 +1,20 @@
+{
+ "task_id": "js-low-01",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 455,
+ "byte_count": 455,
+ "est_prompt_tokens": 113,
+ "sha256": "d413be86f6813f1edcb49d31caa484fb1dd54317e2ce6d0b9ea1b467288dad60",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

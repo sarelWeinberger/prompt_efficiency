@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-02",
+ "variant": "exhaustive_exploration",
+ "family": "primary",
+ "features": [
+  "exhaustive_exploration_cue"
+ ],
+ "turns": [
+  "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase."
+ ],
+ "text": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase.",
+ "char_count": 728,
+ "byte_count": 730,
+ "est_prompt_tokens": 182,
+ "sha256": "c481cdc51e91f45104bcc3a912c6de92ab28888e0ce5c82652656d4c0eeab643",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

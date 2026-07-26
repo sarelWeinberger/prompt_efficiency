@@ -1,0 +1,9 @@
+{
+ "hidden_copy": [
+  {
+   "src": "hidden.test.js",
+   "dst": "tests_hidden/hidden.test.js"
+  }
+ ],
+ "hidden_cmd": "node --test tests_hidden/*.test.js"
+}

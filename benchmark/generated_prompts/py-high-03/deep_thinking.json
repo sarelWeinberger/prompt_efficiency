@@ -1,0 +1,20 @@
+{
+ "task_id": "py-high-03",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 555,
+ "byte_count": 555,
+ "est_prompt_tokens": 138,
+ "sha256": "330ad68606c2734d6c85e49f62c43ed343b4331d250e7dfcbefaa658cc5647cf",
+ "generator_version": 1,
+ "task_criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "task_scope": "the pipeline package (pipeline/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

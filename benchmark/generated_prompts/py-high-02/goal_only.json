@@ -1,0 +1,22 @@
+{
+ "task_id": "py-high-02",
+ "variant": "goal_only",
+ "family": "primary",
+ "features": [
+  "minimal",
+  "no_scope",
+  "no_criteria"
+ ],
+ "turns": [
+  "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event."
+ ],
+ "text": "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event.",
+ "char_count": 251,
+ "byte_count": 251,
+ "est_prompt_tokens": 62,
+ "sha256": "4d8da80f8043e303b4b1ceb12ce418c4b0a9b1d116777ed905d9292faeb763e7",
+ "generator_version": 1,
+ "task_criteria": "self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes",
+ "task_scope": "events/dispatcher.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "js-med-01",
+ "variant": "baseline",
+ "family": "primary",
+ "features": [
+  "precise",
+  "scoped",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total.\nScope: src/cart.js and src/totals.js\nAcceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total.\nScope: src/cart.js and src/totals.js\nAcceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.",
+ "char_count": 458,
+ "byte_count": 458,
+ "est_prompt_tokens": 114,
+ "sha256": "c354734fd28de0c87a6b6ff5631c06fdda1ab73f4a846a84e67b01b355fc6b2b",
+ "generator_version": 1,
+ "task_criteria": "grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes",
+ "task_scope": "src/cart.js and src/totals.js",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

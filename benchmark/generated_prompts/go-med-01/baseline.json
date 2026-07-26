@@ -1,0 +1,22 @@
+{
+ "task_id": "go-med-01",
+ "variant": "baseline",
+ "family": "primary",
+ "features": [
+  "precise",
+  "scoped",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.",
+ "char_count": 469,
+ "byte_count": 469,
+ "est_prompt_tokens": 117,
+ "sha256": "e0d967a2361a5b223f731e836efdd5b131e3aff601a4917e1b8e404f5f0dd630",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

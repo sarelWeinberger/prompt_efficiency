@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: cart totals. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: cart totals. Improve the situation.",
+ "char_count": 119,
+ "byte_count": 119,
+ "est_prompt_tokens": 29,
+ "sha256": "22d9c5ecb7c787735027750d0185ed73d8c90165a50a38d0003cd9189369ea47",
+ "generator_version": 1,
+ "task_criteria": "grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes",
+ "task_scope": "src/cart.js and src/totals.js",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

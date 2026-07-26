@@ -1,0 +1,20 @@
+{
+ "task_id": "py-med-02",
+ "variant": "exhaustive_exploration",
+ "family": "primary",
+ "features": [
+  "exhaustive_exploration_cue"
+ ],
+ "turns": [
+  "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase."
+ ],
+ "text": "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase.",
+ "char_count": 753,
+ "byte_count": 753,
+ "est_prompt_tokens": 188,
+ "sha256": "639b8452b0f21d7a54d22573d6efff8af0ecef25d3efcafb9207a0ca76d872ee",
+ "generator_version": 1,
+ "task_criteria": "parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes",
+ "task_scope": "config/parser.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "go-med-01",
+ "variant": "conflicting_constraints",
+ "family": "stress",
+ "features": [
+  "stress",
+  "conflict"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: go test ./..."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: go test ./...",
+ "char_count": 421,
+ "byte_count": 421,
+ "est_prompt_tokens": 105,
+ "sha256": "0768527a739ec5d701e7b4eb616744b74b0dbaa27e995fcbd7f9928bfe1f8dbf",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

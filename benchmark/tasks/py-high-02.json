@@ -1,0 +1,18 @@
+{
+ "language": "python",
+ "complexity": "high",
+ "split": "dev",
+ "pilot": false,
+ "objective": "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event.",
+ "objective_vague": "event delivery",
+ "misleading_hint": "the unsubscribe bookkeeping in subscribe()",
+ "scope": "events/dispatcher.py only",
+ "allowed_paths": [
+  "events/dispatcher.py"
+ ],
+ "criteria": "self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes",
+ "test_cmd": "python3 -m unittest discover -s tests -t . -v",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "py-high-02"
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: data fetching layer. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: data fetching layer. Improve the situation.",
+ "char_count": 127,
+ "byte_count": 127,
+ "est_prompt_tokens": 31,
+ "sha256": "656d4124905c94a92642aa04a2400ad4d68aa6a33ed3b71d4dbecd9f380b7757",
+ "generator_version": 1,
+ "task_criteria": "two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes",
+ "task_scope": "src/fetchCache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

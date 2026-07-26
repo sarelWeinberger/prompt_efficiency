@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-02",
+ "variant": "goal_only",
+ "family": "primary",
+ "features": [
+  "minimal",
+  "no_scope",
+  "no_criteria"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.",
+ "char_count": 253,
+ "byte_count": 253,
+ "est_prompt_tokens": 63,
+ "sha256": "02d600652f4ae565ef995169b57f5cb88f5505ea469d77e88cce84304e714a89",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-02",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: event delivery. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: event delivery. Improve the situation.",
+ "char_count": 122,
+ "byte_count": 122,
+ "est_prompt_tokens": 30,
+ "sha256": "2a9e1e364757892c4b9a5c2f576ba3ba7b0eebd48e589f74782d0bdc290f7d7c",
+ "generator_version": 1,
+ "task_criteria": "self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes",
+ "task_scope": "events/dispatcher.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

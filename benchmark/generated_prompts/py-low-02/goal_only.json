@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-02",
+ "variant": "goal_only",
+ "family": "primary",
+ "features": [
+  "minimal",
+  "no_scope",
+  "no_criteria"
+ ],
+ "turns": [
+  "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected."
+ ],
+ "text": "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.",
+ "char_count": 223,
+ "byte_count": 223,
+ "est_prompt_tokens": 55,
+ "sha256": "946ca3cd488deb2d8dea98b9a41e2b135e8692e6f4d02ba6727cc813aa1c4fb5",
+ "generator_version": 1,
+ "task_criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "task_scope": "users/validate.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

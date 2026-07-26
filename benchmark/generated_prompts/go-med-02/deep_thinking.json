@@ -1,0 +1,20 @@
+{
+ "task_id": "go-med-02",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged.\nScope: the client package (client/)\nAcceptance criteria: existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged.\nScope: the client package (client/)\nAcceptance criteria: existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 675,
+ "byte_count": 675,
+ "est_prompt_tokens": 168,
+ "sha256": "536c74a4fa31843971410444ae8a60d51fde3bce6e0e9d1d64a640e1fd45ad26",
+ "generator_version": 1,
+ "task_criteria": "existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes",
+ "task_scope": "the client package (client/)",
+ "task_test_cmd": "go test ./..."
+}

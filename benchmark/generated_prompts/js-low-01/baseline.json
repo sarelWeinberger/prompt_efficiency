@@ -1,0 +1,22 @@
+{
+ "task_id": "js-low-01",
+ "variant": "baseline",
+ "family": "primary",
+ "features": [
+  "precise",
+  "scoped",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.",
+ "char_count": 280,
+ "byte_count": 280,
+ "est_prompt_tokens": 70,
+ "sha256": "9836000b02a5c21eeaf831b22134c45eecc1ee39aa22800252f80965f8ea01bf",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

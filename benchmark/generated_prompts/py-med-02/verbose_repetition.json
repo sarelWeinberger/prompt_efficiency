@@ -1,0 +1,21 @@
+{
+ "task_id": "py-med-02",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (config/parser.py only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (config/parser.py only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 991,
+ "byte_count": 991,
+ "est_prompt_tokens": 247,
+ "sha256": "33140a4f28eb122b8c980c3ddc11dc005a5ac72e3199ea96919eb2de9fb7b7b6",
+ "generator_version": 1,
+ "task_criteria": "parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes",
+ "task_scope": "config/parser.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "js-low-03",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens.\nScope: src/slugify.js only\nAcceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens.\nScope: src/slugify.js only\nAcceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 687,
+ "byte_count": 687,
+ "est_prompt_tokens": 171,
+ "sha256": "527d2232206336b9ebe49cca8f8d196d9d77eb37c20f0c5dbb0df69b60b5af37",
+ "generator_version": 1,
+ "task_criteria": "slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes",
+ "task_scope": "src/slugify.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

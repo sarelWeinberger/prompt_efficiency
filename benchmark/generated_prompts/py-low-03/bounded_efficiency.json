@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-03",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 767,
+ "byte_count": 767,
+ "est_prompt_tokens": 191,
+ "sha256": "e72649e465968af1b5aff8f1da745793495f0112bc409205537bd84733d6aa19",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

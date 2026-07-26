@@ -1,0 +1,22 @@
+{
+ "task_id": "js-med-03",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 788,
+ "byte_count": 788,
+ "est_prompt_tokens": 197,
+ "sha256": "dd491803158040fc11c7f6392264b6b07a83f96744b506385ed1c425b9fd20ad",
+ "generator_version": 1,
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

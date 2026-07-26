@@ -1,0 +1,20 @@
+{
+ "task_id": "go-med-02",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged.\nScope: the client package (client/)\nAcceptance criteria: existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged.\nScope: the client package (client/)\nAcceptance criteria: existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 635,
+ "byte_count": 635,
+ "est_prompt_tokens": 158,
+ "sha256": "82c3544c6e8cb1feace1ced281b3f05b5f5cc1b475fc3387ba59a572f3bf6560",
+ "generator_version": 1,
+ "task_criteria": "existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes",
+ "task_scope": "the client package (client/)",
+ "task_test_cmd": "go test ./..."
+}

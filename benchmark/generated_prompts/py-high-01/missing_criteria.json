@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-01",
+ "variant": "missing_criteria",
+ "family": "stress",
+ "features": [
+  "stress",
+  "no_criteria"
+ ],
+ "turns": [
+  "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user."
+ ],
+ "text": "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user.",
+ "char_count": 170,
+ "byte_count": 170,
+ "est_prompt_tokens": 42,
+ "sha256": "865b010679f6e0be44080450d3859a7f99280405b2cfd18f4b079c602efcf4a7",
+ "generator_version": 1,
+ "task_criteria": "preferences are isolated per user; every test under tests/ passes",
+ "task_scope": "the cachekit package (cachekit/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

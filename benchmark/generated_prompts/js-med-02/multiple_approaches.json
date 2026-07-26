@@ -1,0 +1,20 @@
+{
+ "task_id": "js-med-02",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Add a burst allowance to src/ratelimit.js: the constructor must accept an options object as third argument, new RateLimiter(limit, windowMs, {burst: n}), permitting at most limit+n requests per window (default burst 0, existing behavior unchanged). Also add a remaining() method returning how many requests are still allowed in the current window.\nScope: src/ratelimit.js only\nAcceptance criteria: limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Add a burst allowance to src/ratelimit.js: the constructor must accept an options object as third argument, new RateLimiter(limit, windowMs, {burst: n}), permitting at most limit+n requests per window (default burst 0, existing behavior unchanged). Also add a remaining() method returning how many requests are still allowed in the current window.\nScope: src/ratelimit.js only\nAcceptance criteria: limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 718,
+ "byte_count": 718,
+ "est_prompt_tokens": 179,
+ "sha256": "a844f9fbaa5cf05bb7cd07d739337e5a2b8a51867b005978e7ff50c6a4a347c5",
+ "generator_version": 1,
+ "task_criteria": "limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes",
+ "task_scope": "src/ratelimit.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

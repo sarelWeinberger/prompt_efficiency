@@ -1,0 +1,467 @@
+[
+ {
+  "model": "deepseek-ai/DeepSeek-V4-Pro",
+  "alias": "benchmark-deepseek-v4-pro",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "unsupported",
+   "sequential_tool_calls": "unsupported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "partially_supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 20,
+     "output_tokens": 22
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 74,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_5942f418-d53d-467c-85a5-d0034a9d624a\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"deepseek-ai/DeepSeek"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 0,
+    "stop_reason": "end_turn"
+   },
+   "agent": {
+    "num_turns": 1,
+    "wall_s": 2.6,
+    "alpha": false,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 1563,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 105,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.01044
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 27.1
+ },
+ {
+  "model": "moonshotai/Kimi-K2.6",
+  "alias": "benchmark-kimi-k2-6",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "unsupported",
+   "sequential_tool_calls": "unsupported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "partially_supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 27,
+     "output_tokens": 60
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 100,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_d6caeebf-3c37-4de1-9a9f-c22f895b15a1\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"moonshotai/Kimi-K2.6"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 0,
+    "stop_reason": "max_tokens"
+   },
+   "agent": {
+    "num_turns": 1,
+    "wall_s": 1.8,
+    "alpha": false,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 1521,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 269,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.014329999999999999
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 7.3
+ },
+ {
+  "model": "moonshotai/Kimi-K2.7-Code",
+  "alias": "benchmark-kimi-k2-7-code",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "unsupported",
+   "sequential_tool_calls": "unsupported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "partially_supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 27,
+     "output_tokens": 70
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 58,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_a8a51550-ed53-44dd-8ea4-11c2abc0e39e\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"moonshotai/Kimi-K2.7"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 0,
+    "stop_reason": "end_turn"
+   },
+   "agent": {
+    "num_turns": 1,
+    "wall_s": 1.9,
+    "alpha": false,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 1525,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 153,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.011450000000000002
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 6.1
+ },
+ {
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "alias": "benchmark-nemotron-3-ultra",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "unsupported",
+   "sequential_tool_calls": "unsupported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "partially_supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 31,
+     "output_tokens": 310
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 16,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_99fbdfed-0015-45a5-ba56-76711cb4c97d\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"nvidia/nemotron-3-ul"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 0,
+    "stop_reason": "end_turn"
+   },
+   "agent": {
+    "num_turns": 1,
+    "wall_s": 2.0,
+    "alpha": false,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 1598,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 315,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.015865
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 8.7
+ },
+ {
+  "model": "thinkingmachines/Inkling",
+  "alias": "benchmark-inkling",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "unsupported",
+   "sequential_tool_calls": "unsupported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "partially_supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 33,
+     "output_tokens": 60
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 217,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_b23370cf-d863-4209-a0da-8bd2e61ab6f7\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"thinkingmachines/Ink"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 0,
+    "stop_reason": "end_turn"
+   },
+   "agent": {
+    "num_turns": 1,
+    "wall_s": 1.5,
+    "alpha": false,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 1522,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 87,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.009784999999999999
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 10.1
+ },
+ {
+  "model": "zai-org/GLM-5.2",
+  "alias": "benchmark-glm-5-2",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "unsupported",
+   "sequential_tool_calls": "adapter_error",
+   "tool_result_continuation": "adapter_error",
+   "context_continuation": "adapter_error",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 28,
+     "output_tokens": 33
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 167,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_f6372672-baec-4663-827f-ead4a62b8916\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"zai-org/GLM-5.2\", \"s"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 0,
+    "stop_reason": "end_turn"
+   },
+   "agent": {
+    "error": "timeout",
+    "wall_s": 150.1
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 164.6
+ }
+]

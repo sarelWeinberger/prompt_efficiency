@@ -1,0 +1,23 @@
+{
+ "task_id": "go-high-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged. Scope: counter/counter.go only Acceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes Verify with: go test ./... Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged. Scope: counter/counter.go only Acceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged. Scope: counter/counter.go only Acceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes Verify with: go test ./... Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged. Scope: counter/counter.go only Acceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 912,
+ "byte_count": 912,
+ "est_prompt_tokens": 228,
+ "sha256": "b2fa97e9c99d77d623c3acb5750cb897eb9b1b476287b644fdd79f76e5e44a23",
+ "generator_version": 1,
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

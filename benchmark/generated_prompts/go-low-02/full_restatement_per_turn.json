@@ -1,0 +1,23 @@
+{
+ "task_id": "go-low-02",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces. Scope: textutil/normalize.go only Acceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes Verify with: go test ./... Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces. Scope: textutil/normalize.go only Acceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces. Scope: textutil/normalize.go only Acceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes Verify with: go test ./... Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces. Scope: textutil/normalize.go only Acceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 836,
+ "byte_count": 836,
+ "est_prompt_tokens": 209,
+ "sha256": "f11b120268793373acde71ac681e49d33801fff98a22dd4696544e9000a92a56",
+ "generator_version": 1,
+ "task_criteria": "Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes",
+ "task_scope": "textutil/normalize.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,18 @@
+{
+ "language": "python",
+ "complexity": "medium",
+ "split": "dev",
+ "pilot": false,
+ "objective": "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.",
+ "objective_vague": "configuration parsing",
+ "misleading_hint": "the integer branch",
+ "scope": "config/parser.py only",
+ "allowed_paths": [
+  "config/parser.py"
+ ],
+ "criteria": "parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes",
+ "test_cmd": "python3 -m unittest discover -s tests -t . -v",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "py-med-02"
+}

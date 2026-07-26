@@ -1,0 +1,23 @@
+{
+ "task_id": "go-low-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it). Scope: stats/stats.go only Acceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes Verify with: go test ./... Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it). Scope: stats/stats.go only Acceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it). Scope: stats/stats.go only Acceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes Verify with: go test ./... Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it). Scope: stats/stats.go only Acceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 714,
+ "byte_count": 714,
+ "est_prompt_tokens": 178,
+ "sha256": "6ddf86169c427dd8ba08915855ec895e28ebb18f5f08e40959a3245a6688d731",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

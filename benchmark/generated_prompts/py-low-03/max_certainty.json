@@ -1,0 +1,20 @@
+{
+ "task_id": "py-low-03",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 674,
+ "byte_count": 674,
+ "est_prompt_tokens": 168,
+ "sha256": "d939a8aa005fb7d93f1212bc37715103e94ceddd88d5de2ff7305d79b11b1487",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

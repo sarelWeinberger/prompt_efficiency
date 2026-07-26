@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: user preference storage. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: user preference storage. Improve the situation.",
+ "char_count": 131,
+ "byte_count": 131,
+ "est_prompt_tokens": 32,
+ "sha256": "80977452fcce52cfdda67e0691421a7e409961bea565cd36375dd0b400c56d2a",
+ "generator_version": 1,
+ "task_criteria": "preferences are isolated per user; every test under tests/ passes",
+ "task_scope": "the cachekit package (cachekit/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

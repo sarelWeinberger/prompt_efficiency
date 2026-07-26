@@ -1,0 +1,23 @@
+{
+ "task_id": "go-high-02",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it. Scope: the config package (config/) Acceptance criteria: env value wins over file value; file wins over default; go test ./... passes Verify with: go test ./... Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it. Scope: the config package (config/) Acceptance criteria: env value wins over file value; file wins over default; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it. Scope: the config package (config/) Acceptance criteria: env value wins over file value; file wins over default; go test ./... passes Verify with: go test ./... Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it. Scope: the config package (config/) Acceptance criteria: env value wins over file value; file wins over default; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 972,
+ "byte_count": 972,
+ "est_prompt_tokens": 243,
+ "sha256": "d421c5412d0bb37d2afa6401a4aad5ea6f8178ab07a5582ba62713f6541153e7",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "py-med-03",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts.\nScope: store/serialize.py only\nAcceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts.\nScope: store/serialize.py only\nAcceptance criteria: roundtrip equality for flat and nested records with datetime values; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.",
+ "char_count": 1064,
+ "byte_count": 1064,
+ "est_prompt_tokens": 266,
+ "sha256": "041afdda8cbba396f6e613ae18f3ffa289a31cc5aec831c95f78bd46a8231b36",
+ "generator_version": 1,
+ "task_criteria": "roundtrip equality for flat and nested records with datetime values; every test under tests/ passes",
+ "task_scope": "store/serialize.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

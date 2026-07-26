@@ -1,0 +1,21 @@
+{
+ "task_id": "py-med-01",
+ "variant": "conflicting_constraints",
+ "family": "stress",
+ "features": [
+  "stress",
+  "conflict"
+ ],
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: python3 -m unittest discover -s tests -t . -v"
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nBe extremely thorough and examine everything carefully, but also finish as fast as\npossible and touch almost nothing. Do a complete, deep job quickly and minimally.\nVerify with: python3 -m unittest discover -s tests -t . -v",
+ "char_count": 415,
+ "byte_count": 415,
+ "est_prompt_tokens": 103,
+ "sha256": "b7283f773b24f89a61a914b81fbe34b365201ed51503119de1219522b29e0672",
+ "generator_version": 1,
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

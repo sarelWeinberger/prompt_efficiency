@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-03",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: job processing counts. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: job processing counts. Improve the situation.",
+ "char_count": 129,
+ "byte_count": 129,
+ "est_prompt_tokens": 32,
+ "sha256": "702387df04cbfc13f7d201473215124a9d6be32bf964679683edd20d0459125b",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

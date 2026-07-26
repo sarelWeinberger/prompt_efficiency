@@ -1,0 +1,21 @@
+{
+ "task_id": "go-high-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: metrics counting. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: metrics counting. Improve the situation.",
+ "char_count": 124,
+ "byte_count": 124,
+ "est_prompt_tokens": 31,
+ "sha256": "0b09fe139f8cae271a5abde04d4ba887c24206504fd3cb1995374e160f4a4809",
+ "generator_version": 1,
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,20 @@
+{
+ "task_id": "go-med-01",
+ "variant": "no_questions_autonomy",
+ "family": "primary",
+ "features": [
+  "autonomy_cue"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDo not ask me any questions. Infer any missing details yourself and do whatever is\nnecessary to complete the task autonomously."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.\nScope: the inventory package (inventory/)\nAcceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nDo not ask me any questions. Infer any missing details yourself and do whatever is\nnecessary to complete the task autonomously.",
+ "char_count": 597,
+ "byte_count": 597,
+ "est_prompt_tokens": 149,
+ "sha256": "d43ec626514836db42c4b283784706ccda5f68956e7f9886fab8dfcc4ec98c8e",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

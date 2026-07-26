@@ -1,0 +1,20 @@
+{
+ "task_id": "js-low-03",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens.\nScope: src/slugify.js only\nAcceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens.\nScope: src/slugify.js only\nAcceptance criteria: slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 585,
+ "byte_count": 585,
+ "est_prompt_tokens": 146,
+ "sha256": "882f83ffaedc2189b3c603909cf812a1095123a9be37344250ca6183eeae6995",
+ "generator_version": 1,
+ "task_criteria": "slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes",
+ "task_scope": "src/slugify.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

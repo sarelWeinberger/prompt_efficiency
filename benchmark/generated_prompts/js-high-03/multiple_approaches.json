@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-03",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 488,
+ "byte_count": 488,
+ "est_prompt_tokens": 122,
+ "sha256": "2e3da3878cbca9e1b33642ecaf4658c136de8c1860809061745c07986c8d38cf",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

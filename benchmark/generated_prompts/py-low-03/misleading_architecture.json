@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-03",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nNote: we believe the problem is caused by the string handling in the CLI layer \u2014 start there.\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v"
+ ],
+ "text": "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nNote: we believe the problem is caused by the string handling in the CLI layer \u2014 start there.\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v",
+ "char_count": 506,
+ "byte_count": 508,
+ "est_prompt_tokens": 126,
+ "sha256": "c32f61ad6f68e855c9ef8423af060c8219961f29916a9cefc44a569a467ad439",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

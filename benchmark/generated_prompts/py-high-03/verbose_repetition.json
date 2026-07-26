@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-03",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (the pipeline package (pipeline/)), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nScope: the pipeline package (pipeline/)\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (the pipeline package (pipeline/)), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 849,
+ "byte_count": 849,
+ "est_prompt_tokens": 212,
+ "sha256": "13c2594a74cf848c9e8119a2e7c79be7dfb80b61169c60a83a67a3ab7204c4ff",
+ "generator_version": 1,
+ "task_criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "task_scope": "the pipeline package (pipeline/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

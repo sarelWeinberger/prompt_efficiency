@@ -1,0 +1,21 @@
+{
+ "task_id": "py-med-03",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: record storage. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: record storage. Improve the situation.",
+ "char_count": 122,
+ "byte_count": 122,
+ "est_prompt_tokens": 30,
+ "sha256": "75139115a81e213f4fa5581e874f7d951a15ed8950bd4a4ec09ccc78523dd048",
+ "generator_version": 1,
+ "task_criteria": "roundtrip equality for flat and nested records with datetime values; every test under tests/ passes",
+ "task_scope": "store/serialize.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,20 @@
+{
+ "task_id": "py-low-02",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.\nScope: users/validate.py only\nAcceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.\nScope: users/validate.py only\nAcceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 663,
+ "byte_count": 663,
+ "est_prompt_tokens": 165,
+ "sha256": "22b66e22f613199df7fa4d1d2b007478ca182ccbff2ff9a3236050ea2cecec3d",
+ "generator_version": 1,
+ "task_criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "task_scope": "users/validate.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

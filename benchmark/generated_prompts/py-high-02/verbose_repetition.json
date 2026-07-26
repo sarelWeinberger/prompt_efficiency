@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-02",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event.\nScope: events/dispatcher.py only\nAcceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (events/dispatcher.py only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Fix the event dispatcher bug in events/dispatcher.py: when a listener unsubscribes itself during emit(), the next listener in order is silently skipped. Every listener subscribed at the moment emit() starts must be invoked exactly once for that event.\nScope: events/dispatcher.py only\nAcceptance criteria: self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (events/dispatcher.py only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 956,
+ "byte_count": 956,
+ "est_prompt_tokens": 239,
+ "sha256": "81c8c1f9c1184be5dac11f3d12749647305d0abf4c0fe3978f8a4042a67b8070",
+ "generator_version": 1,
+ "task_criteria": "self-unsubscribing listeners do not cause later listeners to be skipped; every test under tests/ passes",
+ "task_scope": "events/dispatcher.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

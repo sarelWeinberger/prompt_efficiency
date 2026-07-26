@@ -1,0 +1,23 @@
+{
+ "task_id": "py-high-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user. Scope: the cachekit package (cachekit/) Acceptance criteria: preferences are isolated per user; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user. Scope: the cachekit package (cachekit/) Acceptance criteria: preferences are isolated per user; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user. Scope: the cachekit package (cachekit/) Acceptance criteria: preferences are isolated per user; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user. Scope: the cachekit package (cachekit/) Acceptance criteria: preferences are isolated per user; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 856,
+ "byte_count": 856,
+ "est_prompt_tokens": 214,
+ "sha256": "d4cbd6a46fe8b6d3a11a95d0df5a1c70668288e8483537905ba88cc82691d83a",
+ "generator_version": 1,
+ "task_criteria": "preferences are isolated per user; every test under tests/ passes",
+ "task_scope": "the cachekit package (cachekit/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

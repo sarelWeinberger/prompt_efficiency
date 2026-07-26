@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-02",
+ "variant": "goal_only",
+ "family": "primary",
+ "features": [
+  "minimal",
+  "no_scope",
+  "no_criteria"
+ ],
+ "turns": [
+  "Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces."
+ ],
+ "text": "Repair the failing unit test by fixing the code (the test is correct): Normalize in textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces.",
+ "char_count": 209,
+ "byte_count": 209,
+ "est_prompt_tokens": 52,
+ "sha256": "42573431ce43d35b0c7f470cdb2739359dd2c5568a564c11336b373aa1228b54",
+ "generator_version": 1,
+ "task_criteria": "Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes",
+ "task_scope": "textutil/normalize.go only",
+ "task_test_cmd": "go test ./..."
+}

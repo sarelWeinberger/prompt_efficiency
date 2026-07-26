@@ -1,0 +1,20 @@
+{
+ "task_id": "js-med-03",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 646,
+ "byte_count": 646,
+ "est_prompt_tokens": 161,
+ "sha256": "c9dff33e2e01ccfa8038ac8d3f18ce4cf09c0d8ef3ba230d4b60b84b206c4250",
+ "generator_version": 1,
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

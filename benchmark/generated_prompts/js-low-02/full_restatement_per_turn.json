@@ -1,0 +1,23 @@
+{
+ "task_id": "js-low-02",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are. Scope: src/serializer.js only Acceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are. Scope: src/serializer.js only Acceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are. Scope: src/serializer.js only Acceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are. Scope: src/serializer.js only Acceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 908,
+ "byte_count": 908,
+ "est_prompt_tokens": 227,
+ "sha256": "a79c5fd8ce32d2c2a8889f333cd4dea89f09360201e0816f042bd27fd59a6b7e",
+ "generator_version": 1,
+ "task_criteria": "serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes",
+ "task_scope": "src/serializer.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

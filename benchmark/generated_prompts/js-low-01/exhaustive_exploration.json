@@ -1,0 +1,20 @@
+{
+ "task_id": "js-low-01",
+ "variant": "exhaustive_exploration",
+ "family": "primary",
+ "features": [
+  "exhaustive_exploration_cue"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase."
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase.",
+ "char_count": 500,
+ "byte_count": 500,
+ "est_prompt_tokens": 125,
+ "sha256": "d93d22bc896555f27d15ca9be7e8c9d52bddfbdb9247fa78461ee2f8329b06e5",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "js-high-02",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 785,
+ "byte_count": 787,
+ "est_prompt_tokens": 196,
+ "sha256": "9dfd1e635c9bd9021cd5650309a455deeb42fb36cceab7d14e363555adaa6add",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

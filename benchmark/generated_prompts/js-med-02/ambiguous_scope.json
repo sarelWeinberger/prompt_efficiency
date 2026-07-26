@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-02",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: request throttling. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: request throttling. Improve the situation.",
+ "char_count": 126,
+ "byte_count": 126,
+ "est_prompt_tokens": 31,
+ "sha256": "30585e99d8132f09cfdd24f912a22757034eb88bb6b023bf876f684ea762dfed",
+ "generator_version": 1,
+ "task_criteria": "limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes",
+ "task_scope": "src/ratelimit.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-03",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: cache expiry. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: cache expiry. Improve the situation.",
+ "char_count": 120,
+ "byte_count": 120,
+ "est_prompt_tokens": 30,
+ "sha256": "935857caac57e06bb662a83a648647a216d111a148067943f80495bef4138d33",
+ "generator_version": 1,
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

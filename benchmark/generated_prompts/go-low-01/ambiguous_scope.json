@@ -1,0 +1,21 @@
+{
+ "task_id": "go-low-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: statistics helpers. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: statistics helpers. Improve the situation.",
+ "char_count": 126,
+ "byte_count": 126,
+ "est_prompt_tokens": 31,
+ "sha256": "68527180fec3ab779c93b219295b91645c9ac7e3c97cc11ab6a6870cfeb919f0",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

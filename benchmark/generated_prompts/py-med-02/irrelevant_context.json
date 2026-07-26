@@ -1,0 +1,21 @@
+{
+ "task_id": "py-med-02",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nAdd boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nAdd boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged.\nScope: config/parser.py only\nAcceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.",
+ "char_count": 1081,
+ "byte_count": 1081,
+ "est_prompt_tokens": 270,
+ "sha256": "beae116f1380435d679c67b4bf37c399c048bfcc14f3b2831569d18659d1e4d9",
+ "generator_version": 1,
+ "task_criteria": "parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes",
+ "task_scope": "config/parser.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

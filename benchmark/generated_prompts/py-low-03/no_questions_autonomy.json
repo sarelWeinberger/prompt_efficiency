@@ -1,0 +1,20 @@
+{
+ "task_id": "py-low-03",
+ "variant": "no_questions_autonomy",
+ "family": "primary",
+ "features": [
+  "autonomy_cue"
+ ],
+ "turns": [
+  "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.\nDo not ask me any questions. Infer any missing details yourself and do whatever is\nnecessary to complete the task autonomously."
+ ],
+ "text": "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.\nScope: create ANSWER.md only; no code changes\nAcceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop once ANSWER.md is written.\nDo not ask me any questions. Infer any missing details yourself and do whatever is\nnecessary to complete the task autonomously.",
+ "char_count": 618,
+ "byte_count": 618,
+ "est_prompt_tokens": 154,
+ "sha256": "fd0a49a3f4ebd19235b3324500f78075006576032c3e9ed4a90f96f8e8b8905f",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

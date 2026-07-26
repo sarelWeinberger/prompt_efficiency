@@ -1,0 +1,23 @@
+{
+ "task_id": "js-med-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total. Scope: src/cart.js and src/totals.js Acceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total. Scope: src/cart.js and src/totals.js Acceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total. Scope: src/cart.js and src/totals.js Acceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total. Scope: src/cart.js and src/totals.js Acceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 1008,
+ "byte_count": 1008,
+ "est_prompt_tokens": 252,
+ "sha256": "e4b99ad972a8a9150dd8da7ebb7aa2e8567e6667a6210b149902045d88fa08f6",
+ "generator_version": 1,
+ "task_criteria": "grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes",
+ "task_scope": "src/cart.js and src/totals.js",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

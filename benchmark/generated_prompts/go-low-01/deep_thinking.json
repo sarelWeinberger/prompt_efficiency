@@ -1,0 +1,20 @@
+{
+ "task_id": "go-low-01",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 486,
+ "byte_count": 486,
+ "est_prompt_tokens": 121,
+ "sha256": "af454bcc8e0f54aae56103a89ff6e7c4de97c76e5447f8a166cebf7b82a43004",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,23 @@
+{
+ "task_id": "js-med-03",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid). Scope: src/cache.js only Acceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid). Scope: src/cache.js only Acceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid). Scope: src/cache.js only Acceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid). Scope: src/cache.js only Acceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 1114,
+ "byte_count": 1114,
+ "est_prompt_tokens": 278,
+ "sha256": "c3bf0b89241b1b6e19faa35d66cc1e185a12578003aea093aaecce2b2352f7fc",
+ "generator_version": 1,
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

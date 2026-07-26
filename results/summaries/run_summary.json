@@ -1,0 +1,10 @@
+{
+ "n_total_records": 112,
+ "n_valid_for_analysis": 112,
+ "by_experiment_status": {
+  "pilot_a|completed|valid": 55,
+  "pilot_b|completed|valid": 57
+ },
+ "total_reported_cost": 6.878,
+ "total_nocache_cost": 17.813
+}

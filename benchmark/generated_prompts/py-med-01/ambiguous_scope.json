@@ -1,0 +1,21 @@
+{
+ "task_id": "py-med-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: order totals. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: order totals. Improve the situation.",
+ "char_count": 120,
+ "byte_count": 120,
+ "est_prompt_tokens": 30,
+ "sha256": "f7d6a4932440d7c9e60ed4a3cf2a356d64c226a7edd119d5513302cae8163013",
+ "generator_version": 1,
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

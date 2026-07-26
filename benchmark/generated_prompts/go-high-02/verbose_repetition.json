@@ -1,0 +1,21 @@
+{
+ "task_id": "go-high-02",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (the config package (config/)), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains go test ./.... In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (the config package (config/)), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains go test ./.... In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 873,
+ "byte_count": 873,
+ "est_prompt_tokens": 218,
+ "sha256": "8a64fcae5dbc77712c567892785cb2cd4db20ddc6b3941321fdecef0c55a8e2b",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

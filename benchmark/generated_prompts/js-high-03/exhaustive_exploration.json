@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-03",
+ "variant": "exhaustive_exploration",
+ "family": "primary",
+ "features": [
+  "exhaustive_exploration_cue"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nBefore editing anything, inspect the entire repository and make sure you understand\nthe complete system: read every source file and understand how all the parts\nconnect, so your change is informed by the whole codebase.",
+ "char_count": 573,
+ "byte_count": 573,
+ "est_prompt_tokens": 143,
+ "sha256": "08ab5a65a1a1ffb5ca2aa0d763bba8b2f6267ed78c1a2ad108968ebcb37f2153",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

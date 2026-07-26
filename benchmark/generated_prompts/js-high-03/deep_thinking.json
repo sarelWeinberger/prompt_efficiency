@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-03",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 528,
+ "byte_count": 528,
+ "est_prompt_tokens": 132,
+ "sha256": "033ff544abe2ce0370d909a031a5cd684c121b455f7e7b86472d80e99df95727",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-03",
+ "variant": "missing_criteria",
+ "family": "stress",
+ "features": [
+  "stress",
+  "no_criteria"
+ ],
+ "turns": [
+  "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens."
+ ],
+ "text": "Repair the failing unit test for src/slugify.js by fixing the code (the test is correct): slugify must trim leading/trailing whitespace and collapse internal whitespace runs into single hyphens.",
+ "char_count": 194,
+ "byte_count": 194,
+ "est_prompt_tokens": 48,
+ "sha256": "a57ca185897ce123668575745a061c7817d234833b806070a9692e7d39781a02",
+ "generator_version": 1,
+ "task_criteria": "slugify(\"  Hello World  \") === \"hello-world\"; internal runs collapse; every test under tests/ passes",
+ "task_scope": "src/slugify.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

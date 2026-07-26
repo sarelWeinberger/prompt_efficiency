@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-02",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 683,
+ "byte_count": 685,
+ "est_prompt_tokens": 170,
+ "sha256": "8745e79f51897baa6d34809ec5bf04be57c3b0b8a736954aa79b776f2f7d3dbd",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-02",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env >",
+  "Also: file > defaults), but env values are being lost. Find the real root cause across the config package and fix it. Acceptance criteria: env value wins over file value; file wins over default; go test ./... passes. Verify with: go test ./.... Stop when the tests pass."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env >\n<TURN-BREAK>\nAlso: file > defaults), but env values are being lost. Find the real root cause across the config package and fix it. Acceptance criteria: env value wins over file value; file wins over default; go test ./... passes. Verify with: go test ./.... Stop when the tests pass.",
+ "char_count": 425,
+ "byte_count": 425,
+ "est_prompt_tokens": 106,
+ "sha256": "5bc3025506a2fd343432525f6ceaa9fed025cb6da4253974fc1474b294afb228",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

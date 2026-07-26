@@ -1,0 +1,20 @@
+{
+ "language": "javascript",
+ "complexity": "high",
+ "split": "holdout",
+ "pilot": false,
+ "objective": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.",
+ "objective_vague": "job processing counts",
+ "misleading_hint": "the queue implementation (src/queue.js)",
+ "scope": "the src/ directory",
+ "allowed_paths": [
+  "src/queue.js",
+  "src/worker.js",
+  "src/index.js"
+ ],
+ "criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "test_cmd": "node --test tests/*.test.js",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "js-high-03"
+}

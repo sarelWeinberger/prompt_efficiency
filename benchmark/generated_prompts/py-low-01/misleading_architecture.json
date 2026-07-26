@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-01",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nNote: we believe the problem is caused by the test fixtures in tests/ \u2014 start there.\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v"
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nNote: we believe the problem is caused by the test fixtures in tests/ \u2014 start there.\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v",
+ "char_count": 393,
+ "byte_count": 395,
+ "est_prompt_tokens": 98,
+ "sha256": "f01a269082e3f0b78fc7000a7fd08a91a408eac7f7e174787b3d115a4a0f0bab",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

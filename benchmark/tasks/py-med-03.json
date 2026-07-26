@@ -1,0 +1,18 @@
+{
+ "language": "python",
+ "complexity": "medium",
+ "split": "holdout",
+ "pilot": false,
+ "objective": "Fix the serialization roundtrip in store/serialize.py: dump_record encodes datetime values as {'__dt__': iso-string}, but load_record does not revive them back into datetime objects. load_record(dump_record(rec)) must equal rec, including datetimes nested inside lists and dicts.",
+ "objective_vague": "record storage",
+ "misleading_hint": "the JSON encoder configuration",
+ "scope": "store/serialize.py only",
+ "allowed_paths": [
+  "store/serialize.py"
+ ],
+ "criteria": "roundtrip equality for flat and nested records with datetime values; every test under tests/ passes",
+ "test_cmd": "python3 -m unittest discover -s tests -t . -v",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "py-med-03"
+}

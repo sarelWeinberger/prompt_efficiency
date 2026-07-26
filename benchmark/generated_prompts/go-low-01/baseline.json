@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "baseline",
+ "family": "primary",
+ "features": [
+  "precise",
+  "scoped",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.",
+ "char_count": 311,
+ "byte_count": 311,
+ "est_prompt_tokens": 77,
+ "sha256": "9db724fb74e1d1cd1ebfa205e12b03936c94d47ed71f77e29e05e45b3e8291cf",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,20 @@
+{
+ "task_id": "go-high-02",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 615,
+ "byte_count": 615,
+ "est_prompt_tokens": 153,
+ "sha256": "2c069ba17b1f5dd8cc33466554f132af6222ec2b6e8acc65cd8dd7986d238bbb",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

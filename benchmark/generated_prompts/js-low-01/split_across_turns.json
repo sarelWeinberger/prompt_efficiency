@@ -1,0 +1,22 @@
+{
+ "task_id": "js-low-01",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round",
+  "Also: UP (a partial final page counts as a page). Acceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes. Verify with: node --test tests/*.test.js. Stop when the tests pass."
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round\n<TURN-BREAK>\nAlso: UP (a partial final page counts as a page). Acceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes. Verify with: node --test tests/*.test.js. Stop when the tests pass.",
+ "char_count": 273,
+ "byte_count": 273,
+ "est_prompt_tokens": 68,
+ "sha256": "0625fea01bdbd2c90e5ef041db743e33f7818aeaa4c598dcc2406d2f794b0c52",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

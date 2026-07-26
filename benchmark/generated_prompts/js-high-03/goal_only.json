@@ -1,0 +1,22 @@
+{
+ "task_id": "js-high-03",
+ "variant": "goal_only",
+ "family": "primary",
+ "features": [
+  "minimal",
+  "no_scope",
+  "no_criteria"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.",
+ "char_count": 150,
+ "byte_count": 150,
+ "est_prompt_tokens": 37,
+ "sha256": "deb76ffc7ba3d86478723d12fc296aca05169032fc8b1b9aebf14acce69a4626",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

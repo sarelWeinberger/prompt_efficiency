@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-01",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 640,
+ "byte_count": 640,
+ "est_prompt_tokens": 160,
+ "sha256": "56954fa9ae17e982b690f43bee750fe124581da824de040154e7eda62f1d25e2",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

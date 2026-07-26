@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-01",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix two related defects in src/fetchCache.js: (1) concurrent get() calls for the same key must trigger the loader only once (in-flight deduplication); (2) a loader failure must NOT be cached \u2014 the next get() for that key must retry the loader.\nScope: src/fetchCache.js only\nAcceptance criteria: two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix two related defects in src/fetchCache.js: (1) concurrent get() calls for the same key must trigger the loader only once (in-flight deduplication); (2) a loader failure must NOT be cached \u2014 the next get() for that key must retry the loader.\nScope: src/fetchCache.js only\nAcceptance criteria: two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.",
+ "char_count": 1038,
+ "byte_count": 1040,
+ "est_prompt_tokens": 259,
+ "sha256": "f9b621cdcd146373ee704bc6e2eb23ccca9af49c701318ca34e464adf10d10b7",
+ "generator_version": 1,
+ "task_criteria": "two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes",
+ "task_scope": "src/fetchCache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

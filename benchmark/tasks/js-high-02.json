@@ -1,0 +1,18 @@
+{
+ "language": "javascript",
+ "complexity": "high",
+ "split": "dev",
+ "pilot": false,
+ "objective": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).",
+ "objective_vague": "client API style",
+ "misleading_hint": "the user lookup table",
+ "scope": "src/client.js only",
+ "allowed_paths": [
+  "src/client.js"
+ ],
+ "criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "test_cmd": "node --test tests/*.test.js",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "js-high-02"
+}

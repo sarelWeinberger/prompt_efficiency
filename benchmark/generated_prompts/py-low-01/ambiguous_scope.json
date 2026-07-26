@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-01",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: price and discount calculations. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: price and discount calculations. Improve the situation.",
+ "char_count": 139,
+ "byte_count": 139,
+ "est_prompt_tokens": 34,
+ "sha256": "37d1142ad44f92c8378257a06a147a0dd432638f5d0b8bdc38107c1f7213b2bd",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

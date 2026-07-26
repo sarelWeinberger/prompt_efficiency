@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the",
+  "Also: true mean as a float64 (currently integer division truncates it). Acceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes. Verify with: go test ./.... Stop when the tests pass."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the\n<TURN-BREAK>\nAlso: true mean as a float64 (currently integer division truncates it). Acceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes. Verify with: go test ./.... Stop when the tests pass.",
+ "char_count": 305,
+ "byte_count": 305,
+ "est_prompt_tokens": 76,
+ "sha256": "80f75e432fe18f44a369311a097a7aa6a69ba3a0a0f758664976d2beb3e7dac0",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

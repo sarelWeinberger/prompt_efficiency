@@ -1,0 +1,55 @@
+# LiteLLM gateway config: Anthropic Messages API (from Claude Code) -> Together AI (OpenAI protocol).
+# Aliases are the model IDs Claude Code will request; upstream models are exact Together IDs.
+# Secrets come from environment (TOGETHER_API_KEY); never hard-code keys here.
+# api_base points at the Together-facing capture proxy (port 8901) when capture is on;
+# the runner rewrites it to https://api.together.xyz/v1 when capture is off.
+
+model_list:
+  - model_name: benchmark-deepseek-v4-pro
+    litellm_params:
+      model: together_ai/deepseek-ai/DeepSeek-V4-Pro
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+  - model_name: benchmark-kimi-k2-6
+    litellm_params:
+      model: together_ai/moonshotai/Kimi-K2.6
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+  - model_name: benchmark-kimi-k2-7-code
+    litellm_params:
+      model: together_ai/moonshotai/Kimi-K2.7-Code
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+  - model_name: benchmark-nemotron-3-ultra
+    litellm_params:
+      model: together_ai/nvidia/nemotron-3-ultra-550b-a55b
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+  - model_name: benchmark-inkling
+    litellm_params:
+      model: together_ai/thinkingmachines/Inkling
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+  - model_name: benchmark-glm-5-2
+    litellm_params:
+      model: together_ai/zai-org/GLM-5.2
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+
+litellm_settings:
+  num_retries: 0
+
+general_settings:
+  master_key: os.environ/GATEWAY_MASTER_KEY

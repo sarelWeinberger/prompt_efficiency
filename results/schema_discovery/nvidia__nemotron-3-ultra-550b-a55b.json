@@ -1,0 +1,99 @@
+{
+ "model": "nvidia/nemotron-3-ultra-550b-a55b",
+ "probes": {
+  "trivial": {
+   "pi_normalized_totals": {
+    "turns": 1,
+    "input_uncached": 1642,
+    "cache_read": 0,
+    "output": 19,
+    "reported_cost_usd": 0.001054,
+    "models_seen": [
+     "nvidia/nemotron-3-ultra-550b-a55b"
+    ],
+    "logical_input": 1642,
+    "reasoning": 16,
+    "reasoning_token_status": "explicit"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 1642,
+     "completion_tokens": 19,
+     "total_tokens": 1661,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 16
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "max_tokens": 506826
+   },
+   "n_wire_requests": 1
+  },
+  "moderate": {
+   "pi_normalized_totals": {
+    "turns": 5,
+    "input_uncached": 10899,
+    "cache_read": 0,
+    "output": 625,
+    "reported_cost_usd": 0.008789,
+    "models_seen": [
+     "nvidia/nemotron-3-ultra-550b-a55b"
+    ],
+    "logical_input": 10899,
+    "reasoning": 284,
+    "reasoning_token_status": "explicit"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 2476,
+     "completion_tokens": 62,
+     "total_tokens": 2538,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 12
+     }
+    },
+    {
+     "prompt_tokens": 2574,
+     "completion_tokens": 59,
+     "total_tokens": 2633,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 10
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "max_tokens": 505641
+   },
+   "n_wire_requests": 5
+  }
+ },
+ "reasoning_token_status": "explicit"
+}

@@ -1,0 +1,188 @@
+# Frozen prompt-variant definitions (generator_version 1).
+# Primary variants are semantically matched: they must not change the requested outcome,
+# acceptance criteria, allowed scope, or required tests. Stress variants intentionally
+# break some of these and are analyzed separately (design §7).
+#
+# Template slots filled by src/generate_prompts.py from each task's task.yaml:
+#   {objective} {scope} {criteria} {test_cmd} {stop}
+
+generator_version: 1
+
+primary:
+  baseline:
+    features: [precise, scoped, stop_condition]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+
+  verbose_repetition:
+    features: [verbose, redundant]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      To restate the requirements so nothing is missed: the change must stay within the
+      scope given above ({scope}), it must satisfy the same acceptance criteria already
+      listed, and the verification command remains {test_cmd}. In other words, do the
+      task exactly as described, within exactly the same boundaries, checked by exactly
+      the same tests, and finish under exactly the same stop condition as stated before.
+
+  deep_thinking:
+    features: [deep_thinking_cue]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      Think very deeply about this. Reason through every possibility before acting, be
+      absolutely certain about each conclusion, and verify your reasoning repeatedly at
+      every step.
+
+  exhaustive_exploration:
+    features: [exhaustive_exploration_cue]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      Before editing anything, inspect the entire repository and make sure you understand
+      the complete system: read every source file and understand how all the parts
+      connect, so your change is informed by the whole codebase.
+
+  multiple_approaches:
+    features: [multiple_approaches_cue]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      Develop several distinct approaches to this fix, compare their trade-offs
+      explicitly, and only then select and implement the best one.
+
+  max_certainty:
+    features: [certainty_pressure]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      You must be absolutely confident in the result. Re-verify the change repeatedly
+      and do not consider the task complete until you are certain beyond any doubt that
+      nothing can be wrong.
+
+  adjacent_cleanup:
+    features: [scope_expansion_cue]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      While you are in there, feel free to clean up anything adjacent that could be
+      improved: refactor awkward code, tidy naming, and make related general
+      improvements where you see the opportunity.
+
+  no_questions_autonomy:
+    features: [autonomy_cue]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      Do not ask me any questions. Infer any missing details yourself and do whatever is
+      necessary to complete the task autonomously.
+
+  bounded_efficiency:
+    features: [bounded, efficiency_instructions, stop_condition]
+    template: |
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+      Work efficiently: begin with the failing test and the most likely implementation
+      files; inspect additional files only when evidence requires it; avoid unrelated
+      cleanup; make the smallest sufficient change; run the relevant tests; stop as soon
+      as the acceptance criteria pass.
+
+  goal_only:
+    features: [minimal, no_scope, no_criteria]
+    # Intentionally omits scope/criteria/stop; still the same requested outcome.
+    template: |
+      {objective}
+
+  scoped_authorization:
+    features: [explicit_authorization, forbidden_scope]
+    template: |
+      {objective}
+      You are authorized to modify only: {scope}
+      You are NOT authorized to modify anything else; treat all other paths as read-only.
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+
+stress:
+  missing_criteria:
+    features: [stress, no_criteria]
+    template: |
+      {objective}
+
+  ambiguous_scope:
+    features: [stress, ambiguity]
+    template: |
+      Something in this project is producing wrong results related to the following
+      area: {objective_vague}. Improve the situation.
+
+  conflicting_constraints:
+    features: [stress, conflict]
+    template: |
+      {objective}
+      Be extremely thorough and examine everything carefully, but also finish as fast as
+      possible and touch almost nothing. Do a complete, deep job quickly and minimally.
+      Verify with: {test_cmd}
+
+  irrelevant_context:
+    features: [stress, distractor_context]
+    template: |
+      Background (for context): our organization has recently migrated from a monorepo
+      to a polyrepo layout, then partially back, and several teams maintain conflicting
+      style guides; the previous maintainer preferred functional patterns but the current
+      team is split, and there is an ongoing debate about whether to adopt a plugin
+      architecture in Q3, which the architecture council has deferred twice pending a
+      review of the service mesh proposal that may or may not affect this component.
+      None of that debate is resolved. Meanwhile, the actual request:
+      {objective}
+      Scope: {scope}
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+      {stop}
+
+  misleading_architecture:
+    features: [stress, misdirection]
+    template: |
+      {objective}
+      Note: we believe the problem is caused by the {misleading_hint} — start there.
+      Acceptance criteria: {criteria}
+      Verify with: {test_cmd}
+
+  split_across_turns:
+    features: [stress, multi_turn]
+    turns:
+      - "{objective_first_half}"
+      - "Also: {objective_second_half} Acceptance criteria: {criteria}. Verify with: {test_cmd}. {stop}"
+
+  full_restatement_per_turn:
+    features: [stress, multi_turn, restatement]
+    turns:
+      - "{objective} Scope: {scope} Acceptance criteria: {criteria} Verify with: {test_cmd} {stop}"
+      - "Reminder of the full task, restated completely: {objective} Scope: {scope} Acceptance criteria: {criteria} Verify with: {test_cmd} {stop} Is it done? If not, continue."

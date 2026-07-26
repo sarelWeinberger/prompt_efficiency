@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-03",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nNote: we believe the problem is caused by the the queue implementation (src/queue.js) \u2014 start there.\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nNote: we believe the problem is caused by the the queue implementation (src/queue.js) \u2014 start there.\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js",
+ "char_count": 402,
+ "byte_count": 404,
+ "est_prompt_tokens": 100,
+ "sha256": "1693b4682fae89b910473c8b4178257a61425d909a065c8dfacedcb0f284630c",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

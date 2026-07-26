@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-02",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nAdd a burst allowance to src/ratelimit.js: the constructor must accept an options object as third argument, new RateLimiter(limit, windowMs, {burst: n}), permitting at most limit+n requests per window (default burst 0, existing behavior unchanged). Also add a remaining() method returning how many requests are still allowed in the current window.\nScope: src/ratelimit.js only\nAcceptance criteria: limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nAdd a burst allowance to src/ratelimit.js: the constructor must accept an options object as third argument, new RateLimiter(limit, windowMs, {burst: n}), permitting at most limit+n requests per window (default burst 0, existing behavior unchanged). Also add a remaining() method returning how many requests are still allowed in the current window.\nScope: src/ratelimit.js only\nAcceptance criteria: limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.",
+ "char_count": 1131,
+ "byte_count": 1131,
+ "est_prompt_tokens": 282,
+ "sha256": "f00644d56e68f6d8837479f10b0afcfbc612aea1bffeb5fb9fb2d07db93522b1",
+ "generator_version": 1,
+ "task_criteria": "limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes",
+ "task_scope": "src/ratelimit.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

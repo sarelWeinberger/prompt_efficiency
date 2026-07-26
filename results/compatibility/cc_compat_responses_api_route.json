@@ -1,0 +1,488 @@
+[
+ {
+  "model": "deepseek-ai/DeepSeek-V4-Pro",
+  "alias": "benchmark-deepseek-v4-pro",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "supported",
+   "sequential_tool_calls": "partially_supported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "unsupported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 20,
+     "output_tokens": 2
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 10,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_c1707e2a-16ec-45af-88e3-84cb988d1eec\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"deepseek-ai/DeepSeek"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 1,
+    "stop_reason": "tool_use"
+   },
+   "agent": {
+    "num_turns": 3,
+    "wall_s": 6.8,
+    "alpha": true,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 18072,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 112,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.09316
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": false,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 18.2
+ },
+ {
+  "model": "moonshotai/Kimi-K2.6",
+  "alias": "benchmark-kimi-k2-6",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "supported",
+   "sequential_tool_calls": "supported",
+   "tool_result_continuation": "supported",
+   "context_continuation": "supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 27,
+     "output_tokens": 235
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 11,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_16c85a69-25ce-475e-b64a-c9570afabb01\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"moonshotai/Kimi-K2.6"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 1,
+    "stop_reason": "tool_use"
+   },
+   "agent": {
+    "num_turns": 4,
+    "wall_s": 6.6,
+    "alpha": true,
+    "beta_ok": true,
+    "cc_usage": {
+     "input_tokens": 61976,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 409,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.32010500000000003
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": true,
+  "compatibility_status": "compatible",
+  "smoke_wall_s": 11.1
+ },
+ {
+  "model": "moonshotai/Kimi-K2.7-Code",
+  "alias": "benchmark-kimi-k2-7-code",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "supported",
+   "sequential_tool_calls": "supported",
+   "tool_result_continuation": "supported",
+   "context_continuation": "supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 27,
+     "output_tokens": 29
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 11,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_ee4b6397-a124-4a2c-9016-12e4ce0395a9\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"moonshotai/Kimi-K2.7"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 1,
+    "stop_reason": "tool_use"
+   },
+   "agent": {
+    "num_turns": 4,
+    "wall_s": 6.0,
+    "alpha": true,
+    "beta_ok": true,
+    "cc_usage": {
+     "input_tokens": 62002,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 316,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.31791
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": true,
+  "compatibility_status": "compatible",
+  "smoke_wall_s": 10.8
+ },
+ {
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "alias": "benchmark-nemotron-3-ultra",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "supported",
+   "sequential_tool_calls": "supported",
+   "tool_result_continuation": "supported",
+   "context_continuation": "supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 31,
+     "output_tokens": 123
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 10,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_4a033b0c-33ce-4553-9c00-0af2b69b7ff0\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"nvidia/nemotron-3-ul"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 1,
+    "stop_reason": "tool_use"
+   },
+   "agent": {
+    "num_turns": 4,
+    "wall_s": 8.0,
+    "alpha": true,
+    "beta_ok": true,
+    "cc_usage": {
+     "input_tokens": 75506,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 319,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.385505
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": true,
+  "compatibility_status": "compatible",
+  "smoke_wall_s": 14.2
+ },
+ {
+  "model": "thinkingmachines/Inkling",
+  "alias": "benchmark-inkling",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "supported",
+   "sequential_tool_calls": "partially_supported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 33,
+     "output_tokens": 40
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 6,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_57a50418-16f1-4c74-904c-c8ca5c6e8e05\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"thinkingmachines/Ink"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 1,
+    "stop_reason": "tool_use"
+   },
+   "agent": {
+    "num_turns": 3,
+    "wall_s": 5.6,
+    "alpha": true,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 16782,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 67,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.08558499999999998
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 16.7
+ },
+ {
+  "model": "zai-org/GLM-5.2",
+  "alias": "benchmark-glm-5-2",
+  "caps": {
+   "text_completion": "supported",
+   "system_prompt": "supported",
+   "stop_reason": "supported",
+   "streaming": "supported",
+   "tool_definition": "supported",
+   "single_tool_call": "supported",
+   "sequential_tool_calls": "partially_supported",
+   "tool_result_continuation": "unknown",
+   "context_continuation": "supported",
+   "long_output": "supported",
+   "reasoning_token_reporting": "supported",
+   "cached_input_reporting": "supported",
+   "error_propagation": "supported",
+   "timeout_handling": "supported"
+  },
+  "evidence": {
+   "text": {
+    "status": 200,
+    "text": "OK",
+    "stop_reason": "end_turn",
+    "usage": {
+     "input_tokens": 28,
+     "output_tokens": 30
+    }
+   },
+   "streaming": {
+    "status": 200,
+    "sse_events": 10,
+    "sample": "event: message_start\ndata: {\"type\": \"message_start\", \"message\": {\"id\": \"msg_0b0ddb52-59f4-4595-a810-d76a976722ec\", \"type\": \"message\", \"role\": \"assistant\", \"content\": [], \"model\": \"zai-org/GLM-5.2\", \"s"
+   },
+   "tool_call": {
+    "status": 200,
+    "n_tool_uses": 1,
+    "stop_reason": "tool_use"
+   },
+   "agent": {
+    "num_turns": 3,
+    "wall_s": 9.3,
+    "alpha": true,
+    "beta_ok": false,
+    "cc_usage": {
+     "input_tokens": 16843,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 55,
+     "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+     },
+     "service_tier": "standard",
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "inference_geo": "",
+     "iterations": [],
+     "speed": "standard"
+    },
+    "cc_cost_usd_unreliable": 0.08559
+   },
+   "long_output": {
+    "lines": 200,
+    "stop_reason": "end_turn"
+   },
+   "upstream_usage": {
+    "usage_seen": true,
+    "reasoning_seen": true,
+    "cached_seen": true
+   },
+   "error_prop": {
+    "status": 400
+   }
+  },
+  "tool_loop_valid": false,
+  "compatibility_status": "incompatible_tool_loop",
+  "smoke_wall_s": 20.0
+ }
+]

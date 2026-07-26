@@ -1,0 +1,13 @@
+{
+ "hidden_copy": [
+  {
+   "src": "test_hidden.py",
+   "dst": "tests_hidden/test_hidden.py"
+  },
+  {
+   "src": "__init__.py",
+   "dst": "tests_hidden/__init__.py"
+  }
+ ],
+ "hidden_cmd": "python3 -m unittest discover -s tests_hidden -t . -v"
+}

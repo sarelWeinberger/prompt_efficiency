@@ -1,0 +1,21 @@
+{
+ "task_id": "go-high-02",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nNote: we believe the problem is caused by the the ApplyEnv ordering in load.go \u2014 start there.\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./..."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nNote: we believe the problem is caused by the the ApplyEnv ordering in load.go \u2014 start there.\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...",
+ "char_count": 472,
+ "byte_count": 474,
+ "est_prompt_tokens": 118,
+ "sha256": "a8435af3d5ef1142698741594d0d6495f5a2408e637cbaea1bfca4f6d18b849e",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

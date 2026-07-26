@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-03",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (the src/ directory), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (the src/ directory), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 790,
+ "byte_count": 790,
+ "est_prompt_tokens": 197,
+ "sha256": "a4d0ac437da2675eda39e60c840900923a3d00a3a59cd299d8e0782fd91afc64",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

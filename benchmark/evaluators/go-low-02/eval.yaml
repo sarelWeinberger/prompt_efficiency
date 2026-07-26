@@ -1,0 +1,12 @@
+{
+ "hidden_copy": [
+  {
+   "src": "hidden_test.go",
+   "dst": "textutil/hidden_test.go"
+  }
+ ],
+ "hidden_cmd": "go test ./...",
+ "hidden_cleanup": [
+  "textutil/hidden_test.go"
+ ]
+}

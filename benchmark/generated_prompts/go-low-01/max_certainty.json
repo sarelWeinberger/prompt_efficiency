@@ -1,0 +1,20 @@
+{
+ "task_id": "go-low-01",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 495,
+ "byte_count": 495,
+ "est_prompt_tokens": 123,
+ "sha256": "ebd839fb2e9051b7a103c5fb5653730ddb623a6400232839ca53fbead6732e2e",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,18 @@
+{
+ "language": "go",
+ "complexity": "low",
+ "split": "dev",
+ "pilot": true,
+ "objective": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).",
+ "objective_vague": "statistics helpers",
+ "misleading_hint": "the empty-slice guard",
+ "scope": "stats/stats.go only",
+ "allowed_paths": [
+  "stats/stats.go"
+ ],
+ "criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "test_cmd": "go test ./...",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "go-low-01"
+}

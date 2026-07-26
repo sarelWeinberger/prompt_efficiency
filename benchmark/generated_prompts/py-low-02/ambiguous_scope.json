@@ -1,0 +1,21 @@
+{
+ "task_id": "py-low-02",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: user input validation. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: user input validation. Improve the situation.",
+ "char_count": 129,
+ "byte_count": 129,
+ "est_prompt_tokens": 32,
+ "sha256": "ad011d710b11b60148ceec7f8f46546fbda9f71e7eb83f96587e28e98adbe47c",
+ "generator_version": 1,
+ "task_criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "task_scope": "users/validate.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

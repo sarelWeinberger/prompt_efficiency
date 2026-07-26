@@ -1,0 +1,23 @@
+{
+ "task_id": "go-med-01",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state. Scope: the inventory package (inventory/) Acceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes Verify with: go test ./... Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state. Scope: the inventory package (inventory/) Acceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state. Scope: the inventory package (inventory/) Acceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes Verify with: go test ./... Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state. Scope: the inventory package (inventory/) Acceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes Verify with: go test ./... Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 1030,
+ "byte_count": 1030,
+ "est_prompt_tokens": 257,
+ "sha256": "1702e3894616611c7ee1b25cfdec662a149762df1d038e3a0a2b060b52895743",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-02",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (src/client.js only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics).\nScope: src/client.js only\nAcceptance criteria: both styles work for success and error paths; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (src/client.js only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 945,
+ "byte_count": 947,
+ "est_prompt_tokens": 236,
+ "sha256": "9151eed0199da6a8a952149efe3fcd05cde4c4068d4eb11fc5284bab3c752605",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

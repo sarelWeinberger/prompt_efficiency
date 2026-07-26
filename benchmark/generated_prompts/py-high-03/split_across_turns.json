@@ -1,0 +1,22 @@
+{
+ "task_id": "py-high-03",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "The report pipeline drops data: totals come out short. Find the real root",
+  "Also: cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py. Acceptance criteria: totals include every data row exactly once; every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass."
+ ],
+ "text": "The report pipeline drops data: totals come out short. Find the real root\n<TURN-BREAK>\nAlso: cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py. Acceptance criteria: totals include every data row exactly once; every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass.",
+ "char_count": 361,
+ "byte_count": 361,
+ "est_prompt_tokens": 90,
+ "sha256": "9596a386ddbef5c00368487d590709643d1f340e11f0afae79a790d5ae2a939a",
+ "generator_version": 1,
+ "task_criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "task_scope": "the pipeline package (pipeline/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

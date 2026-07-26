@@ -1,0 +1,21 @@
+{
+ "task_id": "go-low-02",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: text normalization. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: text normalization. Improve the situation.",
+ "char_count": 126,
+ "byte_count": 126,
+ "est_prompt_tokens": 31,
+ "sha256": "6d5a8d4b6879918f788b61b9362ae2f0d7b17d42f2a613ad446fc0ecd6033e1b",
+ "generator_version": 1,
+ "task_criteria": "Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes",
+ "task_scope": "textutil/normalize.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,19 @@
+{
+ "language": "go",
+ "complexity": "medium",
+ "split": "dev",
+ "pilot": false,
+ "objective": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity from availability, and reserving more than is available must return an error without changing state.",
+ "objective_vague": "stock levels",
+ "misleading_hint": "map initialization in NewStore",
+ "scope": "the inventory package (inventory/)",
+ "allowed_paths": [
+  "inventory/store.go",
+  "inventory/reserve.go"
+ ],
+ "criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "test_cmd": "go test ./...",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "go-med-01"
+}

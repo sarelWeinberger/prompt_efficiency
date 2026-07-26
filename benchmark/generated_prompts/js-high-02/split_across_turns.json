@@ -1,0 +1,22 @@
+{
+ "task_id": "js-high-02",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns",
+  "Also: a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics). Acceptance criteria: both styles work for success and error paths; every test under tests/ passes. Verify with: node --test tests/*.test.js. Stop when the tests pass."
+ ],
+ "text": "Perform a scoped, backward-compatible refactor of src/client.js: getUser(id, callback) must additionally support promise style \u2014 when no callback is given it returns\n<TURN-BREAK>\nAlso: a Promise resolving to the user (or rejecting on error). Callback style must keep working exactly as before (including error-first callback semantics). Acceptance criteria: both styles work for success and error paths; every test under tests/ passes. Verify with: node --test tests/*.test.js. Stop when the tests pass.",
+ "char_count": 503,
+ "byte_count": 505,
+ "est_prompt_tokens": 125,
+ "sha256": "7e91b83c4c0635945b17ae44315b6b4ebb6d6f92f716004532ff9005d6d56428",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

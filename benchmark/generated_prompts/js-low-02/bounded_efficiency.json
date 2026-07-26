@@ -1,0 +1,22 @@
+{
+ "task_id": "js-low-02",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nScope: src/serializer.js only\nAcceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nScope: src/serializer.js only\nAcceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 685,
+ "byte_count": 685,
+ "est_prompt_tokens": 171,
+ "sha256": "032f553db52d49ea424f797d586d0f43e66e437b80d9301d636a387356c0f8d4",
+ "generator_version": 1,
+ "task_criteria": "serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes",
+ "task_scope": "src/serializer.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

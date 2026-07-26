@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-03",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (src/cache.js only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (src/cache.js only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 947,
+ "byte_count": 947,
+ "est_prompt_tokens": 236,
+ "sha256": "b5b30c64b4765921ae243cb1dfe64c29f8d03420faeb23ff6ebe0d1794593952",
+ "generator_version": 1,
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

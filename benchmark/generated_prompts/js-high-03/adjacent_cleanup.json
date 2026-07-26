@@ -1,0 +1,20 @@
+{
+ "task_id": "js-high-03",
+ "variant": "adjacent_cleanup",
+ "family": "primary",
+ "features": [
+  "scope_expansion_cue"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWhile you are in there, feel free to clean up anything adjacent that could be\nimproved: refactor awkward code, tidy naming, and make related general\nimprovements where you see the opportunity."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once.\nScope: the src/ directory\nAcceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nWhile you are in there, feel free to clean up anything adjacent that could be\nimproved: refactor awkward code, tidy naming, and make related general\nimprovements where you see the opportunity.",
+ "char_count": 546,
+ "byte_count": 546,
+ "est_prompt_tokens": 136,
+ "sha256": "57481bfeee4a69205ac7ec3205e23ab987432033b326291814e9d63b9d86d508",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

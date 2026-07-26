@@ -1,0 +1,20 @@
+{
+ "task_id": "go-high-02",
+ "variant": "max_certainty",
+ "family": "primary",
+ "features": [
+  "certainty_pressure"
+ ],
+ "turns": [
+  "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong."
+ ],
+ "text": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.\nScope: the config package (config/)\nAcceptance criteria: env value wins over file value; file wins over default; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nYou must be absolutely confident in the result. Re-verify the change repeatedly\nand do not consider the task complete until you are certain beyond any doubt that\nnothing can be wrong.",
+ "char_count": 624,
+ "byte_count": 624,
+ "est_prompt_tokens": 156,
+ "sha256": "8e17df9c5df9fab95846fb6333234bed9a0d6a829b9014adef4476d298826344",
+ "generator_version": 1,
+ "task_criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "task_scope": "the config package (config/)",
+ "task_test_cmd": "go test ./..."
+}

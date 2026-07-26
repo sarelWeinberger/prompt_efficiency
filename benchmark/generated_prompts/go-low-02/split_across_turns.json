@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-02",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Repair the failing unit test by fixing the code (the test is correct): Normalize in",
+  "Also: textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces. Acceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes. Verify with: go test ./.... Stop when the tests pass."
+ ],
+ "text": "Repair the failing unit test by fixing the code (the test is correct): Normalize in\n<TURN-BREAK>\nAlso: textutil/normalize.go must trim the string AND collapse internal whitespace runs (spaces, tabs, newlines) into single spaces. Acceptance criteria: Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes. Verify with: go test ./.... Stop when the tests pass.",
+ "char_count": 359,
+ "byte_count": 359,
+ "est_prompt_tokens": 89,
+ "sha256": "ed8a2afdcf37c7bf8a0ebbc5c55e2e69e0501fd1e7c6f4b12a7b4a78f3afe328",
+ "generator_version": 1,
+ "task_criteria": "Normalize(\"  a\\t\\tb  \") == \"a b\"; go test ./... passes",
+ "task_scope": "textutil/normalize.go only",
+ "task_test_cmd": "go test ./..."
+}

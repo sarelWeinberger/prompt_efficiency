@@ -1,0 +1,18 @@
+{
+ "language": "python",
+ "complexity": "low",
+ "split": "holdout",
+ "pilot": false,
+ "objective": "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code.",
+ "objective_vague": "size parsing output",
+ "misleading_hint": "string handling in the CLI layer",
+ "scope": "create ANSWER.md only; no code changes",
+ "allowed_paths": [
+  "ANSWER.md"
+ ],
+ "criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "test_cmd": "python3 -m unittest discover -s tests -t . -v",
+ "stop": "Stop once ANSWER.md is written.",
+ "expected_scope_files": 1,
+ "id": "py-low-03"
+}

@@ -1,0 +1,19 @@
+{
+ "language": "go",
+ "complexity": "high",
+ "split": "holdout",
+ "pilot": false,
+ "objective": "Configuration precedence is broken: values set via environment variables are supposed to override file values, which override defaults (env > file > defaults), but env values are being lost. Find the real root cause across the config package and fix it.",
+ "objective_vague": "configuration precedence",
+ "misleading_hint": "the ApplyEnv ordering in load.go",
+ "scope": "the config package (config/)",
+ "allowed_paths": [
+  "config/load.go",
+  "config/merge.go"
+ ],
+ "criteria": "env value wins over file value; file wins over default; go test ./... passes",
+ "test_cmd": "go test ./...",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "go-high-02"
+}

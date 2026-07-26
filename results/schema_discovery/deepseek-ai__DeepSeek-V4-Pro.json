@@ -1,0 +1,101 @@
+{
+ "model": "deepseek-ai/DeepSeek-V4-Pro",
+ "probes": {
+  "trivial": {
+   "pi_normalized_totals": {
+    "turns": 1,
+    "input_uncached": 1555,
+    "cache_read": 0,
+    "output": 20,
+    "reported_cost_usd": 0.002775,
+    "models_seen": [
+     "deepseek-ai/DeepSeek-V4-Pro"
+    ],
+    "logical_input": 1555,
+    "reasoning": 17,
+    "reasoning_token_status": "explicit"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 1555,
+     "completion_tokens": 20,
+     "total_tokens": 1575,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 17
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 384000
+   },
+   "n_wire_requests": 1
+  },
+  "moderate": {
+   "pi_normalized_totals": {
+    "turns": 6,
+    "input_uncached": 7966,
+    "cache_read": 2560,
+    "output": 638,
+    "reported_cost_usd": 0.016593,
+    "models_seen": [
+     "deepseek-ai/DeepSeek-V4-Pro"
+    ],
+    "logical_input": 10526,
+    "reasoning": null,
+    "reasoning_token_status": "missing"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 2386,
+     "completion_tokens": 76,
+     "total_tokens": 2462,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 5
+     }
+    },
+    {
+     "prompt_tokens": 2534,
+     "completion_tokens": 75,
+     "total_tokens": 2609,
+     "prompt_tokens_details": {
+      "cached_tokens": 2304
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 4
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "reasoning_effort": "high",
+    "max_tokens": 384000
+   },
+   "n_wire_requests": 6
+  }
+ },
+ "reasoning_token_status": "explicit"
+}

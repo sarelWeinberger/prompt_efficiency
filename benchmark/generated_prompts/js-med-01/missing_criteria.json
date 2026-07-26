@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-01",
+ "variant": "missing_criteria",
+ "family": "stress",
+ "features": [
+  "stress",
+  "no_criteria"
+ ],
+ "turns": [
+  "Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total."
+ ],
+ "text": "Fix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total.",
+ "char_count": 243,
+ "byte_count": 243,
+ "est_prompt_tokens": 60,
+ "sha256": "f4a14056fb20529e0645293ec61c44b09402507a11abe4a28b3dc2c96bc0470e",
+ "generator_version": 1,
+ "task_criteria": "grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes",
+ "task_scope": "src/cart.js and src/totals.js",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-02",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nNote: we believe the problem is caused by the a consumer-side mapping \u2014 start there.\nAcceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes\nVerify with: node --test tests/*.test.js"
+ ],
+ "text": "Adjust one API field in src/serializer.js: the serialized user object must expose the name under the key userName (camelCase) instead of user_name. All other fields stay exactly as they are.\nNote: we believe the problem is caused by the a consumer-side mapping \u2014 start there.\nAcceptance criteria: serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes\nVerify with: node --test tests/*.test.js",
+ "char_count": 437,
+ "byte_count": 439,
+ "est_prompt_tokens": 109,
+ "sha256": "449fdc6301f070237fd5f1fe911c9689be8cf74c175399700d8e0ad5798898fa",
+ "generator_version": 1,
+ "task_criteria": "serializeUser output has userName and no user_name; email unchanged; every test under tests/ passes",
+ "task_scope": "src/serializer.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

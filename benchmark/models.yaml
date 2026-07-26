@@ -1,0 +1,40 @@
+# FROZEN model scope. Do not add models without amending EXPERIMENT-DESIGN.md.
+# Qwen3.6-Plus / Qwen3.7-Max are EXCLUDED: no authoritative source in this repo or
+# the installed model metadata establishes >500B total parameters for them.
+# Pricing snapshot: pi-ai Together catalog, captured 2026-07-26 (USD per million tokens).
+
+models:
+  - id: deepseek-ai/DeepSeek-V4-Pro
+    alias: benchmark-deepseek-v4-pro
+    context_window: 512000
+    reasoning: true
+    cost: { input: 1.74, output: 3.48, cache_read: 0.20, cache_write: 0.0 }
+  - id: moonshotai/Kimi-K2.6
+    alias: benchmark-kimi-k2-6
+    context_window: 262144
+    reasoning: true
+    cost: { input: 1.20, output: 4.50, cache_read: 0.20, cache_write: 0.0 }
+  - id: moonshotai/Kimi-K2.7-Code
+    alias: benchmark-kimi-k2-7-code
+    context_window: 262144
+    reasoning: true
+    cost: { input: 0.95, output: 4.00, cache_read: 0.19, cache_write: 0.0 }
+  - id: nvidia/nemotron-3-ultra-550b-a55b
+    alias: benchmark-nemotron-3-ultra
+    context_window: 512300
+    reasoning: true
+    cost: { input: 0.60, output: 3.60, cache_read: 0.20, cache_write: 0.0 }
+  - id: thinkingmachines/Inkling
+    alias: benchmark-inkling
+    context_window: 524288
+    reasoning: true
+    cost: { input: 1.00, output: 4.05, cache_read: 0.17, cache_write: 0.0 }
+  - id: zai-org/GLM-5.2
+    alias: benchmark-glm-5-2
+    context_window: 262144
+    reasoning: true
+    cost: { input: 1.40, output: 4.40, cache_read: 0.26, cache_write: 0.0 }
+
+harnesses:
+  - pi
+  - claude-code

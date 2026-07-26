@@ -1,0 +1,20 @@
+{
+ "task_id": "py-med-01",
+ "variant": "deep_thinking",
+ "family": "primary",
+ "features": [
+  "deep_thinking_cue"
+ ],
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink very deeply about this. Reason through every possibility before acting, be\nabsolutely certain about each conclusion, and verify your reasoning repeatedly at\nevery step.",
+ "char_count": 587,
+ "byte_count": 587,
+ "est_prompt_tokens": 146,
+ "sha256": "cb4ec08eab474ffb946a5f2b8008b2c7e4f81f4511a6c619a6513d6aa01d8629",
+ "generator_version": 1,
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

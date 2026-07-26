@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-03",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the",
+  "Also: module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code. Acceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024. Verify with: python3 -m unittest discover -s tests -t . -v. Stop once ANSWER.md is written."
+ ],
+ "text": "Investigate why parse_size('10KB') returns 10240 rather than 10000, and write ANSWER.md at the repository root explaining the behavior. Name the\n<TURN-BREAK>\nAlso: module, the function, and the constant responsible, and state the multiplier value used for KB. Do not change any code. Acceptance criteria: ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024. Verify with: python3 -m unittest discover -s tests -t . -v. Stop once ANSWER.md is written.",
+ "char_count": 465,
+ "byte_count": 465,
+ "est_prompt_tokens": 116,
+ "sha256": "3eacf791c807ee80e823e0852dc67c9e06371deecea4a5e26f27f68d913e3b96",
+ "generator_version": 1,
+ "task_criteria": "ANSWER.md exists, names parse_size and BINARY_BASE, and states 1024",
+ "task_scope": "create ANSWER.md only; no code changes",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

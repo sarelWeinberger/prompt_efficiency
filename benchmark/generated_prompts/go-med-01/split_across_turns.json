@@ -1,0 +1,22 @@
+{
+ "task_id": "go-med-01",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity",
+  "Also: from availability, and reserving more than is available must return an error without changing state. Acceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes. Verify with: go test ./.... Stop when the tests pass."
+ ],
+ "text": "Fix the reservation bug spanning inventory/store.go and inventory/reserve.go: Reserve must actually deduct the reserved quantity\n<TURN-BREAK>\nAlso: from availability, and reserving more than is available must return an error without changing state. Acceptance criteria: after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes. Verify with: go test ./.... Stop when the tests pass.",
+ "char_count": 448,
+ "byte_count": 448,
+ "est_prompt_tokens": 112,
+ "sha256": "00f556b3c67efa2b74a76a2e3768df9b108860a3914ba88adbb74421bee6957b",
+ "generator_version": 1,
+ "task_criteria": "after Add(sku,5); Reserve(sku,3) => Available(sku)==2; over-reserve errors and leaves state unchanged; go test ./... passes",
+ "task_scope": "the inventory package (inventory/)",
+ "task_test_cmd": "go test ./..."
+}

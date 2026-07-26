@@ -1,0 +1,20 @@
+{
+ "task_id": "py-high-01",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user.\nScope: the cachekit package (cachekit/)\nAcceptance criteria: preferences are isolated per user; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Users are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user.\nScope: the cachekit package (cachekit/)\nAcceptance criteria: preferences are isolated per user; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 517,
+ "byte_count": 517,
+ "est_prompt_tokens": 129,
+ "sha256": "14dca73f97d06955a2611728b4bc3bc74bf3eef8d900089ef4277eaa76c7ac0e",
+ "generator_version": 1,
+ "task_criteria": "preferences are isolated per user; every test under tests/ passes",
+ "task_scope": "the cachekit package (cachekit/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

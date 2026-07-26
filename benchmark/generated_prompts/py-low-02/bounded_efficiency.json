@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-02",
+ "variant": "bounded_efficiency",
+ "family": "primary",
+ "features": [
+  "bounded",
+  "efficiency_instructions",
+  "stop_condition"
+ ],
+ "turns": [
+  "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.\nScope: users/validate.py only\nAcceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass."
+ ],
+ "text": "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.\nScope: users/validate.py only\nAcceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nWork efficiently: begin with the failing test and the most likely implementation\nfiles; inspect additional files only when evidence requires it; avoid unrelated\ncleanup; make the smallest sufficient change; run the relevant tests; stop as soon\nas the acceptance criteria pass.",
+ "char_count": 756,
+ "byte_count": 756,
+ "est_prompt_tokens": 189,
+ "sha256": "1bd6caf0e141337a153aeab89c2815e9a01ac53d2ac37971cd9b79f3fa409883",
+ "generator_version": 1,
+ "task_criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "task_scope": "users/validate.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

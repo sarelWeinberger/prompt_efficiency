@@ -1,0 +1,21 @@
+{
+ "task_id": "js-low-01",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (src/paginate.js only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Fix the pagination bug in src/paginate.js: totalPages must round UP (a partial final page counts as a page).\nScope: src/paginate.js only\nAcceptance criteria: totalPages(10, 3) === 4; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (src/paginate.js only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains node --test tests/*.test.js. In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 719,
+ "byte_count": 719,
+ "est_prompt_tokens": 179,
+ "sha256": "b00d60bd64fb8c7dad93033a03ab9455dcdcf3fdcbd26d50a5c00f929a2444de",
+ "generator_version": 1,
+ "task_criteria": "totalPages(10, 3) === 4; every test under tests/ passes",
+ "task_scope": "src/paginate.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

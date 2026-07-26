@@ -1,0 +1,99 @@
+{
+ "model": "thinkingmachines/Inkling",
+ "probes": {
+  "trivial": {
+   "pi_normalized_totals": {
+    "turns": 1,
+    "input_uncached": 1242,
+    "cache_read": 0,
+    "output": 23,
+    "reported_cost_usd": 0.001335,
+    "models_seen": [
+     "thinkingmachines/Inkling"
+    ],
+    "logical_input": 1242,
+    "reasoning": 16,
+    "reasoning_token_status": "explicit"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 1242,
+     "completion_tokens": 23,
+     "total_tokens": 1265,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 16
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "max_tokens": 131072
+   },
+   "n_wire_requests": 1
+  },
+  "moderate": {
+   "pi_normalized_totals": {
+    "turns": 5,
+    "input_uncached": 2995,
+    "cache_read": 4096,
+    "output": 164,
+    "reported_cost_usd": 0.004356,
+    "models_seen": [
+     "thinkingmachines/Inkling"
+    ],
+    "logical_input": 7091,
+    "reasoning": 34,
+    "reasoning_token_status": "explicit"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 1510,
+     "completion_tokens": 36,
+     "total_tokens": 1546,
+     "prompt_tokens_details": {
+      "cached_tokens": 1408
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 3
+     }
+    },
+    {
+     "prompt_tokens": 1568,
+     "completion_tokens": 5,
+     "total_tokens": 1573,
+     "prompt_tokens_details": {
+      "cached_tokens": 1408
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 2
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "max_tokens": 131072
+   },
+   "n_wire_requests": 5
+  }
+ },
+ "reasoning_token_status": "explicit"
+}

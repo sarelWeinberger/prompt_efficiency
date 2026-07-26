@@ -1,0 +1,21 @@
+{
+ "task_id": "go-low-01",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nNote: we believe the problem is caused by the the empty-slice guard \u2014 start there.\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./..."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nNote: we believe the problem is caused by the the empty-slice guard \u2014 start there.\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...",
+ "char_count": 341,
+ "byte_count": 343,
+ "est_prompt_tokens": 85,
+ "sha256": "cc95397c420b4e162253d53e108ddf43e9ff1da8275b09737699cf6c4b8627dd",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

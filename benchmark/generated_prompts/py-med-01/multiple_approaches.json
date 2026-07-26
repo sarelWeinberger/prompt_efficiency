@@ -1,0 +1,20 @@
+{
+ "task_id": "py-med-01",
+ "variant": "multiple_approaches",
+ "family": "primary",
+ "features": [
+  "multiple_approaches_cue"
+ ],
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nDevelop several distinct approaches to this fix, compare their trade-offs\nexplicitly, and only then select and implement the best one.",
+ "char_count": 547,
+ "byte_count": 547,
+ "est_prompt_tokens": 136,
+ "sha256": "ed9e901278146316015a0f115254c5925f589b5464635d741f83fd48a1b0954b",
+ "generator_version": 1,
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,23 @@
+{
+ "task_id": "py-med-02",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged. Scope: config/parser.py only Acceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged. Scope: config/parser.py only Acceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged. Scope: config/parser.py only Acceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Add boolean support to config/parser.py: parse_value must map the strings true/false/yes/no/on/off (case-insensitive) to Python bools. Numeric strings keep their current behavior ('1' stays the int 1). Unrecognized strings still pass through unchanged. Scope: config/parser.py only Acceptance criteria: parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 1158,
+ "byte_count": 1158,
+ "est_prompt_tokens": 289,
+ "sha256": "9ce3fed156eabad46f757ab146ebe3cd4960c7119743e61c53a21df8f20bd825",
+ "generator_version": 1,
+ "task_criteria": "parse_value('true') is True, parse_value('No') is False, parse_value('1') == 1 (int), parse_value('tru') == 'tru'; every test under tests/ passes",
+ "task_scope": "config/parser.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

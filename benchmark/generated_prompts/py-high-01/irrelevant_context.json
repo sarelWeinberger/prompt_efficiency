@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-01",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nUsers are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user.\nScope: the cachekit package (cachekit/)\nAcceptance criteria: preferences are isolated per user; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nUsers are seeing each other's preferences. Diagnose the root cause in the cachekit package and fix it: preferences stored for one user must never appear for another user.\nScope: the cachekit package (cachekit/)\nAcceptance criteria: preferences are isolated per user; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.",
+ "char_count": 930,
+ "byte_count": 930,
+ "est_prompt_tokens": 232,
+ "sha256": "d750ff5e35d1050c0c8aaa8c45cc08f56b62d5864655a6e715d7e428424e7a65",
+ "generator_version": 1,
+ "task_criteria": "preferences are isolated per user; every test under tests/ passes",
+ "task_scope": "the cachekit package (cachekit/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,64 @@
+# Benchmark configuration. Thresholds here are provisional and configurable (design §24).
+seed: 20260726
+slots_root: /tmp/pi-prompt-benchmark
+results_dir: results
+raw_dir: results/raw
+
+budgets:
+  pilot_max_reported_cost_usd: 10.0
+  pilot_max_no_cache_cost_usd: 20.0
+  per_run_max_cost_usd: 0.60
+  screening_max_no_cache_cost_usd: 60.0
+
+timeouts_s:
+  low: 240
+  medium: 360
+  high: 480
+  smoke: 120
+
+thinking:
+  requested_level: medium        # passed explicitly to pi (--thinking medium)
+  claude_code: default           # claude-code manages its own thinking; recorded per run
+
+pi:
+  binary: ~/.nvm/versions/node/v22.23.1/bin/pi
+  provider: together
+  session_mode_experiment_a: no-session
+
+claude_code:
+  binary: ~/.nvm/versions/node/v22.23.1/bin/claude
+  version_pinned: 2.1.220
+  permission_mode_default: acceptEdits
+  permission_mode_autonomous: bypassPermissions   # only inside disposable slots
+  max_turns: 40
+  gateway:
+    name: litellm
+    anthropic_facing_port: 8903
+    litellm_port: 4000
+    together_facing_port: 8901
+
+pilot_a:  # PI.DEV validation pilot
+  harness: pi
+  models:
+    - deepseek-ai/DeepSeek-V4-Pro
+    - moonshotai/Kimi-K2.6
+    - nvidia/nemotron-3-ultra-550b-a55b
+    - zai-org/GLM-5.2
+  tasks: [py-low-01, go-low-01, py-med-01, js-med-03, js-high-01, go-high-01]
+  variants: [baseline, deep_thinking, exhaustive_exploration, adjacent_cleanup, bounded_efficiency]
+  repetitions: 3
+
+pilot_b:  # Claude Code compatibility + matched subset (only tool-loop-validated models)
+  harness: claude-code
+  models: all_compatible
+  tasks: [py-low-01, js-med-03, js-high-01]
+  variants: [baseline, goal_only, scoped_authorization, deep_thinking, exhaustive_exploration, no_questions_autonomy, bounded_efficiency]
+  repetitions: 2
+
+classification:  # provisional rule, design §24; sensitivity reported
+  wasteful_min_median_reasoning_ratio: 1.5
+  wasteful_min_ci_lower_ratio: 1.1
+  success_improvement_practical_threshold: 0.10
+  min_tasks_with_effect: 2
+
+workers: 6

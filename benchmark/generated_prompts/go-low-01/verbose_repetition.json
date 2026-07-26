@@ -1,0 +1,21 @@
+{
+ "task_id": "go-low-01",
+ "variant": "verbose_repetition",
+ "family": "primary",
+ "features": [
+  "verbose",
+  "redundant"
+ ],
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (stats/stats.go only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains go test ./.... In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nTo restate the requirements so nothing is missed: the change must stay within the\nscope given above (stats/stats.go only), it must satisfy the same acceptance criteria already\nlisted, and the verification command remains go test ./.... In other words, do the\ntask exactly as described, within exactly the same boundaries, checked by exactly\nthe same tests, and finish under exactly the same stop condition as stated before.",
+ "char_count": 735,
+ "byte_count": 735,
+ "est_prompt_tokens": 183,
+ "sha256": "bcc6597ddf52f66771e0c9b8ff000c6008a50bb115e89d75d4b24aad3f33f803",
+ "generator_version": 1,
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

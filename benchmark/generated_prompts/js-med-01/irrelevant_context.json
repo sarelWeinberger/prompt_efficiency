@@ -1,0 +1,21 @@
+{
+ "task_id": "js-med-01",
+ "variant": "irrelevant_context",
+ "family": "stress",
+ "features": [
+  "stress",
+  "distractor_context"
+ ],
+ "turns": [
+  "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total.\nScope: src/cart.js and src/totals.js\nAcceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Background (for context): our organization has recently migrated from a monorepo\nto a polyrepo layout, then partially back, and several teams maintain conflicting\nstyle guides; the previous maintainer preferred functional patterns but the current\nteam is split, and there is an ongoing debate about whether to adopt a plugin\narchitecture in Q3, which the architecture council has deferred twice pending a\nreview of the service mesh proposal that may or may not affect this component.\nNone of that debate is resolved. Meanwhile, the actual request:\nFix the rounding drift across src/cart.js and src/totals.js: line totals must be summed at full precision and rounded ONCE at the end (see the note in src/totals.js). Currently each line is rounded before summing, which drifts the grand total.\nScope: src/cart.js and src/totals.js\nAcceptance criteria: grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.",
+ "char_count": 1006,
+ "byte_count": 1006,
+ "est_prompt_tokens": 251,
+ "sha256": "432ebedba6c04a27bf91563251a7c7c34027b007f0a3225083ea31ab916f4ff3",
+ "generator_version": 1,
+ "task_criteria": "grandTotal of three {price: 0.125, qty: 1} items === 0.38; every test under tests/ passes",
+ "task_scope": "src/cart.js and src/totals.js",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-02",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting",
+  "Also: of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected. Acceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass."
+ ],
+ "text": "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting\n<TURN-BREAK>\nAlso: of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected. Acceptance criteria: is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass.",
+ "char_count": 470,
+ "byte_count": 470,
+ "est_prompt_tokens": 117,
+ "sha256": "3ffc011a6128cd9eeec71a19d916395b8217f0376eeaa8b59050b8b6a0f809f7",
+ "generator_version": 1,
+ "task_criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "task_scope": "users/validate.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

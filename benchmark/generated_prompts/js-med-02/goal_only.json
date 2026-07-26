@@ -1,0 +1,22 @@
+{
+ "task_id": "js-med-02",
+ "variant": "goal_only",
+ "family": "primary",
+ "features": [
+  "minimal",
+  "no_scope",
+  "no_criteria"
+ ],
+ "turns": [
+  "Add a burst allowance to src/ratelimit.js: the constructor must accept an options object as third argument, new RateLimiter(limit, windowMs, {burst: n}), permitting at most limit+n requests per window (default burst 0, existing behavior unchanged). Also add a remaining() method returning how many requests are still allowed in the current window."
+ ],
+ "text": "Add a burst allowance to src/ratelimit.js: the constructor must accept an options object as third argument, new RateLimiter(limit, windowMs, {burst: n}), permitting at most limit+n requests per window (default burst 0, existing behavior unchanged). Also add a remaining() method returning how many requests are still allowed in the current window.",
+ "char_count": 347,
+ "byte_count": 347,
+ "est_prompt_tokens": 86,
+ "sha256": "12a7236accdb46deb2000cfc0807f52a0fbce56842d6714f8c641e09dff3eb4a",
+ "generator_version": 1,
+ "task_criteria": "limit 2 + burst 1 permits exactly 3 requests per window; remaining() reports correctly; every test under tests/ passes",
+ "task_scope": "src/ratelimit.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

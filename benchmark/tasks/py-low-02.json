@@ -1,0 +1,18 @@
+{
+ "language": "python",
+ "complexity": "low",
+ "split": "dev",
+ "pilot": false,
+ "objective": "Fix the username validation rule in users/validate.py: usernames of length 3 through 20 (inclusive) consisting of lowercase letters, digits and underscores must be accepted; currently 3-character names are wrongly rejected.",
+ "objective_vague": "user input validation",
+ "misleading_hint": "regular expression pattern",
+ "scope": "users/validate.py only",
+ "allowed_paths": [
+  "users/validate.py"
+ ],
+ "criteria": "is_valid_username(\"abc\") is True; boundary lengths 3 and 20 accepted; 2 and 21 rejected; every test under tests/ passes",
+ "test_cmd": "python3 -m unittest discover -s tests -t . -v",
+ "stop": "Stop when the tests pass.",
+ "expected_scope_files": 1,
+ "id": "py-low-02"
+}

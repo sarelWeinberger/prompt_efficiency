@@ -1,0 +1,96 @@
+{
+ "model": "zai-org/GLM-5.2",
+ "probes": {
+  "trivial": {
+   "pi_normalized_totals": {
+    "turns": 1,
+    "input_uncached": 43,
+    "cache_read": 1280,
+    "output": 4,
+    "reported_cost_usd": 0.000411,
+    "models_seen": [
+     "zai-org/GLM-5.2"
+    ],
+    "logical_input": 1323,
+    "reasoning": 1,
+    "reasoning_token_status": "explicit"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 1323,
+     "completion_tokens": 4,
+     "total_tokens": 1327,
+     "prompt_tokens_details": {
+      "cached_tokens": 1280
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 1
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "max_tokens": 164000
+   },
+   "n_wire_requests": 1
+  },
+  "moderate": {
+   "pi_normalized_totals": {
+    "turns": 7,
+    "input_uncached": 3112,
+    "cache_read": 0,
+    "output": 121,
+    "reported_cost_usd": 0.004889,
+    "models_seen": [
+     "zai-org/GLM-5.2"
+    ],
+    "logical_input": 3112,
+    "reasoning": null,
+    "reasoning_token_status": "missing"
+   },
+   "raw_usage_samples": [
+    {
+     "prompt_tokens": 1361,
+     "completion_tokens": 95,
+     "total_tokens": 1456,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     },
+     "completion_tokens_details": {
+      "reasoning_tokens": 54
+     }
+    },
+    {
+     "prompt_tokens": 1751,
+     "completion_tokens": 26,
+     "total_tokens": 1777,
+     "prompt_tokens_details": {
+      "cached_tokens": 0
+     }
+    }
+   ],
+   "raw_reasoning_fields": [
+    "completion_tokens_details.reasoning_tokens"
+   ],
+   "raw_cached_fields": [
+    "prompt_tokens_details.cached_tokens"
+   ],
+   "effective_request_reasoning_params": {
+    "reasoning": {
+     "enabled": true
+    },
+    "max_tokens": 164000
+   },
+   "n_wire_requests": 7
+  }
+ },
+ "reasoning_token_status": "explicit"
+}

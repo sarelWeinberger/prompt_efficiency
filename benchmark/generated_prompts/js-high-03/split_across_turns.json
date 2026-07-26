@@ -1,0 +1,22 @@
+{
+ "task_id": "js-high-03",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/",
+  "Also: and fix it: each job pushed onto the queue must be handled exactly once. Acceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes. Verify with: node --test tests/*.test.js. Stop when the tests pass."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/\n<TURN-BREAK>\nAlso: and fix it: each job pushed onto the queue must be handled exactly once. Acceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes. Verify with: node --test tests/*.test.js. Stop when the tests pass.",
+ "char_count": 348,
+ "byte_count": 348,
+ "est_prompt_tokens": 87,
+ "sha256": "354ede5ed9b34f4eb2ae5d1df9b1c0879f440779ac99b6b6431784100618fb13",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

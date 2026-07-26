@@ -1,2 +1,7 @@
 .env
 .claude/settings.local.json
+.venv-gateway/
+__pycache__/
+*.pyc
+results/raw/
+benchmark/gateway/pi-capture-extension.js

@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-01",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the",
+  "Also: price AFTER applying a pct-percent discount, not the discount amount itself. Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the\n<TURN-BREAK>\nAlso: price AFTER applying a pct-percent discount, not the discount amount itself. Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass.",
+ "char_count": 355,
+ "byte_count": 355,
+ "est_prompt_tokens": 88,
+ "sha256": "828663820120f96258125ce53b5dcd0f8a704f99d9f67e9c7a554e857a7b888a",
+ "generator_version": 1,
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

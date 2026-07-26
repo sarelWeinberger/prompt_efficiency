@@ -1,0 +1,22 @@
+{
+ "task_id": "go-med-02",
+ "variant": "split_across_turns",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn"
+ ],
+ "turns": [
+  "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning",
+  "Also: at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged. Acceptance criteria: existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes. Verify with: go test ./.... Stop when the tests pass."
+ ],
+ "text": "Implement a backward-compatible interface change in client/: add a LimitedFetcher interface with FetchWithLimit(url string, limit int) ([]byte, error) returning\n<TURN-BREAK>\nAlso: at most limit bytes, implement it on StubClient, and keep the existing Fetcher interface and Fetch behavior completely unchanged. Acceptance criteria: existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes. Verify with: go test ./.... Stop when the tests pass.",
+ "char_count": 485,
+ "byte_count": 485,
+ "est_prompt_tokens": 121,
+ "sha256": "1004e76e3c856a71c0ce1391d9e3384f784e24f613c066b8df18351705cf69a5",
+ "generator_version": 1,
+ "task_criteria": "existing Fetch tests untouched and passing; FetchWithLimit truncates to limit; go test ./... passes",
+ "task_scope": "the client package (client/)",
+ "task_test_cmd": "go test ./..."
+}

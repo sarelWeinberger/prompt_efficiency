@@ -1,0 +1,23 @@
+{
+ "task_id": "js-high-03",
+ "variant": "full_restatement_per_turn",
+ "family": "stress",
+ "features": [
+  "stress",
+  "multi_turn",
+  "restatement"
+ ],
+ "turns": [
+  "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once. Scope: the src/ directory Acceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.",
+  "Reminder of the full task, restated completely: Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once. Scope: the src/ directory Acceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue."
+ ],
+ "text": "Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once. Scope: the src/ directory Acceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass.\n<TURN-BREAK>\nReminder of the full task, restated completely: Jobs are being processed more than once. Find the real root cause across src/ and fix it: each job pushed onto the queue must be handled exactly once. Scope: the src/ directory Acceptance criteria: each job handled exactly once across multiple poll ticks; every test under tests/ passes Verify with: node --test tests/*.test.js Stop when the tests pass. Is it done? If not, continue.",
+ "char_count": 798,
+ "byte_count": 798,
+ "est_prompt_tokens": 199,
+ "sha256": "c063e522eec94cca141909cf5a4bfcb501a38b4dd147b468b2b64d37be339e91",
+ "generator_version": 1,
+ "task_criteria": "each job handled exactly once across multiple poll ticks; every test under tests/ passes",
+ "task_scope": "the src/ directory",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

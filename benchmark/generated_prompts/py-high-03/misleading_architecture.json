@@ -1,0 +1,21 @@
+{
+ "task_id": "py-high-03",
+ "variant": "misleading_architecture",
+ "family": "stress",
+ "features": [
+  "stress",
+  "misdirection"
+ ],
+ "turns": [
+  "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nNote: we believe the problem is caused by the the transform stage (pipeline/transform.py) \u2014 start there.\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v"
+ ],
+ "text": "The report pipeline drops data: totals come out short. Find the real root cause in the pipeline package and fix it. The failing test is tests/test_pipeline.py.\nNote: we believe the problem is caused by the the transform stage (pipeline/transform.py) \u2014 start there.\nAcceptance criteria: totals include every data row exactly once; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v",
+ "char_count": 419,
+ "byte_count": 421,
+ "est_prompt_tokens": 104,
+ "sha256": "135aea4dcc0a6007ce4759aab4e9d1e6a4c89629c893814025822defe3f30341",
+ "generator_version": 1,
+ "task_criteria": "totals include every data row exactly once; every test under tests/ passes",
+ "task_scope": "the pipeline package (pipeline/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

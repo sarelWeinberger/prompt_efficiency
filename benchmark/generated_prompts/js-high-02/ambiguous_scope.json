@@ -1,0 +1,21 @@
+{
+ "task_id": "js-high-02",
+ "variant": "ambiguous_scope",
+ "family": "stress",
+ "features": [
+  "stress",
+  "ambiguity"
+ ],
+ "turns": [
+  "Something in this project is producing wrong results related to the following\narea: client API style. Improve the situation."
+ ],
+ "text": "Something in this project is producing wrong results related to the following\narea: client API style. Improve the situation.",
+ "char_count": 124,
+ "byte_count": 124,
+ "est_prompt_tokens": 31,
+ "sha256": "0bff2307b28bbffee95fb0e3df75b364248e2ccc8bc0a29bebef280996f2266a",
+ "generator_version": 1,
+ "task_criteria": "both styles work for success and error paths; every test under tests/ passes",
+ "task_scope": "src/client.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}
