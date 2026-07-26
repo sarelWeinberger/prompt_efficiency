@@ -110,39 +110,50 @@ def run_claude(model_id, alias, prompt_text, slot, timeout_s, run_dir,
         "DISABLE_AUTOUPDATER": "1",
         "GOCACHE": "/tmp/pi-prompt-benchmark/gocache",
     }
-    cmd = [str(CLAUDE), "-p", prompt_text, "--output-format", "json",
-           "--model", alias, "--permission-mode", permission_mode,
-           "--max-turns", str(max_turns)]
-    if permission_mode == "bypassPermissions":
-        cmd += ["--dangerously-skip-permissions"]
-
+    turns = prompt_text.split("\n<TURN-BREAK>\n")
     offset = _capture_offset()
     t0 = time.time()
+    deadline = t0 + timeout_s
     timed_out = False
+    stdout = stderr = ""
+    datas = []
+    rc = None
     try:
-        p = subprocess.Popen(cmd, cwd=slot, stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE, text=True, env=env,
-                             stdin=subprocess.DEVNULL, start_new_session=True)
-        try:
-            stdout, stderr = p.communicate(timeout=timeout_s)
-        except subprocess.TimeoutExpired:
-            timed_out = True
-            os.killpg(os.getpgid(p.pid), signal.SIGKILL)
-            stdout, stderr = p.communicate()
+        for i, turn_text in enumerate(turns):
+            cmd = [str(CLAUDE), "-p", turn_text, "--output-format", "json",
+                   "--model", alias, "--permission-mode", permission_mode,
+                   "--max-turns", str(max_turns)] + (["-c"] if i else [])
+            if permission_mode == "bypassPermissions":
+                cmd += ["--dangerously-skip-permissions"]
+            p = subprocess.Popen(cmd, cwd=slot, stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE, text=True, env=env,
+                                 stdin=subprocess.DEVNULL, start_new_session=True)
+            try:
+                stdout, stderr = p.communicate(timeout=max(10, deadline - time.time()))
+            except subprocess.TimeoutExpired:
+                timed_out = True
+                os.killpg(os.getpgid(p.pid), signal.SIGKILL)
+                stdout, stderr = p.communicate()
+            rc = p.returncode
+            (run_dir / f"claude_out_t{i+1}.json").write_text(redact(stdout or ""))
+            if stderr:
+                (run_dir / f"claude_err_t{i+1}.txt").write_text(redact(stderr))
+            if not timed_out:
+                try:
+                    datas.append(json.loads(stdout))
+                except (json.JSONDecodeError, TypeError):
+                    pass
+            if timed_out:
+                break
     except OSError as e:
         return {"status": "infra_error", "error": str(e), "wall_s": time.time() - t0}
     wall = time.time() - t0
 
-    (run_dir / "claude_out.json").write_text(redact(stdout or ""))
-    if stderr:
-        (run_dir / "claude_err.txt").write_text(redact(stderr))
-
-    data = None
-    if not timed_out:
-        try:
-            data = json.loads(stdout)
-        except (json.JSONDecodeError, TypeError):
-            pass
+    data = datas[-1] if datas else None
+    if data is not None and len(datas) > 1:
+        data = dict(data)
+        data["num_turns"] = sum(d.get("num_turns") or 0 for d in datas)
+        data["_multi_turn_invocations"] = len(datas)
 
     # Harvest per-message transcript for tool trace
     transcript_lines = []
@@ -165,7 +176,10 @@ def run_claude(model_id, alias, prompt_text, slot, timeout_s, run_dir,
     return {
         "status": status,
         "wall_s": round(wall, 2),
-        "exit_code": p.returncode if not timed_out else None,
+        "exit_code": rc if not timed_out else None,
+        "cc_subtype": (data or {}).get("subtype"),
+        "max_turns_hit": bool(data and (data.get("subtype") == "error_max_turns"
+                                        or (data.get("num_turns") or 0) >= max_turns)),
         "cc_result": data,
         "upstream": upstream,
         "trace": trace,

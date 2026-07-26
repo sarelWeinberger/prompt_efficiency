@@ -30,7 +30,7 @@ claude_code:
   version_pinned: 2.1.220
   permission_mode_default: acceptEdits
   permission_mode_autonomous: bypassPermissions   # only inside disposable slots
-  max_turns: 40
+  max_turns: 80   # raised from 40 for Phase 2 (10% of pilot runs were right-censored)
   gateway:
     name: litellm
     anthropic_facing_port: 8903
@@ -62,3 +62,51 @@ classification:  # provisional rule, design §24; sensitivity reported
   min_tasks_with_effect: 2
 
 workers: 6
+
+# ---- Phase 2 experiments (full preregistered scale, authorized 2026-07-26) ----
+experiments:
+  screening_pi:
+    harness: pi
+    models: [deepseek-ai/DeepSeek-V4-Pro, moonshotai/Kimi-K2.6, moonshotai/Kimi-K2.7-Code,
+             nvidia/nemotron-3-ultra-550b-a55b, thinkingmachines/Inkling, zai-org/GLM-5.2]
+    tasks: [py-low-01, py-low-02, js-low-01, js-low-03, go-low-01,
+            py-med-01, py-med-02, js-med-01, js-med-02, js-med-03, go-med-01,
+            py-high-01, py-high-02, js-high-01, js-high-02, go-high-01]
+    variants: [baseline, verbose_repetition, deep_thinking, exhaustive_exploration,
+               multiple_approaches, max_certainty, adjacent_cleanup,
+               no_questions_autonomy, bounded_efficiency]
+    repetitions: 2
+  screening_cc:
+    harness: claude-code
+    models: all_compatible
+    tasks: [py-low-01, js-low-03, go-low-01, py-med-01, js-med-03, go-med-01,
+            js-high-01, go-high-01]
+    variants: [baseline, deep_thinking, exhaustive_exploration,
+               no_questions_autonomy, bounded_efficiency]
+    repetitions: 2
+  stress_pi:
+    harness: pi
+    models: [deepseek-ai/DeepSeek-V4-Pro, moonshotai/Kimi-K2.6, moonshotai/Kimi-K2.7-Code,
+             nvidia/nemotron-3-ultra-550b-a55b, thinkingmachines/Inkling, zai-org/GLM-5.2]
+    tasks: [py-low-01, js-med-03, go-high-01, py-med-01, js-high-01, go-low-01]
+    variants: [split_across_turns, full_restatement_per_turn, ambiguous_scope,
+               conflicting_constraints, irrelevant_context, misleading_architecture]
+    repetitions: 2
+  holdout_pi:
+    harness: pi
+    models: [deepseek-ai/DeepSeek-V4-Pro, moonshotai/Kimi-K2.6, moonshotai/Kimi-K2.7-Code,
+             nvidia/nemotron-3-ultra-550b-a55b, thinkingmachines/Inkling, zai-org/GLM-5.2]
+    tasks: [py-low-03, js-low-02, go-low-02, py-med-03, go-med-02,
+            py-high-03, js-high-03, go-high-02]
+    selection_file: results/holdout_selection.json
+    variants: []            # replaced per model from selection_file
+    always_variants: [baseline, bounded_efficiency]
+    repetitions: 5
+  holdout_cc:
+    harness: claude-code
+    models: all_compatible
+    tasks: [js-low-02, py-med-03, go-high-02]
+    selection_file: results/holdout_selection.json
+    variants: []
+    always_variants: [baseline, bounded_efficiency]
+    repetitions: 3

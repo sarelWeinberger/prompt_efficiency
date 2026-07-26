@@ -33,6 +33,7 @@ from reset_workspace import reset_slot
 CFG = load_config()
 LOCK = threading.Lock()
 SPENT = {"reported": 0.0, "nocache": 0.0, "runs": 0}
+SPENT_BY_MODEL = {}
 PI_VERSION = "0.82.1"
 CC_VERSION = "2.1.220"
 LITELLM_VERSION = "1.93.0"
@@ -59,6 +60,33 @@ def alias_for(model_id):
 
 
 def build_matrix(args):
+    exps = CFG.get("experiments") or {}
+    if args.experiment in exps:
+        spec = exps[args.experiment]
+        harnesses = [spec["harness"]]
+        models = spec["models"]
+        if models == "all_compatible":
+            compat = json.loads(
+                (ROOT / "results/compatibility/cc_compat.json").read_text())
+            models = [r["model"] for r in compat if r.get("tool_loop_valid")]
+        tasks, reps = spec["tasks"], spec["repetitions"]
+        sel = None
+        if spec.get("selection_file"):
+            sel = json.loads((ROOT / spec["selection_file"]).read_text())
+        blocks = []
+        for h in harnesses:
+            for m in models:
+                variants = spec["variants"]
+                if sel is not None:
+                    variants = sorted(set(sel[m] + spec.get("always_variants", [])))
+                for t_ in tasks:
+                    cells = [(v, r) for v in variants for r in range(1, reps + 1)]
+                    rnd = random.Random(f"{args.seed}|{h}|{m}|{t_}")
+                    rnd.shuffle(cells)
+                    blocks.append({"harness": h, "model": m, "task": t_, "cells": cells})
+        rnd = random.Random(args.seed)
+        rnd.shuffle(blocks)
+        return blocks
     if args.experiment in ("pilot_a", "pilot_b"):
         spec = CFG[args.experiment]
         harnesses = [spec["harness"]]
@@ -87,10 +115,14 @@ def build_matrix(args):
     return blocks
 
 
-def over_budget(args):
-    return (SPENT["reported"] >= args.max_cost
+def over_budget(args, model=None):
+    if (SPENT["reported"] >= args.max_cost
             or SPENT["nocache"] >= args.max_nocache_cost
-            or SPENT["runs"] >= args.max_runs)
+            or SPENT["runs"] >= args.max_runs):
+        return True
+    if model and args.per_model_cost_cap:
+        return SPENT_BY_MODEL.get(model, 0.0) >= args.per_model_cost_cap
+    return False
 
 
 def make_record(base, **kw):
@@ -103,10 +135,6 @@ def run_cell(block, variant, rep, slot, args, order_idx):
     harness, model, task_id = block["harness"], block["model"], block["task"]
     task = load_task(task_id)
     prompt = load_prompt(task_id, variant)
-    if "<TURN-BREAK>" in prompt["text"]:
-        return {"harness": harness, "model": model, "task_id": task_id,
-                "variant": variant, "rep": rep, "status": "not_run",
-                "failure_reason": "multi_turn_variant_not_supported_by_runner_v1"}
     timeout = CFG["timeouts_s"][task["complexity"]] * args.timeout_mult
     run_id = f"{harness}_{model.split('/')[-1]}_{task_id}_{variant}_r{rep}_{uuid.uuid4().hex[:6]}"
     run_dir = ROOT / CFG["raw_dir"] / run_id
@@ -143,8 +171,8 @@ def run_cell(block, variant, rep, slot, args, order_idx):
         "est_prompt_tokens": prompt["est_prompt_tokens"],
         "generator_version": prompt["generator_version"],
         "rep": rep,
-        "experiment_family": "A",
-        "session_mode": "cold",
+        "experiment_family": "stress" if prompt["family"] == "stress" else "A",
+        "session_mode": "continuous" if "<TURN-BREAK>" in prompt["text"] else "cold",
         "turn_number": 1,
         "slot_id": slot.name,
         "workdir_hash": sha256(str(slot)),
@@ -160,7 +188,8 @@ def run_cell(block, variant, rep, slot, args, order_idx):
                      thinking=CFG["thinking"]["requested_level"])
     else:
         res = run_claude(model, alias_for(model), prompt["text"], slot, timeout,
-                         run_dir, permission_mode=args.permission_mode)
+                         run_dir, permission_mode=args.permission_mode,
+                         max_turns=CFG["claude_code"]["max_turns"])
 
     if res.get("status") == "infra_error":
         return make_record(base, status="infra_error", run_validity="infrastructure_failure",
@@ -232,6 +261,8 @@ def run_cell(block, variant, rep, slot, args, order_idx):
         exit_code=res.get("exit_code"),
         timeout_hit=status == "timeout",
         truncated=False,
+        cc_subtype=res.get("cc_subtype"),
+        turns_censored=bool(res.get("max_turns_hit")),
         turns=turns,
         uncached_input_tokens=uncached,
         cached_input_tokens=cached,
@@ -274,8 +305,8 @@ def worker_loop(blocks_queue, slot, args, out_path, done_keys):
             with LOCK:
                 if key in done_keys:
                     continue
-                if over_budget(args):
-                    return
+                if over_budget(args, block["model"]):
+                    break
                 done_keys.add(key)
             try:
                 rec = run_cell(block, variant, rep, slot, args, i)
@@ -287,6 +318,8 @@ def worker_loop(blocks_queue, slot, args, out_path, done_keys):
             with LOCK:
                 SPENT["reported"] += rec.get("reported_cost_usd") or 0
                 SPENT["nocache"] += rec.get("estimated_no_cache_cost_usd") or 0
+                SPENT_BY_MODEL[block["model"]] = (SPENT_BY_MODEL.get(block["model"], 0.0)
+                                                  + (rec.get("reported_cost_usd") or 0))
                 SPENT["runs"] += 1
                 append_jsonl(out_path, rec)
                 print(f"[{SPENT['runs']}] {rec.get('run_id', key)} "
@@ -313,6 +346,8 @@ def main():
                     default=CFG["budgets"]["pilot_max_no_cache_cost_usd"])
     ap.add_argument("--timeout-mult", type=float, default=1.0)
     ap.add_argument("--permission-mode", default="acceptEdits")
+    ap.add_argument("--per-model-cost-cap", type=float, default=None,
+                    help="reported-USD budget pool per model")
     ap.add_argument("--out", default="results/runs.jsonl")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--require-valid-tool-loop", action="store_true", default=True)

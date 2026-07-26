@@ -148,11 +148,17 @@ def _group(rows, keys):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--experiments", default="pilot_a,pilot_b",
+                    help="comma-separated experiment names to include")
+    ap.add_argument("--out-suffix", default="")
+    args = ap.parse_args()
     runs = read_jsonl(ROOT / "results/runs.jsonl")
-    table, valid_rows = analyze(runs, experiment_filter={"pilot_a", "pilot_b"})
+    table, valid_rows = analyze(runs, experiment_filter=set(args.experiments.split(",")))
     OUT.mkdir(parents=True, exist_ok=True)
     if table:
-        with open(OUT / "prompt_sensitivity.csv", "w", newline="") as f:
+        with open(OUT / f"prompt_sensitivity{args.out_suffix}.csv", "w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=list(table[0].keys()))
             w.writeheader()
             w.writerows(sorted(table, key=lambda r: (r["harness"], r["model"],
@@ -170,7 +176,7 @@ def main():
     }
     (OUT / "run_summary.json").write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary, indent=1))
-    print(f"wrote {OUT/'prompt_sensitivity.csv'} ({len(table)} rows)")
+    print(f"wrote {OUT}/prompt_sensitivity{args.out_suffix}.csv ({len(table)} rows)")
 
 
 if __name__ == "__main__":
