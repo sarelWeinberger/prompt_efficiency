@@ -252,6 +252,11 @@ def run_cell(block, variant, rep, slot, args, order_idx):
         validity = "gateway_failure"
     if status == "no_events" or (harness == "pi" and reasoning_status == "parse_error"):
         validity = "usage_parsing_failure"
+    # Provider-side hard failures (e.g. 402 credit exhaustion): zero upstream
+    # work on a "completed" run is an infrastructure failure, never a task result.
+    if status == "completed" and logical_input == 0:
+        validity = "infrastructure_failure"
+        status = "infra_error"
 
     rec = make_record(
         base,
