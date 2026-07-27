@@ -1,0 +1,212 @@
+{
+ "moonshotai/Kimi-K2.7-Code": [
+  {
+   "variant": "multiple_approaches",
+   "harness": "pi",
+   "ratio": 3.869,
+   "ci": [
+    2.189,
+    6.064
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "deep_thinking",
+   "harness": "pi",
+   "ratio": 2.138,
+   "ci": [
+    1.437,
+    3.281
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "no_questions_autonomy",
+   "harness": "claude-code",
+   "ratio": 1.711,
+   "ci": [
+    0.238,
+    2.134
+   ],
+   "n": 12,
+   "classification": "inconclusive"
+  }
+ ],
+ "thinkingmachines/Inkling": [
+  {
+   "variant": "multiple_approaches",
+   "harness": "pi",
+   "ratio": 4.67,
+   "ci": [
+    3.016,
+    5.935
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "adjacent_cleanup",
+   "harness": "pi",
+   "ratio": 2.509,
+   "ci": [
+    2.047,
+    3.502
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "exhaustive_exploration",
+   "harness": "claude-code",
+   "ratio": 1.566,
+   "ci": [
+    1.299,
+    1.861
+   ],
+   "n": 12,
+   "classification": "wasteful"
+  }
+ ],
+ "nvidia/nemotron-3-ultra-550b-a55b": [
+  {
+   "variant": "multiple_approaches",
+   "harness": "pi",
+   "ratio": 3.748,
+   "ci": [
+    2.756,
+    4.297
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "deep_thinking",
+   "harness": "pi",
+   "ratio": 1.689,
+   "ci": [
+    1.354,
+    2.087
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "max_certainty",
+   "harness": "pi",
+   "ratio": 1.577,
+   "ci": [
+    1.203,
+    1.948
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  }
+ ],
+ "zai-org/GLM-5.2": [
+  {
+   "variant": "multiple_approaches",
+   "harness": "pi",
+   "ratio": 5.267,
+   "ci": [
+    2.779,
+    13.757
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "deep_thinking",
+   "harness": "pi",
+   "ratio": 2.592,
+   "ci": [
+    1.74,
+    3.743
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "adjacent_cleanup",
+   "harness": "pi",
+   "ratio": 2.217,
+   "ci": [
+    1.382,
+    6.041
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  }
+ ],
+ "deepseek-ai/DeepSeek-V4-Pro": [
+  {
+   "variant": "multiple_approaches",
+   "harness": "pi",
+   "ratio": 3.688,
+   "ci": [
+    2.554,
+    5.811
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "deep_thinking",
+   "harness": "claude-code",
+   "ratio": 1.892,
+   "ci": [
+    0.582,
+    4.295
+   ],
+   "n": 14,
+   "classification": "harmful_overthinking"
+  },
+  {
+   "variant": "max_certainty",
+   "harness": "pi",
+   "ratio": 1.579,
+   "ci": [
+    1.277,
+    1.827
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  }
+ ],
+ "moonshotai/Kimi-K2.6": [
+  {
+   "variant": "multiple_approaches",
+   "harness": "pi",
+   "ratio": 5.614,
+   "ci": [
+    3.684,
+    7.153
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "deep_thinking",
+   "harness": "pi",
+   "ratio": 2.692,
+   "ci": [
+    1.999,
+    3.49
+   ],
+   "n": 32,
+   "classification": "wasteful"
+  },
+  {
+   "variant": "exhaustive_exploration",
+   "harness": "claude-code",
+   "ratio": 2.078,
+   "ci": [
+    0.317,
+    3.848
+   ],
+   "n": 15,
+   "classification": "useful_deliberation"
+  }
+ ]
+}

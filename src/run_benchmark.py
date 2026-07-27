@@ -44,11 +44,17 @@ def load_prompt(task_id, variant):
     return json.loads(p.read_text())
 
 
-def completed_keys(out_path):
+def completed_keys(out_path, experiment=None):
+    """Cells with a finished record. With experiment set, only records from
+    that experiment count (protocol-pure resume); otherwise any experiment
+    satisfies the cell (legacy cross-experiment dedup)."""
     keys = set()
     for r in read_jsonl(out_path):
-        if r.get("status") not in ("not_run", "infra_error"):
-            keys.add((r["harness"], r["model"], r["task_id"], r["variant"], r["rep"]))
+        if r.get("status") in ("not_run", "infra_error"):
+            continue
+        if experiment and r.get("experiment") != experiment:
+            continue
+        keys.add((r["harness"], r["model"], r["task_id"], r["variant"], r["rep"]))
     return keys
 
 
@@ -353,6 +359,8 @@ def main():
     ap.add_argument("--permission-mode", default="acceptEdits")
     ap.add_argument("--per-model-cost-cap", type=float, default=None,
                     help="reported-USD budget pool per model")
+    ap.add_argument("--resume-scope", choices=["global", "experiment"],
+                    default="global")
     ap.add_argument("--out", default="results/runs.jsonl")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--require-valid-tool-loop", action="store_true", default=True)
@@ -371,7 +379,9 @@ def main():
                   [c[0][:12] for c in b["cells"][:5]], "...")
         return
 
-    done = completed_keys(out_path)
+    done = completed_keys(out_path,
+                          experiment=args.experiment if args.resume_scope == "experiment"
+                          else None)
     print(f"resume: {len(done)} cells already completed")
 
     # Claude Code runs must be sequential (shared capture stream attribution).

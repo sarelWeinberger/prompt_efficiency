@@ -1,0 +1,32 @@
+{
+ "moonshotai/Kimi-K2.7-Code": [
+  "multiple_approaches",
+  "deep_thinking",
+  "no_questions_autonomy"
+ ],
+ "thinkingmachines/Inkling": [
+  "multiple_approaches",
+  "adjacent_cleanup",
+  "exhaustive_exploration"
+ ],
+ "nvidia/nemotron-3-ultra-550b-a55b": [
+  "multiple_approaches",
+  "deep_thinking",
+  "max_certainty"
+ ],
+ "zai-org/GLM-5.2": [
+  "multiple_approaches",
+  "deep_thinking",
+  "adjacent_cleanup"
+ ],
+ "deepseek-ai/DeepSeek-V4-Pro": [
+  "multiple_approaches",
+  "deep_thinking",
+  "max_certainty"
+ ],
+ "moonshotai/Kimi-K2.6": [
+  "multiple_approaches",
+  "deep_thinking",
+  "exhaustive_exploration"
+ ]
+}
