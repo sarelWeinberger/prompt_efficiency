@@ -73,9 +73,13 @@ See [pi-request.log](pi-request.log) for the result.
 
 ## The prompt-waste benchmark
 
-**Status: Phase 1 — completed infrastructure and pilot benchmark.** The
-preregistered full screening and frozen-holdout phases have not run yet
-(see RESULTS.md §8); pilot findings are labeled as such.
+**Status: preregistered program COMPLETE** — infrastructure, pilots, full
+six-model screening (1,728-run pi matrix), stress family, and frozen-holdout
+confirmation. 4,400 valid runs, $152.54 total spend. Headline: *"develop
+several approaches and compare"* is the most wasteful phrase tested
+(2.4–7.4× reasoning, all six models, holdout-confirmed); bounded-efficiency
+prompting is free everywhere and halves GLM-5.2's reasoning. Open item:
+second-gateway/region replication.
 
 The measurements above grew into a controlled benchmark: **which prompt
 formulations make large reasoning models waste reasoning tokens, tool calls,
@@ -88,8 +92,8 @@ turns, and money — under PI.DEV vs Claude Code, on the same Together AI models
 | [PI_HARNESS_OVERHEAD.md](PI_HARNESS_OVERHEAD.md) | PI.DEV fixed-prefix calibration per model |
 | [CLAUDE_CODE_HARNESS_OVERHEAD.md](CLAUDE_CODE_HARNESS_OVERHEAD.md) | Claude Code fixed-prefix calibration (12–15× pi) + gateway metadata loss |
 | [HARNESS-COMPARISON.md](HARNESS-COMPARISON.md) | PI.DEV vs Claude Code: measured compatibility/metadata findings + pilot-scale behavioral comparison |
-| [RESULTS.md](RESULTS.md) | Phase 1 pilot results + remaining preregistered work |
-| [PROMPT-WASTE-RULES.md](PROMPT-WASTE-RULES.md) | Practical guidance distilled from the data |
+| [RESULTS.md](RESULTS.md) | Final results: holdout-confirmed waste features, hypothesis scoreboard |
+| [PROMPT-WASTE-RULES.md](PROMPT-WASTE-RULES.md) | Holdout-validated prompting rules (cross-model + per-model) |
 
 Infrastructure: [benchmark/](benchmark/) (frozen configs, 24 tasks, fixtures,
 hidden evaluators, LiteLLM gateway), [src/](src/) (runners, parsers, orchestrator),
@@ -97,42 +101,41 @@ hidden evaluators, LiteLLM gateway), [src/](src/) (runners, parsers, orchestrato
 [results/](results/) (`runs.jsonl`, `summaries/*.csv`, compatibility and
 schema-discovery records).
 
-### What Phase 1 measured
+### What the benchmark measured (final)
 
 | | |
 |---|---|
 | Models | DeepSeek-V4-Pro, Kimi-K2.6, Kimi-K2.7-Code, nemotron-3-ultra-550b-a55b, Inkling, GLM-5.2 (frozen) |
 | Harnesses | PI.DEV 0.82.1 (direct) and Claude Code 2.1.220 (via LiteLLM 1.93.0 gateway, dual-side redacted capture) |
-| Runs | **460 valid pilot runs** (Pilot A: full 360-run PI.DEV matrix; Pilot B: 100 Claude Code runs, budget-capped) + 70 cache-session records — 100% parse validity |
-| Spend | $17.98 actual / $42.68 estimated no-cache (caching rebated ~58%) |
-| Compatibility | All 6 models pass Claude Code's full tool loop — but only on 1 of 3 gateway routes tried; the failures (silent tool-schema drops, empty continuations) are preserved as evidence |
+| Valid runs | **4,400** — pilots 460, pi screening 1,728/1,728 (full matrix), CC screening 371, stress family 432, pi holdout 1,198/1,200, CC holdout 211, cache sessions 70 |
+| Spend | $152.54 actual / $390.53 estimated no-cache (caching rebated ~61%) |
+| Collection | Three days (2026-07-26→28); findings replicate across all three |
 
-### Headline pilot findings (pending screening + holdout)
+### Headline findings (holdout-confirmed)
 
-1. **"Think very deeply / verify repeatedly" is a money-burning no-op** —
-   1.8–3.2× reasoning tokens on all four PI.DEV pilot models, ~2× latency,
-   zero correctness gain. The only variant wasteful everywhere.
-2. **The harness dwarfs the prompt** — the same model on the same task costs
-   **5–30× more per success under Claude Code** than PI.DEV at equal ~100%
-   success (16–20k-token fixed prefix, 12–15× pi's, × 2–7× more turns), and
-   prompt effects flip direction between harnesses.
-3. **Scope language, not thinking language, widens diffs** — only
-   "clean up anything adjacent" (6%) and "don't ask questions, do whatever is
-   necessary" (7%) produced out-of-scope edits. Bounded-efficiency prompting
-   (explicit scope + stop condition) was free: ≈1.0× reasoning, no success loss.
-4. **Cache facts**: reasoning metadata is dropped by the gateway (upstream
-   `reasoning_tokens` is authoritative); Claude Code's `total_cost_usd` is
-   wrong for gateway models; Together's cache pre-warms Claude Code's static
-   prefix across sessions (32/32 first-turn hits for K2.7-Code); nemotron got
-   **0 cache hits in 96 PI.DEV runs** while caching normally via the gateway.
+1. **"Develop several approaches and compare before choosing" is the most
+   wasteful phrase tested** — 2.4–7.4× reasoning tokens on all six models,
+   zero correctness gain, confirmed on 8 never-seen holdout tasks.
+2. **Deep-thinking incantations confirmed wasteful** (1.6–2.2×) on every
+   model where selected — replicated across pilot, screening, and holdout.
+3. **Bounded-efficiency prompting confirmed free on all six models** and
+   *halves* GLM-5.2's reasoning (0.48×). Explicit scope + stop conditions
+   cost nothing, ever.
+4. **A wrong architectural hint costs 2.6×** (models chase red herrings);
+   ambiguous scope is the only input defect that hurts correctness (83%
+   success); irrelevant prose is nearly free (1.03×) — models filter noise.
+5. **The harness dwarfs the prompt**: same model, same task = 5–30× more per
+   success under Claude Code (16–20k-token prefix × 2–7× turns), and prompt
+   effects flip direction between harnesses.
 
-Full numbers: [RESULTS.md](RESULTS.md) · per-variant CSV:
-[results/summaries/prompt_sensitivity.csv](results/summaries/prompt_sensitivity.csv) ·
+Full numbers: [RESULTS.md](RESULTS.md) · screening CSV:
+[results/summaries/prompt_sensitivity_screening.csv](results/summaries/prompt_sensitivity_screening.csv) ·
+holdout verdicts: [results/summaries/holdout_confirmation.csv](results/summaries/holdout_confirmation.csv) ·
+stress family: [results/summaries/stress_family.csv](results/summaries/stress_family.csv) ·
 cache ledger: [results/summaries/cache_behavior.csv](results/summaries/cache_behavior.csv)
 
-### What remains (Phase 2, preregistered)
+### Open items
 
-Full six-model screening over 16 dev tasks, frozen 8-task holdout
-confirmation, per-model Claude Code budget pools, longer CC turn limits,
-multi-turn stress variants (runner v2), and day/region/gateway replication —
-detailed in [RESULTS.md §8](RESULTS.md).
+Second-gateway/region replication; normalized-harness comparison (design §9);
+permission-mode contrast (§14); harder task tiers to break the pi success
+ceiling. Detailed in [RESULTS.md §7](RESULTS.md).

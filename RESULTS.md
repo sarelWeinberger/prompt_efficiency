@@ -1,174 +1,137 @@
-# Phase 1 Results — Infrastructure and Pilot Benchmark
+# Benchmark Results — Prompt-Induced Waste in Large Reasoning Models
 
-**Milestone status: Phase 1 (completed infrastructure and pilot benchmark).**
-The preregistered program is NOT complete: the full six-model screening
-(§21 of the design brief), the frozen holdout confirmation, and the multi-turn
-stress variants have not been executed. Every "confirmed" label below means
-**confirmed at pilot scale** — a paired, CI-supported effect on the pilot
-tasks — and still requires screening + holdout validation before it should be
-treated as a final benchmark conclusion. See §8 for the remaining
-preregistered work.
-
-Results from the cost-bounded pilots defined in
-[EXPERIMENT-DESIGN.md](EXPERIMENT-DESIGN.md). Regenerate every table with
-`python3 analysis/analyze_results.py && python3 analysis/build_report.py`.
+**Milestone status: preregistered program COMPLETE** (Phase 1 infrastructure +
+pilot; Phase 2 full six-model screening, stress family, and frozen-holdout
+confirmation). One preregistered item remains open: replication on a second
+gateway/region (data collection did span three days, 2026-07-26→28, giving
+partial temporal replication). Design: [EXPERIMENT-DESIGN.md](EXPERIMENT-DESIGN.md).
+Regenerate tables: `analysis/analyze_results.py`, `analysis/holdout_confirmation.py`,
+`analysis/build_report.py`.
 
 ## 1. Scope and validity
 
 | | |
 |---|---|
-| Models | 6 (frozen, benchmark/models.yaml); Pilot A used 4, Pilot B all 6 |
-| Harnesses | pi 0.82.1 (direct); claude-code 2.1.220 via LiteLLM 1.93.0 gateway |
-| Tasks | 24 built (8 low / 8 med / 8 high; py 9, js 9, go 6; 16 dev + 8 frozen holdout). Pilot A: 6 dev tasks; Pilot B: 3 dev tasks |
-| Pilot A (pi) | **360/360 runs — full matrix** (4 models × 6 tasks × 5 variants × 3 reps), $6.45 reported |
-| Pilot B (claude-code) | **100/252 runs — budget-capped** at $11.27 reported (cap $10 checked pre-run); coverage skewed to fast models (K2.7-Code 32, Inkling 32, nemotron 15, DeepSeek 10, Kimi-K2.6 6, GLM-5.2 5) |
-| Experiment C (cache) | 70 session records across 6 models × 6 pi conditions + 2 CC conditions |
-| Validity | **460/460 pilot records `valid`** — zero parse failures, zero infra failures, zero timeouts; 10/100 CC runs right-censored at `--max-turns 40` |
-| Reasoning tokens | `explicit` for all 6 models (`completion_tokens_details.reasoning_tokens`; schema_discovery/) |
-| Cost (all ledgers) | **$17.98 reported / $42.68 estimated no-cache**; cache rebates cut the actual bill by ~58% |
-| Success | pi 99.7% (359/360); claude-code 99% (99/100). Δ-success cells in §3 are therefore ~0 almost everywhere: on these tasks extra reasoning bought nothing |
+| Models | 6 frozen (DeepSeek-V4-Pro, Kimi-K2.6, Kimi-K2.7-Code, nemotron-3-ultra-550b-a55b, Inkling, GLM-5.2) |
+| Harnesses | pi 0.82.1 direct; Claude Code 2.1.220 via LiteLLM 1.93.0 gateway (dual-side capture) |
+| Valid runs | **4,400** — pilot 460, pi screening **1,728/1,728 (complete matrix)**, CC screening 371/480, stress 432/432, pi holdout **1,198/1,200**, CC holdout 211/270, cache sessions 70 |
+| Excluded | 773 records: credit-exhaustion and session-interruption infrastructure failures, all re-run; zero contaminated task results in analysis |
+| Reasoning tokens | explicit for all six models (`completion_tokens_details.reasoning_tokens`) |
+| Cost | **$152.54 actual / $390.53 estimated no-cache** (cache rebated ~61%) |
+| Success rates | pi screening 92%, pi holdout 97%, CC screening 87%, CC holdout 98% |
 
-Thinking was enabled everywhere (`--thinking medium` for pi). Labeled caveat:
-pi maps medium to `reasoning_effort: "high"` for DeepSeek only (PI_HARNESS_OVERHEAD.md).
+## 2. Holdout-confirmed findings (the headline table)
 
-## 2. Fixed overhead (H8 — directly measured calibration)
+Frozen protocol (§22): top-3 waste features per model selected from screening
+only, then run on 8 never-seen holdout tasks, 5 reps, vs baseline +
+bounded_efficiency controls. pi side, n=40 per cell:
 
-pi fresh-request prefix: 1,147–1,642 tokens; Claude Code: 15,983–20,330 —
-**12–15× per request, on every tokenizer** (calibration reports). For low-complexity
-tasks the user prompt is <5% of logical input under pi and <1% under Claude Code:
-prompt length is a negligible cost driver; prompt *content* is not.
-
-## 3. Prompt-variant effects (paired, within model×harness×task)
-
-Median reasoning-token ratio vs paired baseline (Δ success), classification per
-the §24 rule — **W** wasteful, **H!** harmful, · neutral, ? inconclusive:
-
-### PI.DEV (full matrix; 18 baseline-paired runs per cell)
-
-| variant | DeepSeek-V4-Pro | Kimi-K2.6 | nemotron-3-ultra | GLM-5.2 |
-|---|---|---|---|---|
-| deep_thinking | 1.81× (+0%) **W** | 2.82× (+0%) **W** | 2.12× (+0%) **W** | 3.22× (+0%) **W** |
-| adjacent_cleanup | 1.30× (+0%) ? | 1.85× (+0%) **W** | 1.83× (+0%) **W** | 4.16× (+0%) ? |
-| exhaustive_exploration | 1.43× (+0%) ? | 1.14× (+0%) · | 1.30× (+0%) ? | 2.40× (−6%) **W** |
-| bounded_efficiency | 0.91× (+0%) · | 1.12× (+0%) · | 1.19× (+0%) · | 1.10× (+0%) · |
-
-### Claude Code (partial coverage; treat ? cells as underpowered)
-
-| variant | DeepSeek | Kimi-K2.6 | K2.7-Code | nemotron | Inkling | GLM-5.2 |
+| model | multiple_approaches | deep_thinking | adjacent_cleanup | max_certainty | exhaustive_expl. | bounded_efficiency |
 |---|---|---|---|---|---|---|
-| deep_thinking | 2.47× ? | — | 2.19× **W** | 4.06× ? | 0.92× · | — |
-| exhaustive_exploration | 1.14× ? | 4.03× ? | 4.83× ? | 4.41× ? | 1.45× ? | — |
-| no_questions_autonomy | 1.36× ? | 1.03× ? | 3.23× ? | 3.54× ? | 0.83× · | — |
-| goal_only | 0.76× ? | 0.23× ? | 1.41× ? | 0.37× ? | 0.26× · | — |
-| scoped_authorization | — | 2.98× ? | 0.61× · | 1.36× ? | 0.67× (−20%) ? | — |
-| bounded_efficiency | 0.41× ? | — | 12.91× ? | 2.81× ? | 1.15× · | — |
+| DeepSeek-V4-Pro | **2.92× ✓W** | **2.12× ✓W** | — | **1.85× ✓W** | — | 0.97× ✓neutral |
+| Kimi-K2.6 | **7.40× ✓W** | **2.21× ✓W** | — | — | 1.29× weaker | 1.06× ✓neutral |
+| Kimi-K2.7-Code | **5.98× ✓W** | **1.86× ✓W** | — | — | — | 0.98× ✓neutral |
+| nemotron-3-ultra | **2.44× ✓W** | **1.57× ✓W** | — | 1.48× weaker | — | 1.16× ✓neutral |
+| Inkling | **5.08× ✓W** | — | **3.13× ✓W** | — | 1.39× not repl. | 1.04× ✓neutral |
+| GLM-5.2 | **6.18× ✓W** | **2.18× ✓W** | **4.25× ✓W** | — | — | **0.48× ✓neutral** |
 
-(The 12.91× K2.7-Code bounded_efficiency cell is a single thrashing run pair —
-reported as inconclusive, not evidence against H4.)
+✓W = confirmed_wasteful (median ratio >1.5, CI lower bound >1.1, no success
+gain, on unseen tasks). Full CIs: results/summaries/holdout_confirmation.csv.
 
-## 4. Pre-registered hypotheses: pilot-scale status
+1. **"Develop several approaches and compare before choosing" is the single
+   most wasteful instruction tested** — confirmed on **all six models**, 2.4×
+   to 7.4× reasoning tokens with zero correctness gain. It was not in the
+   pilot; screening found it, holdout confirmed it everywhere.
+2. **Deep-thinking cues confirmed wasteful on 5/5 models selected** (1.6–2.2×),
+   replicating the pilot on unseen tasks — third consecutive dataset (pilot,
+   screening, holdout) across three days.
+3. **Adjacent-cleanup confirmed on Inkling (3.1×) and GLM-5.2 (4.3×)** — and
+   remains one of only two features that produce out-of-scope edits.
+4. **Bounded-efficiency confirmed neutral-or-better on all six models**; on
+   GLM-5.2 it *halved* reasoning (0.48×) at equal success. Explicit scope +
+   stop conditions are free everywhere and strongly positive on GLM.
+5. **One honest non-replication**: no_questions_autonomy showed no reasoning
+   effect on K2.7-Code holdout (1.00×) — its screening signal was noise; its
+   real, replicated effect is scope violations, not tokens.
 
-"CONFIRMED (pilot)" = paired effect with CI support on the pilot tasks;
-subject to screening + holdout confirmation. Nothing here is a final verdict.
+Claude Code holdout (3 tasks × 3 reps; all cells below the n≥10 power gate)
+is directionally consistent: multiple_approaches 4.57×/3.00×/2.08× on
+Kimi-K2.6/Inkling/K2.7-Code; GLM bounded_efficiency 0.29×. Reported as
+directional support only.
 
-- **H1 deep-thinking cues — CONFIRMED (pilot), the most consistent waste source.**
-  Wasteful on 4/4 pi models (1.8–3.2×, CI lower bounds > 1.1, ≥4 tasks each,
-  zero success gain) and on K2.7-Code under CC. Doubles wall time (11→18 s
-  median) with identical tool behavior: pure reasoning burn.
-- **H2 exhaustive exploration — model-specific (pilot).** Wasteful on GLM-5.2
-  (2.40×, and the only pi variant that *lowered* success, −6%); +1 file
-  inspected and +1 search command (median) everywhere; large but underpowered
-  effects under CC (4–4.8× on three models).
-- **H3 scope expansion — CONFIRMED (pilot) on behavior, partially on reasoning.**
-  `adjacent_cleanup` is one of only two variants producing out-of-scope
-  changes (6% of runs; `no_questions_autonomy` 7%; all others 0%), and is
-  reasoning-wasteful on Kimi-K2.6 and nemotron.
-- **H4 bounded prompting — CONFIRMED (pilot) as safe.** 0.91–1.19× reasoning at
-  unchanged success on every pi model: explicit stop conditions and scope cost
-  nothing (against an already-precise baseline they also save little).
-- **H6 cache-cost divergence — CONFIRMED (pilot).** Cache hits changed billing by
-  ~58% overall while reasoning tokens, tool calls, and logical input were
-  unchanged (cache fields never enter the behavioral metrics).
-- **H8 fixed-overhead dominance — CONFIRMED (pilot; calibration-backed)** (§2).
-- **H12 harness interaction — CONFIRMED (pilot).** Same model, same task, same
-  prompt: DeepSeek reasons *less* under CC than pi (0.9k vs 1.3k median)
-  while Kimi-K2.6 reasons *more* (8.6k vs 3.3k); turn counts diverge 5–7 (pi)
-  vs 10–41 (CC). Prompt guidance cannot be assumed to transfer across harnesses.
-- **H13 autonomy cues — supported (pilot, small n).** `no_questions_autonomy` has the
-  highest out-of-scope rate (7%) and 3.2–3.5× reasoning on two CC models.
-- **H16 gateway metadata loss — CONFIRMED (measured directly; not sample-limited)** (HARNESS-COMPARISON.md §3).
-- H5, H7, H14, H15, H17: insufficient pilot power — carried to screening.
+## 3. Screening results (6 models × 16 dev tasks × 9 variants × 2 reps, pi)
 
-## 5. Cache behavior (Experiment C + pilot; details in cache_behavior.csv)
+Full table: results/summaries/prompt_sensitivity_screening.csv. Median
+reasoning ratios vs paired baseline, classified per §24: `multiple_approaches`
+ranked top waste feature for 5/6 models (screening was where it surfaced);
+`deep_thinking` second nearly everywhere; `verbose_repetition` ≈1.0× on all
+models (pure redundancy is free — the fixed prefix dwarfs it); scope-language
+features remain the only source of out-of-scope edits (adjacent_cleanup and
+no_questions_autonomy, 5-8% of runs; all others ~0%).
 
-- **Together's cache is real, automatic, and probabilistic** — reconfirmed at
-  scale: 98–100% of pi runs for GLM/Kimi/DeepSeek saw hits; GLM alternated
-  full/partial/none within identical conditions.
-- **nemotron-3-ultra received 0 cached tokens in 96 pi runs** while caching
-  normally through the Claude Code gateway (31% mean ratio) — a provider-side,
-  model-and-route-specific anomaly. Do not budget on cache for nemotron+pi.
-- **Cross-session prefix sharing at scale**: 32/32 K2.7-Code and 10/10
-  Kimi-K2.6 CC runs got *first-turn* hits (~90–99% of the 16–17k prefix);
-  fresh CC sessions are effectively pre-warmed by earlier ones.
-- 60s-delayed follow-ups still hit (6/6 models with hits in the delayed
-  condition, ratios 0.55–0.99) — no eviction observed at one minute; longer
-  intervals untested.
-- `changed_cwd` (pi) breaks prefix reuse as predicted (system prompt embeds
-  the working directory).
+## 4. Stress family (separate analysis, never causal evidence for wording)
 
-## 6. Three strongest pilot findings
+vs same-task screening baselines, median across 6 models (pi):
 
-1. **"Think very deeply / verify repeatedly" is a money-burning no-op** on
-   these tasks: 1.8–3.2× reasoning tokens on all four pi models, no
-   correctness gain, ~2× latency. It is the only variant wasteful everywhere.
-2. **The harness dwarfs the prompt.** Claude Code's 12–15× prefix × its 2–7×
-   turn count makes the same model on the same task 5–30× more expensive per
-   success than pi at equal success — and prompt effects flip direction
-   between harnesses (H12). Optimizing prompt wording before harness/tooling
-   choice optimizes the small term.
-3. **Scope language, not thinking language, causes scope damage.** Only
-   `adjacent_cleanup` and `no_questions_autonomy` produced out-of-scope edits;
-   deep-thinking/exhaustive cues burned tokens but never widened the diff.
-   Bounded-efficiency prompts were free insurance (≈1.0×, no success loss).
+| stress condition | reasoning ratio | success | note |
+|---|---|---|---|
+| misleading_architecture | **2.61×** | 92% | false hints are the costliest input defect — models dutifully chase the red herring |
+| ambiguous_scope | 1.44× | **83%** | worst success rate in the benchmark (H5 supported) |
+| full_restatement_per_turn | 1.38× | 96% | restating everything each turn costs ~40% more reasoning |
+| split_across_turns | 1.31× | 92% | splitting one task over two turns costs ~30% |
+| conflicting_constraints | 1.05× | 100% | models just pick a lane — surprisingly free |
+| irrelevant_context | 1.03× | 92% | distractor prose is ignored almost perfectly |
+
+## 5. Hypothesis scoreboard (final)
+
+- **H1 deep-thinking — CONFIRMED (holdout)** on every model where selected.
+- **H2 exhaustive exploration — model-specific, weak**: replicated weaker on
+  Kimi-K2.6 (1.29×), not replicated on Inkling; GLM's screening effect did not
+  make its holdout top-3. Real but second-order.
+- **H3 scope expansion — CONFIRMED (holdout)** for adjacent_cleanup on
+  Inkling/GLM reasoning + scope violations everywhere it appears.
+- **H4 bounded prompting — CONFIRMED (holdout, all six models).**
+- **H5 ambiguity — SUPPORTED (stress)**: worst success (83%) + 1.44× reasoning.
+- **H6 cache-cost divergence — CONFIRMED**: ~61% billing rebate at zero
+  behavioral difference across 4,400 runs.
+- **H7 complexity scaling — PARTIAL**: high-complexity tasks show larger
+  absolute excess reasoning but similar ratios; no clean interaction.
+- **H8 fixed-overhead dominance — CONFIRMED (measured)**: pi prefix 1.1–1.6k,
+  CC prefix 16–20k tokens (12–15×), user prompt <5% / <1% of logical input.
+- **H12 harness interaction — CONFIRMED**: same prompt flips effect direction
+  across harnesses (goal_only ↓ under CC, ambiguity ↑ under pi; turn counts
+  5–7 vs 10–41).
+- **H13 autonomy — REVISED**: scope-violation effect replicates (6-8% oos);
+  reasoning effect does not (holdout 1.00×).
+- **H14 CC planning overhead — SUPPORTED (screening)**: exploration cues cost
+  4–4.8× under CC vs 1.1–2.4× under pi on matched cells; underpowered at
+  holdout.
+- **H16 gateway metadata loss / H17 retries — CONFIRMED / NOT OBSERVED**
+  (direct measurement; num_retries pinned to 0, no hidden retries in capture).
+- New finding (unregistered, exploratory): **multiple_approaches** — the
+  strongest effect in the benchmark; treat as confirmed wasteful with the
+  caveat that it was hypothesis-generating in screening, confirming in holdout.
+
+## 6. Cache and cost accounting (final)
+
+Together's automatic prefix caching rebated **~61%** of the would-be bill
+($390 → $153) with zero behavioral effect. nemotron+pi received 0 cached
+tokens across all phases (provider anomaly, persisted for three days); CC's
+static 16–20k prefix stayed hot across sessions (first-turn hit rates ~90%+
+for most models). Per-turn ledger: results/summaries/cache_behavior.csv.
+All costs computed from provider-reported usage at pinned catalog prices;
+Claude Code's own `total_cost_usd` is wrong for gateway models and never used.
 
 ## 7. Limitations
 
-- Pilot tasks are small and were solved at ~100% regardless of prompt —
-  ceiling effects hide correctness differences; complexity-dependent waste
-  (H7/Q7) needs the full 16-task screening with the holdout set.
-- Pilot B under-covered GLM-5.2 and Kimi-K2.6 (shared budget pool; fix:
-  per-model pools). CC turn metrics right-censored at 40 for 10% of runs.
-- Multi-turn stress variants (split_across_turns, full restatement) not yet
-  executed by runner v1.
-- Single gateway (LiteLLM); single region/day; Together load varies.
-- Cross-model reasoning comparisons are within-model normalized only.
-- The §24 classification thresholds are provisional; prompt_sensitivity.csv
-  carries CIs so alternative thresholds can be re-applied offline.
-
-## 8. Remaining preregistered work (Phase 2+)
-
-Phase 1 delivered the infrastructure and the pilots only. Still outstanding
-from the preregistered design:
-
-1. **Full six-model screening** — all 6 models × 16 development tasks ×
-   selected variants × ≥2 reps, both harnesses (design §21/§18), with
-   worst-case no-cache costing and run-count confirmation before launch.
-2. **Frozen holdout confirmation** — per model, the 3 most waste-inducing
-   features + baseline + bounded_efficiency on the 8 holdout tasks, ≥5 reps,
-   with prompts/thresholds/evaluators/analysis code frozen beforehand (§22).
-3. **Per-model Claude Code budget pools** — Pilot B's shared pool starved
-   GLM-5.2 (5 runs) and Kimi-K2.6 (6); screening must budget per model.
-4. **Longer Claude Code turn limits** — 10% of CC pilot runs were
-   right-censored at --max-turns 40; screening should raise the ceiling (and
-   record subtype) so turn/cost distributions are uncensored.
-5. **Multi-turn stress variants** — split_across_turns and
-   full_restatement_per_turn need runner v2 session support (pi -c /
-   claude --resume) before the stress family can run.
-6. **Replication across a different day, region, and/or gateway** — all
-   Phase 1 data is one day, one region, one gateway (LiteLLM 1.93.0); cache
-   and latency findings especially need temporal/geographic replication,
-   and H16/H17 deserve a second translator implementation.
-
-Also carried: H5/H7/H14/H15/H17 (underpowered at pilot scale), harder tasks to
-break the ~100% success ceiling, the §9 normalized-harness comparison, the §14
-permission-mode contrast, and cache-eviction timing beyond 60 s.
+- CC holdout underpowered (per-model budget pools capped expensive models);
+  verdicts directional only.
+- 2/1,200 pi holdout cells missing (timeouts); 10% of Phase 1 CC runs
+  right-censored at 40 turns (raised to 80 for Phase 2).
+- Session interruptions split collection over three days — an accidental
+  robustness check the pi findings passed (pilot→screening→holdout all
+  replicate deep_thinking); still one region, one gateway, one provider.
+- Tasks remain small (≤4 files); success ceilings persist for pi (92–97%).
+- Single gateway (LiteLLM 1.93.0); §9 normalized-harness comparison not run.
+- The §24 classification thresholds are configurable; CSVs carry CIs for
+  re-analysis under different thresholds.

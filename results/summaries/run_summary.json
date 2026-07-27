@@ -1,10 +1,20 @@
 {
- "n_total_records": 460,
- "n_valid_for_analysis": 460,
+ "n_total_records": 3556,
+ "n_valid_for_analysis": 2099,
  "by_experiment_status": {
   "pilot_a|completed|valid": 360,
-  "pilot_b|completed|valid": 100
+  "pilot_b|completed|valid": 100,
+  "screening_pi|completed|valid": 1721,
+  "screening_cc|completed|valid": 363,
+  "screening_cc|timeout|valid": 8,
+  "screening_pi|infra_error|infrastructure_failure": 631,
+  "screening_cc|infra_error|infrastructure_failure": 140,
+  "screening_pi|timeout|valid": 7,
+  "stress_pi|completed|valid": 208,
+  "stress_pi|timeout|valid": 4,
+  "holdout_pi|completed|valid": 10,
+  "holdout_cc|completed|valid": 4
  },
- "total_reported_cost": 17.729,
- "total_nocache_cost": 42.199
+ "total_reported_cost": 95.736,
+ "total_nocache_cost": 241.232
 }

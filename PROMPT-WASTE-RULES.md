@@ -1,83 +1,83 @@
-# Prompt-Waste Rules — practical guidance from the pilot
+# Prompt-Waste Rules — holdout-validated guidance
 
-**Phase 1 (pilot) guidance** distilled from RESULTS.md (460 valid runs,
-6 models, 2 harnesses). These are working rules pending the preregistered
-screening and frozen-holdout phases (RESULTS.md §8), not final conclusions. Confidence
-labels: **strong** = classified wasteful/neutral with CI support on multiple
-tasks; *tentative* = consistent direction, underpowered pilot cells. All of it
-is pilot-scale evidence on small coding tasks; screening + holdout may revise.
+Distilled from the completed benchmark (4,400 valid runs; 6 models × 2
+harnesses; frozen-holdout confirmation on 8 unseen tasks). Confidence labels:
+**confirmed** = replicated on the frozen holdout with CI support;
+*screening/stress* = strong screening or stress-family evidence, no holdout
+pass; (directional) = consistent but underpowered.
 
-## Cross-model rules (apply everywhere)
+## The five rules that survived holdout
 
-1. **Never add deep-thinking incantations to coding prompts.** (strong)
-   "Think very deeply, reason through every possibility, verify repeatedly"
-   multiplied reasoning tokens 1.8–3.2× on every PI.DEV model and roughly 2×
-   wall time, with zero correctness gain on any task. The models already
-   deliberate; the phrase only raises the deliberation floor.
+1. **Never ask for "several approaches compared before choosing." (confirmed, 6/6 models)**
+   The single most expensive phrase tested: 2.4×–7.4× reasoning tokens
+   (worst: Kimi-K2.6 at 7.4×) with zero correctness gain on unseen tasks.
+   If you want options, ask for options as the deliverable — don't bolt an
+   internal design tournament onto a fix request.
 
-2. **Keep scope-expanding language out unless you truly want expansion.** (strong)
-   "Feel free to clean up anything adjacent" and "do whatever is necessary,
-   don't ask questions" were the *only* phrasings that produced out-of-scope
-   edits (6–7% of their runs) — and they also raised reasoning 1.8–4× on half
-   the models. Thinking-style cues never widened a diff; scope-style cues did.
+2. **Never add deep-thinking incantations. (confirmed, 5/5 selected models)**
+   "Think very deeply / verify repeatedly" = 1.6–2.2× reasoning, ~2× latency,
+   nothing in return — replicated across pilot, screening, and holdout on
+   three different days.
 
-3. **Bounded-efficiency framing is free insurance.** (strong)
-   Explicit scope + acceptance criteria + "smallest sufficient change" +
-   stop condition ran at 0.9–1.2× baseline reasoning with unchanged success on
-   every model. Against a sloppy prompt it prevents waste; against a precise
-   one it costs nothing.
+3. **Keep scope-expanding language out unless you want expansion. (confirmed)**
+   "Clean up anything adjacent" holds up as wasteful on Inkling (3.1×) and
+   GLM-5.2 (4.3×) and remains one of only two phrasings that produce
+   out-of-scope edits. Autonomy language ("don't ask questions, do whatever is
+   necessary") turned out to be a scope risk (6–8% oos), NOT a reasoning
+   cost — its screening token-signal did not replicate.
 
-4. **Don't pay for waste twice: prompt length ≠ cost.** (strong)
-   The fixed harness prefix is 1.1–1.6k tokens (pi) / 16–20k (Claude Code) per
-   request. A 300-character-longer prompt is noise; one extra agent turn
-   re-sends the entire prefix. Optimize for *fewer turns and less deliberation*,
-   not shorter wording.
+4. **Bounded-efficiency framing is free everywhere and pays on GLM. (confirmed, 6/6)**
+   Explicit scope + acceptance criteria + smallest-sufficient-change + stop
+   condition: 0.97–1.16× on five models, **0.48× on GLM-5.2** — the only
+   intervention that actively saved reasoning tokens at equal success.
 
-5. **Treat cache savings as a rebate, never as efficiency.** (strong)
-   Caching cut the actual bill ~58% while changing zero behavioral metrics.
-   A "cheap" run may be a lucky cache route; judge prompts on reasoning
-   tokens, tool calls, and turns, price runs at no-cache cost.
+5. **Certainty pressure costs real money on DeepSeek. (confirmed on DeepSeek, 1.85×; weaker on nemotron, 1.48×)**
+   "Be absolutely certain, re-verify until nothing can be wrong" buys extra
+   verification loops, not extra correctness.
 
-## Model-specific notes (Together AI)
+## Input-defect costs (stress family — what to fix in your own prompts)
 
-- **GLM-5.2**: most prompt-sensitive of the six. Deep-thinking 3.2×,
-  adjacent-cleanup 4.2×, and exhaustive-exploration 2.4× *with a success drop*
-  (−6%) — the only harmful-leaning cell in the pilot. Give GLM tight scope and
-  a named starting file.
-- **Kimi-K2.6**: heaviest absolute reasoner (3.3k median tokens under pi
-  baseline; 8.6k under Claude Code) and 2.8× under deep-thinking. Efficiency
-  phrasing pays off most here in absolute dollars.
-- **Kimi-K2.7-Code vs K2.6 (Q12): yes, K2.7-Code reasons far less.**
-  Under Claude Code on matched cells: 594 vs 8,645 median reasoning tokens,
-  10 vs 39 turns, $0.05 vs $0.19 per success. *(Same-harness pilot evidence;
-  pi-side comparison pending screening.)*
-- **nemotron-3-ultra**: cheapest and fastest under pi ($0.009/success, 5
-  turns) but thrashes under Claude Code (35+ turns, $0.30/success) — the
-  strongest harness-interaction case. Also: expect **no cache rebate via pi**
-  (0/96 runs hit).
-- **DeepSeek-V4-Pro**: mildest prompt sensitivity under pi (1.3–1.8×);
-  note pi runs it at `reasoning_effort: high`, so its baseline deliberation is
-  already elevated.
-- **Inkling**: nearly prompt-insensitive under Claude Code (0.8–1.5× across
-  all variants) — but scoped_authorization showed a −20% success dip
-  (underpowered; watch in screening).
+- **A wrong architectural hint is the costliest defect measured (2.61×)**:
+  models chase your red herring diligently. If you're not sure where the bug
+  is, say nothing — don't guess.
+- **Ambiguous scope is the only thing that reliably hurts correctness**
+  (83% success, worst in benchmark, +44% reasoning). Precision beats brevity.
+- **Restating the full task every turn costs ~40% extra reasoning**; splitting
+  one task across turns costs ~30%. Say it once, completely, in turn one.
+- **Irrelevant background prose is nearly free (1.03×)** — models filter
+  noise well. Cutting fluff saves little; cutting *misleading* content saves a lot.
+- Conflicting constraints (1.05×): models silently pick one side — cheap but
+  unpredictable; still worth avoiding for control, not cost.
 
-## Harness-specific guidance
+## Model-specific notes (Together AI, holdout-backed where marked)
 
-- **Under Claude Code, prompt discipline matters more, not less**: its loop
-  amplifies exploration cues into extra turns (4–4.8× reasoning under
-  exhaustive-exploration on three models), and every extra turn re-bills a
-  16–20k-token prefix. State scope and stop conditions explicitly.
-- **Do not carry prompt folklore across harnesses** (H12): goal-only prompts
-  *reduced* reasoning under Claude Code on 4/5 models (its system prompt
-  already supplies methodology) while under pi omitting criteria mainly
-  degrades verifiability. Re-test per harness.
-- **Explicit authorized/forbidden scope blocks** kept out-of-scope changes at
-  0% in the pilot — cheap protection when combined with autonomy language.
+- **GLM-5.2** — most prompt-sensitive model tested: multiple_approaches 6.2×✓,
+  adjacent_cleanup 4.3×✓, deep_thinking 2.2×✓, but also the biggest
+  bounded-efficiency payoff (0.48×✓). Prompt discipline matters most here.
+- **Kimi-K2.6** — largest single effect in the benchmark
+  (multiple_approaches 7.4×✓) on the heaviest baseline reasoner; efficiency
+  wording saves the most absolute dollars.
+- **Kimi-K2.7-Code** — reasons far less than K2.6 (Q12 answered: ~594 vs
+  8,645 median under CC; 5-8× less across pi cells) but still 6.0×✓ under
+  multiple_approaches — no model is immune.
+- **DeepSeek-V4-Pro** — the certainty-pressure model (max_certainty 1.85×✓);
+  note pi maps thinking=medium to reasoning_effort=high for it.
+- **nemotron-3-ultra** — smallest ratios of the six (1.5–2.4×✓) and cheapest
+  per success under pi; but zero cache rebate via pi (0 cached tokens in
+  every phase) — budget it at list price.
+- **Inkling** — insensitive to thinking-style cues, sensitive to scope cues
+  (adjacent_cleanup 3.1×✓, multiple_approaches 5.1×✓).
 
-## Open questions carried to screening
+## Harness rules
 
-Complexity scaling (H7), ambiguity variance (H5), multi-turn restatement costs
-(stress family), CC planning-turn attribution (H14), permission-mode contrast
-(§14), eviction timing beyond 60 s, and whether cache rebates systematically
-hide behaviorally wasteful prompts (H6 at scale).
+- **The harness choice dwarfs every prompt effect**: same model, same task =
+  5–30× more per success under Claude Code (16–20k prefix × 2–7× turns),
+  at equal success. Choose/trim the harness before tuning wording.
+- **Do not carry prompt folklore across harnesses (H12 confirmed)**: goal-only
+  prompts cut reasoning under Claude Code but degrade verifiability under pi;
+  exploration cues amplify 4×+ under CC vs mildly under pi. Re-test per harness.
+- **Treat cache savings as a rebate, never as efficiency**: ~61% billing
+  reduction across 4,400 runs with zero behavioral change. Judge prompts on
+  reasoning/tool/turn metrics; budget at no-cache prices.
+- **Prompt length ≠ cost**: verbose_repetition ≈1.0× everywhere. The waste is
+  in what you *ask for*, not how many words you use.

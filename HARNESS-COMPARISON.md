@@ -1,10 +1,10 @@
 # Harness Comparison: PI.DEV vs Claude Code on Together AI models
 
-**Phase 1 (infrastructure + pilot benchmark) evidence.** Compatibility results
-and metadata-preservation findings (§2–§4, §6) are direct measurements and
-stand on their own; the behavioral comparison (§5) is pilot-scale — matched
-cells with small n for some models — and awaits the preregistered screening
-and holdout phases before final conclusions (RESULTS.md §8).
+**Final (Phases 1+2 complete).** Compatibility and metadata-preservation
+findings (§2–§4, §6) are direct measurements; the behavioral comparison (§5)
+now includes pilot + screening data (see RESULTS.md for holdout-confirmed
+prompt effects per harness). One open item: replication on a second
+gateway/region.
 
 How the same six Together AI models behave on the same tasks and user prompts
 when operated by PI.DEV 0.82.1 (direct) versus Claude Code 2.1.220 (through a
@@ -24,7 +24,7 @@ claude -p … --model benchmark-<alias>
 
 Aliases map 1:1 to exact Together model IDs (benchmark/gateway/litellm.yaml,
 secrets via environment). Claude Code runs with an isolated per-run HOME,
-`--permission-mode acceptEdits`, `--max-turns 40`, non-essential traffic
+`--permission-mode acceptEdits`, `--max-turns 40` (80 in Phase 2), non-essential traffic
 disabled, and `ANTHROPIC_SMALL_FAST_MODEL` pinned to the same alias so every
 request in a run hits the same upstream model (validated per run from capture).
 
@@ -81,7 +81,7 @@ regenerates this table from runs.jsonl:
 | GLM-5.2 | claude-code | 2 | 100% | 862 | 35.5 | 36 | 641866 | 0.2723 | 0.9104 | 185 |
 | GLM-5.2 | pi | 36 | 100% | 640 | 6.0 | 6 | 13704 | 0.0301 | 0.0438 | 24 |
 
-(Numbers are pilot medians; refresh with build_report.py after any new runs.)
+(Medians over pilot cells; screening-scale prompt effects per harness are in results/summaries/prompt_sensitivity_screening.csv.)
 
 Findings (pilot-scale for §5 rows; see banner):
 

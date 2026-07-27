@@ -52,7 +52,7 @@ def scope_check(diff, allowed_paths):
         ok = any(path == ap or path.startswith(ap.rstrip("/") + "/") or
                  Path(path).match(ap) for ap in allowed_paths)
         artifact = ("__pycache__" in path or path.endswith((".pyc", ".pyo"))
-                    or path.startswith(("tests_hidden/", ".claude/", "go.sum")))
+                    or path.startswith(("tests_hidden/", ".claude/", ".bench-session/", "go.sum")))
         if not ok and not artifact:
             out_of_scope.append(path)
     return out_of_scope
