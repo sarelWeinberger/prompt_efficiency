@@ -35,6 +35,16 @@ models:
     reasoning: true
     cost: { input: 1.40, output: 4.40, cache_read: 0.26, cache_write: 0.0 }
 
+# POST-REGISTRATION addition (2026-07-28): small replication only — never part
+# of the frozen six-model Phase 1/2 scope. 2.8T-total MoE per Moonshot
+# announcement (>500B rule satisfied; figure not independently verified).
+post_registration_models:
+  - id: moonshotai/Kimi-K3
+    alias: benchmark-kimi-k3
+    context_window: 1000000
+    reasoning: true
+    cost: { input: 3.00, output: 15.00, cache_read: 0.30, cache_write: 0.0 }
+
 harnesses:
   - pi
   - claude-code

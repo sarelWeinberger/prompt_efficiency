@@ -102,6 +102,18 @@ experiments:
     variants: []            # replaced per model from selection_file
     always_variants: [baseline, bounded_efficiency]
     repetitions: 5
+  kimi3_pi:
+    harness: pi
+    models: [moonshotai/Kimi-K3]
+    tasks: [py-low-01, go-low-01, py-med-01, js-med-03, js-high-01, go-high-01]
+    variants: [baseline, multiple_approaches, deep_thinking, bounded_efficiency]
+    repetitions: 3
+  kimi3_cc:
+    harness: claude-code
+    models: [moonshotai/Kimi-K3]
+    tasks: [py-low-01, js-med-03, js-high-01]
+    variants: [baseline, multiple_approaches, deep_thinking, bounded_efficiency]
+    repetitions: 2
   holdout_cc:
     harness: claude-code
     models: all_compatible
@@ -110,3 +122,13 @@ experiments:
     variants: []
     always_variants: [baseline, bounded_efficiency]
     repetitions: 3
+
+# ---- Kimi-K3 small replication (post-registration, frozen 2026-07-28
+# BEFORE any K3 result was viewed) ----
+kimi3_material_difference:
+  reasoning_ratio_relative_diff: 0.30    # vs BOTH K2.6 and K2.7-Code
+  classification_flip: true
+  scope_success_pp: 5
+  tool_calls_or_turns_relative_diff: 0.30
+  opposite_direction_across_harnesses: true
+  new_compat_metadata_or_cache_behavior: true

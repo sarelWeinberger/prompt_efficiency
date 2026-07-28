@@ -48,6 +48,14 @@ model_list:
     model_info:
       supports_function_calling: true
 
+  - model_name: benchmark-kimi-k3
+    litellm_params:
+      model: together_ai/moonshotai/Kimi-K3
+      api_key: os.environ/TOGETHER_API_KEY
+      api_base: http://127.0.0.1:8901/v1
+    model_info:
+      supports_function_calling: true
+
 litellm_settings:
   num_retries: 0
 

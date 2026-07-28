@@ -18,7 +18,8 @@ def load_config():
 
 
 def load_models():
-    return yaml.safe_load((BENCH / "models.yaml").read_text())["models"]
+    data = yaml.safe_load((BENCH / "models.yaml").read_text())
+    return data["models"] + data.get("post_registration_models", [])
 
 
 def model_cost(model_id):
