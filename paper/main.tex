@@ -1,0 +1,397 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\newcommand{\pidev}{PI.DEV}
+\newcommand{\cc}{Claude Code}
+\newcommand{\xd}{$\times$}
+
+\title{Prompt-Induced Waste in Large Reasoning Models:\\
+A Preregistered Two-Harness Benchmark of Coding Agents}
+
+\author{Sarel Weinberger\\
+\small\texttt{github.com/sarelWeinberger/prompt\_efficiency}}
+
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large reasoning models deployed as coding agents bill for deliberation
+(``reasoning tokens''), tool calls, and agent turns --- yet the effect of
+user-prompt wording on this spend has not been measured under controlled
+conditions. We present a preregistered benchmark that isolates the causal
+effect of prompt formulation on agent waste across six large reasoning
+models (DeepSeek-V4-Pro, Kimi-K2.6, Kimi-K2.7-Code, Nemotron-3-Ultra,
+Inkling, GLM-5.2) served by a single provider, operated by two real agent
+harnesses (\pidev{} and \cc{} through a protocol-translation gateway), on
+24 deterministic coding tasks with hidden evaluators. Across 4{,}481 valid
+runs (\$157 of billed compute) spanning a pilot, a complete
+1{,}728-run screening matrix, a stress family, a frozen 8-task holdout
+confirmation, and a post-registration replication on Kimi-K3, we find:
+(1)~the instruction to \emph{develop several approaches and compare before
+choosing} is the most wasteful phrase tested, multiplying reasoning tokens
+2.4--7.4\xd{} on every model at zero correctness gain, holdout-confirmed;
+(2)~deep-thinking incantations replicate as pure waste (1.6--2.2\xd) across
+three datasets; (3)~a bounded-efficiency template (explicit scope,
+acceptance criteria, stop condition) is free on all models and halves
+reasoning on one; (4)~the harness dominates the prompt: identical
+model--task--prompt triples cost 5--30\xd{} more per success under \cc{}
+than under \pidev{} at equal success rates, driven by a 12--15\xd{} static
+prefix re-sent over 2--7\xd{} more turns; (5)~misleading architectural
+hints are the costliest input defect (2.61\xd), while irrelevant prose is
+nearly free (1.03\xd); and (6)~provider-side prompt caching rebates
+$\sim$61\% of billing without changing any behavioral metric, and must
+never be read as efficiency. A small replication on the newly released
+Kimi-K3 crossed our preregistered material-difference threshold in
+\emph{sensitivity} --- its deliberation floor is $\sim$6\xd{} lower, so
+thinking cues multiply reasoning $\sim$15\xd{} --- while preserving every
+effect direction. All code, task fixtures, prompt variants, raw usage
+ledgers, and analysis scripts are public.
+\end{abstract}
+
+\section{Introduction}
+
+Coding agents wrap large language models in an agentic loop: a system
+prompt, tool schemas, and iterative tool execution. When the underlying
+model is a \emph{reasoning} model, every turn may consume hidden
+deliberation tokens billed at output rates. Practitioners exchange prompt
+folklore --- ``think step by step,'' ``consider multiple approaches,''
+``clean up while you're there'' --- with little controlled evidence about
+what such phrases cost or buy in an agentic setting.
+
+Three properties of the agentic setting make naive measurement misleading.
+First, the harness contributes a large fixed input prefix (system prompt
+plus tool schemas) that is re-transmitted every turn, so prompt length is a
+poor proxy for cost. Second, providers apply automatic prefix caching with
+per-token discounts, so \emph{billed} cost diverges from \emph{behavioral}
+work. Third, reasoning-token reporting is inconsistent across serving
+routes and can be silently dropped by protocol-translation layers.
+
+We therefore built a benchmark that (a)~preregisters hypotheses,
+thresholds, and analysis before data collection; (b)~holds everything
+constant within paired blocks except the user prompt; (c)~separates
+behavioral efficiency (reasoning tokens, tool calls, turns, time) from
+billing efficiency (cached vs.\ uncached input, actual vs.\ no-cache
+cost); (d)~evaluates success with hidden deterministic tests that never
+enter the agent's workspace; and (e)~runs every condition under two real
+harnesses to expose harness--prompt interactions.
+
+\paragraph{Contributions.}
+(1)~A reusable open benchmark: 24 deterministic multi-language coding
+tasks with hidden evaluators, 18 frozen prompt variants, a resumable
+budget-capped runner for two harnesses, and a dual-side capture gateway
+that preserves provider-reported reasoning and cache metadata.
+(2)~Holdout-confirmed causal findings on which prompt formulations waste
+reasoning-model compute, per model and per harness.
+(3)~A measured account of harness overhead, gateway metadata loss, and
+provider cache behavior that would otherwise confound any prompt study.
+(4)~A preregistered replication protocol demonstrated on a
+newly released model (Kimi-K3) within days of its availability.
+
+\section{Benchmark Design}
+
+\subsection{Preregistration}
+Hypotheses (H1--H8, H12--H17), metric definitions, waste-classification
+rules, and experiment protocols were frozen in the repository before any
+benchmark result was inspected. The holdout phase additionally froze
+per-model variant selections, prompts, evaluators, and analysis code
+before any holdout run. The Kimi-K3 replication froze its task rule,
+matrix, and material-difference thresholds in a commit that predates its
+first result.
+
+\subsection{Models, harnesses, and serving}
+Six reasoning models ($\geq$500B-class) served by Together~AI were frozen
+before data collection: DeepSeek-V4-Pro, Kimi-K2.6, Kimi-K2.7-Code,
+Nemotron-3-Ultra-550B-A55B, Inkling, and GLM-5.2. Two harnesses operate
+them: \pidev{}~0.82.1 speaking OpenAI chat completions directly, and
+\cc{}~2.1.220 speaking the Anthropic Messages protocol through a pinned
+LiteLLM~1.93.0 gateway that translates to chat completions. Two logging
+reverse proxies capture both sides of the gateway with secrets redacted,
+so every run retains the provider's raw usage object.
+
+\subsection{Tasks}
+24 deterministic coding tasks (8 low / 8 medium / 8 high complexity;
+9~Python, 9~JavaScript, 6~Go), each with a clean fixture, one concrete
+objective, explicit acceptance criteria, visible tests, \emph{hidden}
+deterministic tests that never exist in the workspace during a run,
+allowed/forbidden paths, and a per-task evaluator. 16 tasks form the
+development split; 8 were frozen as holdout. Every fixture was verified to
+fail its visible tests before the fix.
+
+\subsection{Prompt variants}
+A generator renders 18 variants per task from frozen templates. Nine
+\emph{primary} variants preserve the objective, acceptance criteria, and
+test command verbatim (validated automatically): a precise
+\texttt{baseline}; \texttt{verbose\_repetition};
+\texttt{deep\_thinking}; \texttt{exhaustive\_exploration};
+\texttt{multiple\_approaches}; \texttt{max\_certainty};
+\texttt{adjacent\_cleanup}; \texttt{no\_questions\_autonomy};
+\texttt{bounded\_efficiency} (scope + smallest-sufficient-change + stop
+condition); plus \texttt{goal\_only} and \texttt{scoped\_authorization}
+for the harness axes. Seven \emph{stress} variants intentionally break
+semantic equivalence (ambiguity, conflicting constraints, irrelevant
+context, misleading hints, multi-turn splitting and restatement) and are
+analyzed separately.
+
+\subsection{Metrics}
+Behavioral: reasoning tokens (provider-reported,
+\texttt{completion\_tokens\_details.reasoning\_tokens}), visible output
+tokens, tool calls by type, turns, files inspected, duplicate reads,
+repeated searches, repeated test runs, time to first edit, wall time,
+out-of-scope changes (git diff vs.\ allowed paths), and success on visible
+plus hidden tests. Billing: uncached and cached input tokens, logical
+input ($=$ uncached $+$ cached), actual cost at pinned catalog prices, and
+estimated no-cache cost. The primary outcome is the \emph{paired
+reasoning ratio}: a run's reasoning tokens divided by the median baseline
+reasoning of the same model--harness--task block. Task-clustered bootstrap
+yields 95\% intervals. A variant is classified \emph{wasteful} only when
+the median ratio exceeds 1.5 with CI lower bound above 1.1, no material
+success gain, and the effect appears on multiple tasks.
+
+\section{Calibration: Harness Overhead and Metadata Integrity}
+
+\paragraph{Fixed prefix.}
+For a trivial prompt, \pidev{} transmits 1{,}147--1{,}642 tokens of prefix
+(system prompt plus 4 tool schemas), depending only on tokenizer; \cc{}
+transmits 15{,}983--20{,}330 tokens ($\approx$6.7\,KB system prompt plus
+24 tool schemas) --- \textbf{12--15\xd{} larger on every tokenizer}. The
+user prompt is under 5\% of logical input under \pidev{} and under 1\%
+under \cc{}: prompt \emph{length} is economically irrelevant; prompt
+\emph{content} is not.
+
+\paragraph{Gateway compatibility is empirical, not declarative.}
+Three gateway routes were attempted. A Responses-API route passed only
+3/6 models: GLM-5.2, DeepSeek-V4-Pro, and Inkling returned \emph{empty
+continuations} after tool results when reasoning items were not replayed
+--- a protocol-translation failure indistinguishable from model failure
+without wire capture. A chat-completions route with default settings
+passed 0/6: the gateway silently dropped all 24 tool schemas because
+function-calling support was not declared per model. The final route
+(function calling declared, parameter dropping disabled) passed 6/6 on a
+14-capability suite including multi-step tool loops. Lesson: a text
+response proves nothing; only an executed multi-step tool loop validates a
+gateway.
+
+\paragraph{Metadata loss (H16).}
+Upstream, all models report explicit reasoning-token and cached-token
+fields. The gateway preserves input/output totals exactly but
+\emph{drops} reasoning detail and re-derives cache fields; the \cc{}-side
+cost report uses the harness's own price table for aliased models and was
+measured at 3.5\xd{} the true cost. All analysis therefore uses the
+provider-side capture.
+
+\section{Results}
+
+\subsection{Holdout-confirmed prompt effects}
+
+Per model, the three most waste-inducing variants were selected on
+development data only, frozen, and re-run on the 8 unseen holdout tasks
+(5 repetitions, $n{=}40$ per cell, \pidev). Table~\ref{tab:holdout}
+reports median paired reasoning ratios.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Model & mult.\_approaches & deep\_thinking & adj.\_cleanup &
+max\_certainty & exh.\_explor. & bounded\_eff. \\
+\midrule
+DeepSeek-V4-Pro & \textbf{2.92\,W} & \textbf{2.12\,W} & --- & \textbf{1.85\,W} & --- & 0.97\,N \\
+Kimi-K2.6 & \textbf{7.40\,W} & \textbf{2.21\,W} & --- & --- & 1.29\,w & 1.06\,N \\
+Kimi-K2.7-Code & \textbf{5.98\,W} & \textbf{1.86\,W} & --- & --- & --- & 0.98\,N \\
+Nemotron-3-Ultra & \textbf{2.44\,W} & \textbf{1.57\,W} & --- & 1.48\,w & --- & 1.16\,N \\
+Inkling & \textbf{5.08\,W} & --- & \textbf{3.13\,W} & --- & 1.39\,n & 1.04\,N \\
+GLM-5.2 & \textbf{6.18\,W} & \textbf{2.18\,W} & \textbf{4.25\,W} & --- & --- & \textbf{0.48\,N} \\
+\bottomrule
+\end{tabular}
+\caption{Holdout confirmation: median reasoning ratio vs.\ own baseline on
+8 unseen tasks. \textbf{W} = confirmed wasteful (ratio $>1.5$, CI lower
+bound $>1.1$, no success gain); w = replicated weaker; n = not replicated;
+N = confirmed neutral. ``---'' = not among that model's selected
+features.}
+\label{tab:holdout}
+\end{table}
+
+Four findings survive the frozen holdout. \textbf{(1)}~The
+\texttt{multiple\_approaches} instruction is confirmed wasteful on
+\emph{all six} models (2.4--7.4\xd) --- notably, it was absent from the
+pilot and surfaced only in screening, illustrating the value of the wider
+matrix. \textbf{(2)}~\texttt{deep\_thinking} is confirmed on every model
+where selected (1.6--2.2\xd), its third consecutive replication (pilot,
+screening, holdout) across three collection days; it roughly doubles wall
+time with identical tool behavior. \textbf{(3)}~\texttt{adjacent\_cleanup}
+is confirmed on Inkling and GLM-5.2 and, together with autonomy language,
+is one of only two features that produce out-of-scope edits (5--8\% of
+their runs; $\approx$0\% elsewhere). \textbf{(4)}~\texttt{bounded\_efficiency}
+is confirmed neutral-or-better on all six models and \emph{halves}
+GLM-5.2's reasoning (0.48\xd) at equal success. One selected feature
+failed to replicate: the autonomy phrase showed no reasoning effect on
+holdout (1.00\xd); its real, replicated effect is scope violations.
+Verbose repetition of requirements was $\approx$1.0\xd{} everywhere: pure
+redundancy is free, because the fixed prefix dwarfs it.
+
+\subsection{Stress family: input defects}
+
+Against same-task screening baselines (median across models):
+\emph{misleading architectural hints} are the costliest defect tested
+(2.61\xd{} reasoning --- models diligently chase the red herring);
+\emph{ambiguous scope} produces the worst success rate in the benchmark
+(83\%) plus 1.44\xd{} reasoning; splitting one task across two turns costs
+$\approx$1.31\xd{} and restating the full task each turn $\approx$1.38\xd;
+\emph{irrelevant context} (1.03\xd) and \emph{conflicting constraints}
+(1.05\xd) are nearly free --- models filter noise well but obey plausible
+misdirection.
+
+\subsection{Harness comparison}
+
+On matched model--task--prompt cells, both harnesses solved the pilot
+tasks at $\approx$100\%, but \cc{} cost \textbf{5--30\xd{} more per
+success} (e.g., Nemotron: \$0.32 vs.\ \$0.018), driven multiplicatively by
+the 12--15\xd{} prefix and 2--7\xd{} more turns (10--41 vs.\ 5--7).
+Harness--model interaction is strong: Kimi-K2.7-Code stays at $\sim$10
+turns under \cc{} while GLM-5.2, Kimi-K2.6, and Nemotron thrash toward the
+turn ceiling on tasks they solve in $\leq$7 turns under \pidev.
+Prompt effects do not transfer across harnesses (H12): goal-only prompts
+\emph{reduce} reasoning under \cc{} (whose system prompt supplies
+methodology) on 4/5 models, and exploration cues amplify 4--4.8\xd{} under
+\cc{} vs.\ 1.1--2.4\xd{} under \pidev{} on matched cells.
+
+\subsection{Cache behavior}
+
+Provider-side prefix caching is automatic, free to populate, and rebated
+$\sim$61\% of the would-be bill (\$390 estimated no-cache vs.\ \$153
+actual) while leaving every behavioral metric unchanged --- the purest
+possible demonstration that cache savings must never be reported as
+efficiency. Hits are probabilistic (full/partial/none alternate under
+identical conditions), the cache is shared across sessions (fresh \cc{}
+sessions routinely receive first-turn hits of $\sim$90\% of the 16--20k
+prefix), 60-second delays showed no eviction, changing the working
+directory breaks reuse (the harness embeds it in the system prompt), and
+one model--route pair (Nemotron via \pidev) received \emph{zero} cached
+tokens across every phase --- a provider-side anomaly that persisted for
+three days and would silently distort any cost-based comparison that
+ignored it.
+
+\section{Post-Registration Replication: Kimi-K3}
+
+Within a day of Kimi-K3's appearance on the provider (2.8T-parameter MoE
+per its announcement; 1M context; \$3/\$15 per M tokens), we froze a
+replication protocol --- six pilot tasks, four variants
+(\texttt{baseline}, \texttt{multiple\_approaches},
+\texttt{deep\_thinking}, \texttt{bounded\_efficiency}), 72 \pidev{} runs
+plus a 24-run \cc{} directional arm, and material-difference thresholds
+(reasoning ratio differing $>$30\% from \emph{both} Kimi-K2 comparators,
+classification flips, $>$5pp scope-compliant-success change) --- before
+viewing any result.
+
+The \pidev{} arm completed 72/72 at 100\% success (\$0.82 actual; the
+model's cache rebate was 81\%). The threshold \emph{was} crossed, in an
+instructive direction: Kimi-K3's baseline deliberation floor is
+$\sim$6\xd{} lower (median 55 reasoning tokens vs.\ 351/195), so
+\texttt{multiple\_approaches} reaches \textbf{16.6\xd} [10.7, 34.1] and
+\texttt{deep\_thinking} \textbf{14.8\xd} [4.1, 33.9] against its own
+baseline --- yet \emph{absolute} waste tokens remain at or below
+K2-generation levels (625 vs.\ 1{,}606 median under
+\texttt{multiple\_approaches}) and cost per compliant success is the
+lowest of the three generations at baseline (\$0.0062) despite
+2.5--3.3\xd{} unit prices. \texttt{bounded\_efficiency} confirmed neutral
+(0.89\xd, CI entirely below 1). Every effect direction and classification
+was preserved; no new compatibility, metadata, or cache behavior appeared.
+The practical reading: on a frugal-by-default reasoner, prompt wording
+becomes the \emph{dominant} lever on deliberation spend --- a single
+thinking-cue sentence multiplies it $\sim$15\xd.
+
+\section{Discussion}
+
+\paragraph{For practitioners.}
+Five rules survived every replication stage: never request several
+compared approaches unless the comparison itself is the deliverable; never
+add deep-thinking incantations; keep scope-expanding and autonomy language
+out unless expansion is wanted (it is the only phrasing family that widens
+diffs); a bounded-efficiency template is free insurance everywhere; and
+judge prompts on reasoning/tool/turn metrics priced at no-cache cost,
+never on the cached bill. Input hygiene matters asymmetrically: cutting
+fluff saves almost nothing, but removing \emph{unverified architectural
+hints} and \emph{ambiguity} saves a lot.
+
+\paragraph{For harness and gateway builders.}
+The harness is the largest cost decision a user makes --- larger than
+model choice and far larger than any prompt effect. Static-prefix size and
+turn discipline dominate. Protocol translators can silently invalidate
+benchmarks (dropped tool schemas, empty reasoning continuations, dropped
+usage detail); dual-side wire capture should be considered mandatory
+instrumentation for any cross-provider agent evaluation.
+
+\paragraph{For benchmark methodology.}
+Preregistration caught us twice: a screening signal
+(\texttt{no\_questions\_autonomy} reasoning effect) that died on holdout,
+and a replication threshold that fired for a reason (denominator
+sensitivity) the ratio metric alone would have misrepresented --- the
+absolute-token view had to be reported alongside. Both would likely have
+become confident false claims in an unregistered study.
+
+\section{Limitations}
+
+Tasks are small ($\leq$4 files) and success ceilings are high under
+\pidev{} (92--97\%), limiting power to detect correctness effects of
+wasteful prompting; effects at real-repository scale are unmeasured. One
+provider, one region, essentially one gateway implementation; the \cc{}
+holdout and Kimi-K3 \cc{} arms are directional (budget-capped per
+preregistered ceilings). Collection spanned three days --- an accidental
+temporal-robustness check the findings passed, but not true cross-day
+replication design. Reasoning-token semantics differ across model
+families; all effects are within-model normalized, and the Kimi-K3 case
+shows why absolute tokens must accompany ratios. Classification
+thresholds are configurable; published CSVs carry CIs for re-analysis.
+
+\section{Conclusion}
+
+Prompt wording causes large, replicable, model- and harness-dependent
+differences in reasoning-model agent cost at equal task quality. The
+cheapest interventions are subtractive: delete thinking theater, delete
+solution tournaments, delete unverified hints --- and state scope,
+criteria, and a stop condition. Everything needed to reproduce, extend, or
+re-analyze this benchmark --- fixtures, hidden evaluators, prompt
+generators, runners, wire captures, ledgers, and analysis --- is available
+in the repository.
+
+\section*{Acknowledgments}
+Experiments, infrastructure, and analysis were carried out with Claude
+(Anthropic) operating as an autonomous research assistant under the
+author's direction and budget approvals.
+
+\begin{thebibliography}{9}
+\bibitem{repo}
+S.~Weinberger. \emph{prompt\_efficiency: benchmark code, task fixtures,
+prompt variants, raw ledgers, and analysis}.
+\url{https://github.com/sarelWeinberger/prompt_efficiency}, 2026.
+
+\bibitem{pi}
+Earendil Works. \emph{Pi: an AI agent toolkit and coding-agent CLI}.
+\url{https://pi.dev}, 2026.
+
+\bibitem{claudecode}
+Anthropic. \emph{Claude Code}. \url{https://claude.com/claude-code}, 2026.
+
+\bibitem{together}
+Together AI. \emph{Inference platform and model catalog}.
+\url{https://www.together.ai}, 2026.
+
+\bibitem{litellm}
+BerriAI. \emph{LiteLLM proxy (v1.93.0)}.
+\url{https://github.com/BerriAI/litellm}, 2026.
+
+\bibitem{kimi}
+Moonshot AI. \emph{Kimi K3 technical blog}.
+\url{https://www.kimi.com/blog/kimi-k3}, 2026.
+\end{thebibliography}
+
+\end{document}
