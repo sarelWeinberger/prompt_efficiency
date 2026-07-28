@@ -1,0 +1,17 @@
+harness,variant,model,n_runs,n_tasks,median_reasoning_ratio,ci_low,ci_high,n_tasks_same_direction,scope_success,baseline_scope_success,median_tool_ratio,median_turn_ratio,cost_per_compliant_success,nocache_cost_per_compliant_success,classification,material_verdict,material_reasons
+pi,multiple_approaches,moonshotai/Kimi-K3,18,6,16.575,10.746,34.099,6,1.0,1.0,1.25,1.2,0.01776,0.08112,wasteful,materially_different,"reasoning ratio differs >30% from both (diffs 176%, 302%)"
+pi,multiple_approaches,moonshotai/Kimi-K2.6,12,6,6.003,2.378,7.259,6,1.0,1.0,1.225,1.077,0.02965,0.05302,wasteful,,
+pi,multiple_approaches,moonshotai/Kimi-K2.7-Code,12,6,4.125,0.159,8.461,5,0.75,1.0,1.033,1.083,0.02399,0.0406,elevated_unconfirmed,,
+pi,deep_thinking,moonshotai/Kimi-K3,18,6,14.761,4.069,33.875,6,1.0,1.0,1.25,1.2,0.0155,0.07476,wasteful,materially_different,"reasoning ratio differs >30% from both (diffs 529%, 792%)"
+pi,deep_thinking,moonshotai/Kimi-K2.6,12,6,2.345,0.744,3.637,5,1.0,1.0,1.0,1.094,0.01983,0.036,elevated_unconfirmed,,
+pi,deep_thinking,moonshotai/Kimi-K2.7-Code,12,6,1.655,1.362,2.895,6,1.0,1.0,1.11,1.056,0.01246,0.02255,wasteful,,
+pi,bounded_efficiency,moonshotai/Kimi-K3,18,6,0.886,0.828,0.94,1,1.0,1.0,1.0,1.0,0.00584,0.03434,neutral,practically_similar,within all frozen thresholds
+pi,bounded_efficiency,moonshotai/Kimi-K2.6,12,6,1.12,1.063,2.093,4,0.917,1.0,1.0,0.906,0.01804,0.03741,neutral_or_lower,,
+pi,bounded_efficiency,moonshotai/Kimi-K2.7-Code,12,6,0.835,0.687,0.932,1,1.0,1.0,0.929,0.882,0.0067,0.01329,neutral,,
+claude-code,multiple_approaches,moonshotai/Kimi-K3,3,2,66.214,66.214,66.214,1,1.0,1.0,5.625,5.056,0.57372,3.90672,wasteful,inconclusive,comparator K2.6 missing; comparator K2.7-Code missing
+claude-code,deep_thinking,moonshotai/Kimi-K3,2,1,11.774,11.774,11.774,1,1.0,1.0,5.75,5.167,0.47202,3.00277,inconclusive,materially_different,"reasoning ratio differs >30% from both (diffs 1178%, 604%); median_tool_ratio differs >30% from both; median_turn_ratio differs >30% from both"
+claude-code,deep_thinking,moonshotai/Kimi-K2.6,6,3,0.921,0.755,5.484,2,0.833,0.667,0.611,0.538,0.1415,0.46605,neutral_or_lower,,
+claude-code,deep_thinking,moonshotai/Kimi-K2.7-Code,6,3,1.672,0.279,34.804,2,1.0,1.0,1.17,1.15,0.04664,0.15035,elevated_unconfirmed,,
+claude-code,bounded_efficiency,moonshotai/Kimi-K3,2,1,0.69,0.69,0.69,0,1.0,1.0,5.5,4.944,0.4111,2.85666,inconclusive,materially_different,"reasoning ratio differs >30% from both (diffs 161%, 56%); scope-compliant success differs >5pp from both; median_tool_ratio differs >30% from both; median_turn_ratio differs >30% from both"
+claude-code,bounded_efficiency,moonshotai/Kimi-K2.6,6,3,0.264,0.099,5.713,1,0.5,0.667,0.389,0.427,0.26079,1.01853,neutral_or_lower,,
+claude-code,bounded_efficiency,moonshotai/Kimi-K2.7-Code,6,3,1.573,0.731,28.529,1,0.833,1.0,1.778,1.667,0.06453,0.2353,elevated_unconfirmed,,

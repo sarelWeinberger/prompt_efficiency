@@ -1,0 +1,7 @@
+harness,variant,n_runs,n_tasks,median_reasoning_ratio,ci_low,ci_high,n_tasks_same_direction,scope_success,baseline_scope_success,median_tool_ratio,median_turn_ratio,cost_per_compliant_success,nocache_cost_per_compliant_success,classification
+pi,multiple_approaches,18,6,16.575,10.746,34.099,6,1.0,1.0,1.25,1.2,0.01776,0.08112,wasteful
+pi,deep_thinking,18,6,14.761,4.069,33.875,6,1.0,1.0,1.25,1.2,0.0155,0.07476,wasteful
+pi,bounded_efficiency,18,6,0.886,0.828,0.94,1,1.0,1.0,1.0,1.0,0.00584,0.03434,neutral
+claude-code,multiple_approaches,3,2,66.214,66.214,66.214,1,1.0,1.0,5.625,5.056,0.57372,3.90672,wasteful
+claude-code,deep_thinking,2,1,11.774,11.774,11.774,1,1.0,1.0,5.75,5.167,0.47202,3.00277,inconclusive
+claude-code,bounded_efficiency,2,1,0.69,0.69,0.69,0,1.0,1.0,5.5,4.944,0.4111,2.85666,inconclusive

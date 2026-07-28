@@ -135,3 +135,30 @@ Claude Code's own `total_cost_usd` is wrong for gateway models and never used.
 - Single gateway (LiteLLM 1.93.0); §9 normalized-harness comparison not run.
 - The §24 classification thresholds are configurable; CSVs carry CIs for
   re-analysis under different thresholds.
+
+## Kimi 3 small replication (post-registration, 2026-07-28)
+
+Targeted 6-task replication of the three headline prompt features on
+`moonshotai/Kimi-K3` (protocol frozen before results; full report:
+[KIMI3-SMALL-REPLICATION.md](KIMI3-SMALL-REPLICATION.md)).
+
+- Compatibility: verified on both harnesses (pi tool loop 4/4; Claude Code
+  14-capability suite passed); reasoning and cache fields explicit, same
+  schema as the frozen six.
+- Runs: pi 72/72 valid (100% success); Claude Code 9/24 (stopped by the
+  pre-registered no-cache ceiling; directional only). Cost $4.46 actual /
+  $28.43 no-cache.
+- **Verdict: material difference — in sensitivity, not direction.**
+  K3's baseline deliberation floor is ~6× lower (55 median reasoning tokens
+  vs 351/195), so multiple_approaches hits **16.6×** [10.7, 34.1] and
+  deep_thinking **14.8×** [4.1, 33.9] vs its own baseline — beyond the
+  frozen 30%-vs-both threshold — while **absolute** waste tokens stay at or
+  below K2-generation levels and cost per compliant success is the lowest
+  of the three Kimi generations at baseline. bounded_efficiency: 0.89×
+  [0.83, 0.94], confirmed neutral-to-beneficial. All classifications
+  preserved; scope-compliant success 100%.
+- Recommendations unchanged qualitatively; K3-specific note added to
+  PROMPT-WASTE-RULES.md (prompt wording is the dominant lever on K3's
+  reasoning spend).
+- Thresholds, task rule, and matrix were frozen at commit b8aea7b before
+  any result was viewed. Historical six-model results are untouched.

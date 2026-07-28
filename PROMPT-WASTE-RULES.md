@@ -68,6 +68,14 @@ pass; (directional) = consistent but underpowered.
 - **Inkling** — insensitive to thinking-style cues, sensitive to scope cues
   (adjacent_cleanup 3.1×✓, multiple_approaches 5.1×✓).
 
+- **Kimi-K3 (post-registration small replication)** — lowest deliberation
+  floor measured (baseline ≈55 reasoning tokens): thinking-style cues
+  multiply its reasoning ~15× (vs 2–6× on K2.x), though absolute waste and
+  cost per success stay at or below K2 levels on these tasks. Same rules
+  apply, with more force: never use deep-thinking or multiple-approaches
+  language on K3; bounded-efficiency confirmed neutral (0.89×). At $15/M
+  output, absolute waste scales fastest here on longer tasks.
+
 ## Harness rules
 
 - **The harness choice dwarfs every prompt effect**: same model, same task =

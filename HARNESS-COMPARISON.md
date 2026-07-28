@@ -106,6 +106,13 @@ Findings (pilot-scale for §5 rows; see banner):
    Cache rebates cut CC's actual bill by ~60% (still net far more expensive
    than pi).
 
+### Kimi-K3 note (post-registration)
+
+Kimi-K3 passed the full CC compatibility suite and 9 valid CC runs show the
+same harness patterns as the K2 generation (identical usage schema, strong
+prefix cache hits, larger prompt-effect ratios than under pi). Too few runs
+for formal comparison; see KIMI3-SMALL-REPLICATION.md.
+
 ## 6. Gateway retries and artifacts
 
 `num_retries: 0` is pinned in the gateway; capture shows no hidden retry
