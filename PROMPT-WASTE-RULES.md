@@ -76,6 +76,17 @@ pass; (directional) = consistent but underpowered.
   language on K3; bounded-efficiency confirmed neutral (0.89×). At $15/M
   output, absolute waste scales fastest here on longer tasks.
 
+- **claude-sonnet-5 via the first-party Anthropic API (post-registration
+  reversal study)** — the rules transfer to the frontier model:
+  multiple_approaches 2.5-2.7x on both harnesses; **max_certainty is the
+  worst family under native Claude Code (4.1x, 2.7x cost per success)** —
+  certainty pressure is a bigger hazard on Claude+CC than anywhere else
+  tested; deep_thinking is the mildest measured (1.25-1.3x — adaptive
+  thinking absorbs it); bounded_efficiency/autonomy/verbose all neutral;
+  scope compliance was perfect (162/162). Note: Anthropic does not report
+  thinking tokens separately, so these are total-output ratios (lower bounds
+  on the deliberation effect).
+
 ## Harness rules
 
 - **The harness choice dwarfs every prompt effect**: same model, same task =

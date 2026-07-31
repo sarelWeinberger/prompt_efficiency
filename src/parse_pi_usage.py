@@ -48,11 +48,15 @@ def parse_usage(events):
         "turns": len(turns),
         "input_uncached": sum(t["input_uncached"] for t in turns),
         "cache_read": sum(t["cache_read"] for t in turns),
+        "cache_write": sum(t["cache_write"] for t in turns),
         "output": sum(t["output"] for t in turns),
         "reported_cost_usd": round(sum(t["cost_usd"] for t in turns), 6),
         "models_seen": sorted(m for m in model_seen if m),
     }
-    tot["logical_input"] = tot["input_uncached"] + tot["cache_read"]
+    # Cache-written tokens are logical prompt tokens (billed 1.25x on Anthropic;
+    # always 0 on Together, which has no explicit write accounting).
+    tot["logical_input"] = (tot["input_uncached"] + tot["cache_read"]
+                            + tot["cache_write"])
     # Zero-usage turns (aborted/empty responses) report no usage at all; sum
     # reasoning over the turns that actually report it. Never invent values.
     reporting = [t["reasoning"] for t in turns if t["reasoning"] is not None]

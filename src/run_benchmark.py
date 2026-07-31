@@ -252,6 +252,16 @@ def run_cell(block, variant, rep, slot, args, order_idx):
                      for i, pr in enumerate(up["per_request"])]
         harness_reported_input = cc_usage.get("input_tokens")
 
+    if provider == "anthropic":
+        # Anthropic API bills thinking inside output_tokens and never reports
+        # it separately (design 12 taxonomy). pi surfaces reasoning:0 there,
+        # which is a placeholder, not a measurement.
+        reasoning = None
+        upstream_reasoning = None
+        harness_visible_reasoning = None
+        reasoning_status = "included_in_output_but_not_separable"
+        preservation = "not_applicable"
+
     status = res["status"]
     validity = "valid"
     if status == "timeout":

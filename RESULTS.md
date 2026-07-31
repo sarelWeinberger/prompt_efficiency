@@ -162,3 +162,25 @@ Targeted 6-task replication of the three headline prompt features on
   reasoning spend).
 - Thresholds, task rule, and matrix were frozen at commit b8aea7b before
   any result was viewed. Historical six-model results are untouched.
+
+## Claude-API study (post-registration, 2026-07-31)
+
+The reversal experiment: both harnesses against the **first-party Anthropic
+API** (`claude-sonnet-5`), Claude Code running **native** (no gateway). 162
+runs, 162 valid, $8.81 billed / $34.31 no-cache. Protocol frozen before
+results (commit `028a2d3`). Full report: `CLAUDE-API-COMPARISON.md`.
+
+Measurement note (preregistered): Anthropic bills thinking inside
+`output_tokens` and never reports it separately, so the primary metric here is
+the paired **total-output-token ratio** — defined identically on Together,
+whose `completion_tokens` also includes reasoning.
+
+Headline: **the prompt-family effects transfer to the frontier model.**
+`multiple_approaches` wasteful again on both harnesses (2.5-2.7x, inside the
+open-model range); `max_certainty` is Sonnet's worst family under native
+Claude Code (4.13x, 2.7x cost per success); `deep_thinking` is *milder* than
+on every open model (1.25-1.30x) - adaptive thinking absorbs the incantation;
+the neutral set (verbose_repetition, autonomy, bounded_efficiency) replicates
+at ~1x; 162/162 scope-compliant successes (no adjacent-cleanup scope breaks,
+unlike open models); harness economics persist (~15x CC-native vs pi per
+success); Anthropic caching rebates 69-75% vs Together's ~61%.
