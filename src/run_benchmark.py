@@ -22,8 +22,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (BENCH, GENERATOR_VERSION, ROOT, append_jsonl, dir_hash,
-                    load_config, load_models, load_task, model_cost, read_jsonl,
-                    sha256)
+                    load_config, load_models, load_task, model_cost,
+                    model_provider, read_jsonl, sha256)
 from claude_runner import run_claude
 from evaluate_run import evaluate
 from parse_pi_usage import cache_classification
@@ -61,7 +61,7 @@ def completed_keys(out_path, experiment=None):
 def alias_for(model_id):
     for m in load_models():
         if m["id"] == model_id:
-            return m["alias"]
+            return m.get("alias", model_id)
     raise KeyError(model_id)
 
 
@@ -157,7 +157,7 @@ def run_cell(block, variant, rep, slot, args, order_idx):
         "harness_version": PI_VERSION if harness == "pi" else CC_VERSION,
         "harness_mode": "print_json",
         "permission_mode": None if harness == "pi" else args.permission_mode,
-        "gateway_used": harness == "claude-code",
+        "gateway_used": harness == "claude-code" and model_provider(model) == "together",
         "gateway_name": None if harness == "pi" else "litellm",
         "gateway_version": None if harness == "pi" else LITELLM_VERSION,
         "gateway_config_hash": None if harness == "pi" else sha256(
@@ -188,14 +188,18 @@ def run_cell(block, variant, rep, slot, args, order_idx):
         "timeout_s": timeout,
     }
 
+    provider = model_provider(model)
     if harness == "pi":
         res = run_pi(model, prompt["text"], slot, timeout,
                      run_dir / "pi_events.jsonl",
-                     thinking=CFG["thinking"]["requested_level"])
+                     thinking=CFG["thinking"]["requested_level"],
+                     provider=provider)
     else:
-        res = run_claude(model, alias_for(model), prompt["text"], slot, timeout,
+        res = run_claude(model, alias_for(model) if provider == "together" else model,
+                         prompt["text"], slot, timeout,
                          run_dir, permission_mode=args.permission_mode,
-                         max_turns=CFG["claude_code"]["max_turns"])
+                         max_turns=CFG["claude_code"]["max_turns"],
+                         native=(provider == "anthropic"))
 
     if res.get("status") == "infra_error":
         return make_record(base, status="infra_error", run_validity="infrastructure_failure",

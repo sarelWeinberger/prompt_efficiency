@@ -92,7 +92,7 @@ def upstream_usage_totals(pairs, cost):
 
 
 def run_claude(model_id, alias, prompt_text, slot, timeout_s, run_dir,
-               permission_mode="acceptEdits", max_turns=40):
+               permission_mode="acceptEdits", max_turns=40, native=False):
     run_dir = Path(run_dir)
     home = run_dir / "home"
     (home / ".claude").mkdir(parents=True, exist_ok=True)
@@ -103,13 +103,19 @@ def run_claude(model_id, alias, prompt_text, slot, timeout_s, run_dir,
     env = {
         "HOME": str(home),
         "PATH": f"{NODE_BIN}:/usr/local/go/bin:/usr/bin:/bin",
-        "ANTHROPIC_BASE_URL": "http://127.0.0.1:8903",
-        "ANTHROPIC_AUTH_TOKEN": env_secret("GATEWAY_MASTER_KEY"),
-        "ANTHROPIC_SMALL_FAST_MODEL": alias,
         "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
         "DISABLE_AUTOUPDATER": "1",
         "GOCACHE": "/tmp/pi-prompt-benchmark/gocache",
     }
+    if native:
+        # First-party Anthropic API: no gateway, CC's own usage/cost is authoritative
+        env["ANTHROPIC_API_KEY"] = env_secret("ANTHROPIC_API_KEY")
+    else:
+        env.update({
+            "ANTHROPIC_BASE_URL": "http://127.0.0.1:8903",
+            "ANTHROPIC_AUTH_TOKEN": env_secret("GATEWAY_MASTER_KEY"),
+            "ANTHROPIC_SMALL_FAST_MODEL": alias,
+        })
     turns = prompt_text.split("\n<TURN-BREAK>\n")
     offset = _capture_offset()
     t0 = time.time()
@@ -166,8 +172,28 @@ def run_claude(model_id, alias, prompt_text, slot, timeout_s, run_dir,
     trace = from_cc_transcript(transcript_lines)
 
     cost = model_cost(model_id)
-    pairs = _capture_slice(offset, model_id)
-    upstream = upstream_usage_totals(pairs, cost)
+    if native:
+        # Build usage from CC's first-party report (trustworthy on the real API).
+        u = (data or {}).get("usage") or {}
+        uncached = u.get("input_tokens", 0)
+        cread = u.get("cache_read_input_tokens", 0) or 0
+        cwrite = u.get("cache_creation_input_tokens", 0) or 0
+        out_toks = u.get("output_tokens", 0)
+        logical = uncached + cread + cwrite
+        upstream = {
+            "requests": (data or {}).get("num_turns") or 0,
+            "input_uncached": uncached, "cache_read": cread, "cache_write": cwrite,
+            "output": out_toks, "logical_input": logical,
+            "reasoning": None, "reasoning_reported": False,
+            "reported_cost_usd": round((data or {}).get("total_cost_usd") or 0, 6),
+            "no_cache_cost_usd": round(logical * cost["input"] / 1e6
+                                       + out_toks * cost["output"] / 1e6, 6),
+            "per_request": [],
+        }
+        pairs = [True] if data is not None else []  # model served = CC returned JSON
+    else:
+        pairs = _capture_slice(offset, model_id)
+        upstream = upstream_usage_totals(pairs, cost)
     (run_dir / "together_usage.json").write_text(json.dumps(upstream, indent=1))
 
     status = "timeout" if timed_out else (

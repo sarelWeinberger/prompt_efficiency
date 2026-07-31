@@ -114,6 +114,22 @@ experiments:
     tasks: [py-low-01, js-med-03, js-high-01]
     variants: [baseline, multiple_approaches, deep_thinking, bounded_efficiency]
     repetitions: 2
+  anthropic_pi:
+    harness: pi
+    models: [claude-sonnet-5]
+    tasks: [py-low-01, go-low-01, py-med-01, js-med-03, js-high-01, go-high-01]
+    variants: [baseline, verbose_repetition, deep_thinking, exhaustive_exploration,
+               multiple_approaches, max_certainty, adjacent_cleanup,
+               no_questions_autonomy, bounded_efficiency]
+    repetitions: 2
+  anthropic_cc:
+    harness: claude-code
+    models: [claude-sonnet-5]
+    tasks: [py-low-01, js-med-03, js-high-01]
+    variants: [baseline, verbose_repetition, deep_thinking, exhaustive_exploration,
+               multiple_approaches, max_certainty, adjacent_cleanup,
+               no_questions_autonomy, bounded_efficiency]
+    repetitions: 2
   holdout_cc:
     harness: claude-code
     models: all_compatible
@@ -132,3 +148,10 @@ kimi3_material_difference:
   tool_calls_or_turns_relative_diff: 0.30
   opposite_direction_across_harnesses: true
   new_compat_metadata_or_cache_behavior: true
+
+# ---- Claude-API study (post-registration, frozen 2026-07-31 BEFORE results) ----
+# Anthropic does not report thinking tokens separately (billed in output_tokens):
+# reasoning_token_status = included_in_output_but_not_separable.
+# PRIMARY METRIC for this study: paired TOTAL-OUTPUT-token ratio vs own baseline
+# (comparable across providers: Together's completion_tokens also includes
+# reasoning). Material-difference thresholds reuse kimi3_material_difference.

@@ -16,11 +16,16 @@ from parse_tool_trace import from_pi_events
 PI = NODE_BIN / "pi"
 
 
-def run_pi(model_id, prompt_text, slot, timeout_s, raw_path, thinking="medium"):
+def run_pi(model_id, prompt_text, slot, timeout_s, raw_path, thinking="medium",
+           provider="together"):
     """Run one pi task. Multi-turn prompts (turns separated by <TURN-BREAK>)
     use a throwaway session dir inside the slot and continue with -c."""
     turns = prompt_text.split("\n<TURN-BREAK>\n")
-    env = run_env()
+    extra = {}
+    if provider == "anthropic":
+        from common import env_secret
+        extra["ANTHROPIC_API_KEY"] = env_secret("ANTHROPIC_API_KEY")
+    env = run_env(extra)
     t0 = time.time()
     timed_out = False
     stdout_all, stderr_all = [], []
@@ -29,7 +34,7 @@ def run_pi(model_id, prompt_text, slot, timeout_s, raw_path, thinking="medium"):
     deadline = t0 + timeout_s
     try:
         for i, turn_text in enumerate(turns):
-            cmd = [str(PI), "--provider", "together", "--model", model_id,
+            cmd = [str(PI), "--provider", provider, "--model", model_id,
                    "--mode", "json", "-p", "--thinking", thinking]
             if len(turns) == 1:
                 cmd += ["--no-session"]

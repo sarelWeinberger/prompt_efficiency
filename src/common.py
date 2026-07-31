@@ -19,7 +19,15 @@ def load_config():
 
 def load_models():
     data = yaml.safe_load((BENCH / "models.yaml").read_text())
-    return data["models"] + data.get("post_registration_models", [])
+    return (data["models"] + data.get("post_registration_models", [])
+            + data.get("anthropic_api_models", []))
+
+
+def model_provider(model_id):
+    for m in load_models():
+        if m["id"] == model_id:
+            return m.get("provider", "together")
+    return "together"
 
 
 def model_cost(model_id):
