@@ -15,7 +15,12 @@
 A Preregistered Two-Harness Benchmark of Coding Agents}
 
 \author{Sarel Weinberger\\
-\small\texttt{github.com/sarelWeinberger/prompt\_efficiency}}
+PointFive\\
+\small\texttt{sarel.weinberger@pointfive.co}
+\and
+Amir Hozez\\
+PointFive\\
+\small\texttt{amir@pointfive.co}}
 
 \date{July 2026}
 
@@ -31,10 +36,12 @@ effect of prompt formulation on agent waste across six large reasoning
 models (DeepSeek-V4-Pro, Kimi-K2.6, Kimi-K2.7-Code, Nemotron-3-Ultra,
 Inkling, GLM-5.2) served by a single provider, operated by two real agent
 harnesses (\pidev{} and \cc{} through a protocol-translation gateway), on
-24 deterministic coding tasks with hidden evaluators. Across 4{,}481 valid
-runs (\$157 of billed compute) spanning a pilot, a complete
+24 deterministic coding tasks with hidden evaluators. Across 4{,}643 valid
+runs ($\sim$\$166 of billed compute) spanning a pilot, a complete
 1{,}728-run screening matrix, a stress family, a frozen 8-task holdout
-confirmation, and a post-registration replication on Kimi-K3, we find:
+confirmation, a post-registration replication on Kimi-K3, and a
+post-registration cross-provider study on \texttt{claude-sonnet-5} via the
+first-party Anthropic API, we find:
 (1)~the instruction to \emph{develop several approaches and compare before
 choosing} is the most wasteful phrase tested, multiplying reasoning tokens
 2.4--7.4\xd{} on every model at zero correctness gain, holdout-confirmed;
@@ -52,7 +59,13 @@ never be read as efficiency. A small replication on the newly released
 Kimi-K3 crossed our preregistered material-difference threshold in
 \emph{sensitivity} --- its deliberation floor is $\sim$6\xd{} lower, so
 thinking cues multiply reasoning $\sim$15\xd{} --- while preserving every
-effect direction. All code, task fixtures, prompt variants, raw usage
+effect direction. Finally, a reversal study on a frontier closed model
+(\texttt{claude-sonnet-5}, both harnesses on the first-party Anthropic API,
+\cc{} native) shows the effects transfer: solution-tournament wording costs
+2.5--2.7\xd{} there too, certainty pressure becomes the worst family under
+the native agentic harness (4.1\xd, 2.7\xd{} cost per success), and
+deep-thinking cues are the mildest measured (1.25--1.30\xd) --- adaptive
+thinking absorbs them. All code, task fixtures, prompt variants, raw usage
 ledgers, and analysis scripts are public.
 \end{abstract}
 
@@ -309,6 +322,51 @@ The practical reading: on a frugal-by-default reasoner, prompt wording
 becomes the \emph{dominant} lever on deliberation spend --- a single
 thinking-cue sentence multiplies it $\sim$15\xd.
 
+\section{Post-Registration Cross-Provider Study: Claude Sonnet 5}
+
+The main benchmark ran open-weight models on one provider, with \cc{}
+reaching them through a translation gateway. To test whether the effects
+are artifacts of that stack, we reversed it: both harnesses against the
+\emph{first-party Anthropic API} (\texttt{claude-sonnet-5}), with \cc{} in
+its native environment --- no gateway, no aliasing, its own prompt-caching
+path. The protocol (9 variants, the 6 pilot tasks, 2 repetitions; 108
+\pidev{} runs plus a 54-run native-\cc{} arm) was frozen before any result
+existed. All 162 runs were valid (\$8.81 billed, \$34.31 no-cache).
+
+\paragraph{Measurement constraint (preregistered).} The Anthropic API
+bills thinking inside \texttt{output\_tokens} and never reports it
+separately --- the \texttt{included\_in\_output\_but\_not\_separable}
+category of our schema taxonomy. The frozen primary metric is therefore
+the paired \emph{total-output-token} ratio versus the model's own
+baseline, which is defined identically on the open-model side (the
+provider's \texttt{completion\_tokens} also includes reasoning tokens).
+Because response tokens dilute the denominator, these ratios are lower
+bounds on the deliberation-level effect.
+
+\paragraph{Results.} The effects transfer. \texttt{multiple\_approaches}
+is again the reliable offender on both harnesses (2.70\xd{} [2.14, 3.86]
+under \pidev, 2.52\xd{} [1.73, 3.48] under native \cc) --- inside the
+open-model range (2.1--4.0\xd) on the same tasks and metric. The neutral
+set replicates exactly: verbose repetition $\approx$1\xd, autonomy
+language $\approx$1\xd, bounded-efficiency framing free (0.93--1.02\xd).
+The harness economics persist on the frontier stack: native-\cc{} baseline
+cost per compliant success is $\sim$15\xd{} \pidev's (\$0.41 vs.\ \$0.027
+no-cache). Two divergences are instructive. First,
+\texttt{max\_certainty} --- mostly a DeepSeek quirk on open models
+(1.85\xd) --- is the \emph{worst} family measured on Sonnet~5 under native
+\cc: 4.13\xd{} output tokens [1.42, 8.57] and 2.7\xd{} no-cache cost per
+success; certainty pressure buys re-verification loops, and an agentic
+harness gives them room to run. Second, \texttt{deep\_thinking} ---
+holdout-confirmed wasteful on 5/5 open models --- is the mildest elevated
+effect here (1.25--1.30\xd, below every open model under \pidev),
+consistent with the model's adaptive-thinking controller absorbing
+explicit thinking incantations that fixed-effort open reasoners obey
+literally. Scope compliance was perfect (162/162, including
+\texttt{adjacent\_cleanup}, which widens diffs on open models), and the
+provider's cache rebated 69--75\% of billing (vs.\ $\sim$61\%) at
+identical behavioral metrics --- reinforcing that rebates must never be
+read as efficiency.
+
 \section{Discussion}
 
 \paragraph{For practitioners.}
@@ -366,7 +424,7 @@ in the repository.
 \section*{Acknowledgments}
 Experiments, infrastructure, and analysis were carried out with Claude
 (Anthropic) operating as an autonomous research assistant under the
-author's direction and budget approvals.
+authors' direction and budget approvals.
 
 \begin{thebibliography}{9}
 \bibitem{repo}
