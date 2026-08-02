@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "recommendation": {
+      "type": "string",
+      "enum": ["warn", "no_change", "uncertain"]
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "multiple_approaches",
+              "max_certainty",
+              "deep_thinking",
+              "exhaustive_exploration",
+              "adjacent_cleanup",
+              "missing_stop_conditions"
+            ]
+          },
+          "evidence": { "type": "string" },
+          "reason": { "type": "string" },
+          "suggestion": { "type": "string" }
+        },
+        "required": ["type", "evidence", "reason", "suggestion"]
+      }
+    },
+    "revised_prompt": { "type": ["string", "null"] },
+    "confidence": { "type": "number" }
+  },
+  "required": ["recommendation", "risks", "revised_prompt", "confidence"]
+}

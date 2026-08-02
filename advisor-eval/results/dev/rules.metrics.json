@@ -1,0 +1,141 @@
+{
+  "n": 61,
+  "schema_compliance": 1.0,
+  "abstention_rate": 0.0,
+  "displayed_warning_precision": 1.0,
+  "warn_recall": 0.918918918918919,
+  "neutral_fpr": 0.0,
+  "fabricated_span_rate": 0.0,
+  "n_predicted_risks": 39,
+  "per_family": {
+    "multiple_approaches": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.875,
+      "f1": 0.9333333333333333
+    },
+    "max_certainty": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1": 0.923076923076923
+    },
+    "deep_thinking": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "exhaustive_exploration": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1": 0.923076923076923
+    },
+    "adjacent_cleanup": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "missing_stop_conditions": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "micro_precision": 1.0,
+  "micro_recall": 0.918918918918919,
+  "macro_precision": 1.0,
+  "macro_recall": 0.9315476190476191,
+  "selective_precision": {
+    "0.0": {
+      "n_warnings": 34,
+      "precision": 1.0
+    },
+    "0.5": {
+      "n_warnings": 34,
+      "precision": 1.0
+    },
+    "0.7": {
+      "n_warnings": 34,
+      "precision": 1.0
+    },
+    "0.9": {
+      "n_warnings": 34,
+      "precision": 1.0
+    }
+  },
+  "confusion": {
+    "no_change->no_change": 24,
+    "warn->no_change": 3,
+    "warn->warn": 34
+  },
+  "per_category_confusion": {
+    "adversarial_rewrite": {
+      "warn->no_change": 3
+    },
+    "hebrew": {
+      "no_change->no_change": 2,
+      "warn->warn": 2
+    },
+    "legit_lookalike": {
+      "no_change->no_change": 4
+    },
+    "mixed": {
+      "warn->warn": 3
+    },
+    "paraphrase": {
+      "warn->warn": 6
+    },
+    "repo_ambiguous": {
+      "warn->warn": 3
+    },
+    "repo_neutral": {
+      "no_change->no_change": 18
+    },
+    "repo_positive": {
+      "warn->warn": 20
+    }
+  },
+  "rewrite": {
+    "offered": 0,
+    "offered_rate": 0.0,
+    "protected_item_preservation": null,
+    "critical_deletion_rate": null,
+    "language_violation_rate": null,
+    "rewrites_of_clean_prompts": 0
+  },
+  "examples": {
+    "false_positives": [],
+    "false_negatives": [
+      [
+        "dev-adv-ma",
+        "no_change"
+      ],
+      [
+        "dev-adv-mc",
+        "no_change"
+      ],
+      [
+        "dev-adv-ee",
+        "no_change"
+      ]
+    ],
+    "fabricated_spans": [],
+    "critical_deletions": []
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "n": 61,
+  "schema_compliance": 1.0,
+  "abstention_rate": 0.0,
+  "displayed_warning_precision": 1.0,
+  "warn_recall": 1.0,
+  "neutral_fpr": 0.0,
+  "fabricated_span_rate": 0.0,
+  "n_predicted_risks": 42,
+  "per_family": {
+    "multiple_approaches": {
+      "tp": 8,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "max_certainty": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "deep_thinking": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "exhaustive_exploration": {
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "adjacent_cleanup": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "missing_stop_conditions": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "micro_precision": 1.0,
+  "micro_recall": 1.0,
+  "macro_precision": 1.0,
+  "macro_recall": 1.0,
+  "selective_precision": {
+    "0.0": {
+      "n_warnings": 37,
+      "precision": 1.0
+    },
+    "0.5": {
+      "n_warnings": 37,
+      "precision": 1.0
+    },
+    "0.7": {
+      "n_warnings": 37,
+      "precision": 1.0
+    },
+    "0.9": {
+      "n_warnings": 11,
+      "precision": 1.0
+    }
+  },
+  "confusion": {
+    "no_change->no_change": 24,
+    "warn->warn": 37
+  },
+  "per_category_confusion": {
+    "adversarial_rewrite": {
+      "warn->warn": 3
+    },
+    "hebrew": {
+      "no_change->no_change": 2,
+      "warn->warn": 2
+    },
+    "legit_lookalike": {
+      "no_change->no_change": 4
+    },
+    "mixed": {
+      "warn->warn": 3
+    },
+    "paraphrase": {
+      "warn->warn": 6
+    },
+    "repo_ambiguous": {
+      "warn->warn": 3
+    },
+    "repo_neutral": {
+      "no_change->no_change": 18
+    },
+    "repo_positive": {
+      "warn->warn": 20
+    }
+  },
+  "rewrite": {
+    "offered": 37,
+    "offered_rate": 0.6065573770491803,
+    "protected_item_preservation": 1.0,
+    "critical_deletion_rate": 0.0,
+    "language_violation_rate": 0.0,
+    "rewrites_of_clean_prompts": 0
+  },
+  "examples": {
+    "false_positives": [],
+    "false_negatives": [],
+    "fabricated_spans": [],
+    "critical_deletions": []
+  }
+}
