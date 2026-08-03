@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["composition", "quality", "waste", "evidence", "notes"],
+  "properties": {
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem_understanding", "planning", "alternative_approaches_considered",
+                   "alternatives_implemented", "repo_exploration", "hypotheses_stated",
+                   "hypotheses_grounded", "evidence_collection", "implementation_reasoning",
+                   "testing_verification", "error_diagnosis", "self_corrections",
+                   "final_validation", "off_task"],
+      "properties": {
+        "problem_understanding": {"type": "integer"},
+        "planning": {"type": "integer"},
+        "alternative_approaches_considered": {"type": "integer"},
+        "alternatives_implemented": {"type": "integer"},
+        "repo_exploration": {"type": "integer"},
+        "hypotheses_stated": {"type": "integer"},
+        "hypotheses_grounded": {"type": "integer"},
+        "evidence_collection": {"type": "integer"},
+        "implementation_reasoning": {"type": "integer"},
+        "testing_verification": {"type": "integer"},
+        "error_diagnosis": {"type": "integer"},
+        "self_corrections": {"type": "integer"},
+        "final_validation": {"type": "integer"},
+        "off_task": {"type": "integer"}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_relevance", "factual_grounding", "logical_consistency",
+                   "specificity", "actionability", "uncertainty_calibration",
+                   "unsupported_assumptions", "reversals_without_new_evidence",
+                   "premature_commitment"],
+      "properties": {
+        "task_relevance": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "factual_grounding": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "logical_consistency": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "specificity": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "actionability": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "uncertainty_calibration": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "unsupported_assumptions": {"type": "integer"},
+        "reversals_without_new_evidence": {"type": "integer"},
+        "premature_commitment": {"type": "integer", "enum": [0, 1]}
+      }
+    },
+    "waste": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unused_branches", "task_restatements", "redundant_verification",
+                   "speculative_architecture", "post_solution_reasoning",
+                   "planning_without_implementation"],
+      "properties": {
+        "unused_branches": {"type": "integer"},
+        "task_restatements": {"type": "integer"},
+        "redundant_verification": {"type": "integer"},
+        "speculative_architecture": {"type": "integer"},
+        "post_solution_reasoning": {"type": "integer"},
+        "planning_without_implementation": {"type": "integer"}
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "turn", "source", "quote"],
+        "properties": {
+          "field": {"type": "string"},
+          "turn": {"type": "integer"},
+          "source": {"type": "string", "enum": ["thinking", "text", "tool"]},
+          "quote": {"type": "string"}
+        }
+      }
+    },
+    "notes": {"type": "string"}
+  }
+}
