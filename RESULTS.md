@@ -184,3 +184,26 @@ the neutral set (verbose_repetition, autonomy, bounded_efficiency) replicates
 at ~1x; 162/162 scope-compliant successes (no adjacent-cleanup scope breaks,
 unlike open models); harness economics persist (~15x CC-native vs pi per
 success); Anthropic caching rebates 69-75% vs Together's ~61%.
+
+## Semantic reasoning analysis (post-registration, 2026-08-02)
+
+Answers whether wasteful prompts change reasoning *structure*, not just
+volume. Rubric/hypotheses frozen pre-annotation (`e677e82`); 2,801
+judge-annotated runs (condition-blind, evidence-quoted, 91.1% compliance)
+plus deterministic reconstruction of all 4,644 valid runs. Full report:
+`SEMANTIC-ANALYSIS.md`.
+
+Verdict on the key question: **waste is structural, not volumetric.**
+multiple_approaches = +3 elaborated-then-discarded solution branches per run
+(exactly +1 implemented — same as baseline; replicated on frozen holdout);
+max_certainty = +1 redundant re-verification of settled facts on 6/6 models
+(+1 test run, +2 tool calls after first green test); misleading hints = +1
+ungrounded hypothesis (grounded hypotheses +0.0) and 4.2x pre-edit
+deliberation; deep_thinking is the exception — no new functional units at
+all, just longer, more compressible phrasing of the same moves ("more words
+per thought, not more thoughts"); bounded_efficiency removes nothing useful
+(diagnosis/validation unchanged). Harnesses shift composition: CC reasons
+more about planning/error-recovery/self-correction, pi more about
+evidence/implementation. Semantic waste correlates with tokens/turns/cost
+(rho 0.32-0.58) and with success at ~0 — and unsupported assumptions are the
+one semantic predictor of failure (rho -0.19).

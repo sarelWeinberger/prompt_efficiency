@@ -87,6 +87,22 @@ pass; (directional) = consistent but underpowered.
   thinking tokens separately, so these are total-output ratios (lower bounds
   on the deliberation effect).
 
+## What the waste actually is (semantic analysis)
+
+Trace-level annotation of 2,801 runs shows each rule's mechanism:
+- multiple_approaches buys **discarded branches** — ~3 extra strategies
+  elaborated then abandoned, never a second implemented idea.
+- deep_thinking buys **padding** — zero new hypotheses, evidence, or
+  verification; the same reasoning moves written longer and more
+  repetitively.
+- max_certainty buys **re-proofs** — re-verification of already-established
+  facts after the tests are already green.
+- A wrong architectural hint buys **ungrounded hypotheses** — theories that
+  never acquire support from inspected code (and the only semantic marker
+  that predicts *failure*).
+- bounded_efficiency removes none of the useful work (diagnosis and final
+  validation unchanged) — it is genuinely free.
+
 ## Harness rules
 
 - **The harness choice dwarfs every prompt effect**: same model, same task =

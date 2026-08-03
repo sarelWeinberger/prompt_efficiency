@@ -119,7 +119,8 @@ def load_judge():
     for j in read_jsonl(ann_path):
         if j.get("annotation"):
             ann[j["run_id"]] = j["annotation"]
-    ledger = {r["run_id"]: r for r in read_jsonl(ROOT / "results/runs.jsonl")}
+    ledger = {r["run_id"]: r for r in read_jsonl(ROOT / "results/runs.jsonl")
+              if "run_id" in r}
     rows = []
     for rid, a in ann.items():
         r = ledger.get(rid)
