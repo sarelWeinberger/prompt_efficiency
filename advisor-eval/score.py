@@ -57,14 +57,31 @@ def hebrew_ratio(s):
 
 
 def spans_overlap(prompt, a, b):
-    """Do first occurrences of substrings a and b overlap in prompt?"""
-    ia, ib = prompt.find(a), prompt.find(b)
+    """Do first occurrences of a and b overlap in prompt?
+
+    Compared in whitespace-normalized space: source prompts are hard-wrapped,
+    so a model that copies a sentence correctly often differs from the prompt
+    only by newline-vs-space. A UI highlights the sentence, not byte offsets,
+    so that difference is not a grounding failure. True fabrication (text that
+    is not in the prompt at all) is still caught by `grounded`.
+    """
+    np_, na, nb = norm_ws(prompt), norm_ws(a), norm_ws(b)
+    ia, ib = np_.find(na), np_.find(nb)
     if ia < 0 or ib < 0:
         return False
-    return max(ia, ib) < min(ia + len(a), ib + len(b))
+    return max(ia, ib) < min(ia + len(na), ib + len(nb))
 
 
-def schema_ok(p):
+def is_grounded(prompt, ev):
+    """Evidence is grounded if it appears verbatim modulo whitespace."""
+    return bool(ev) and norm_ws(ev) in norm_ws(prompt)
+
+
+def schema_ok(p, strict=True):
+    """strict=True: full schema.json conformance (all required keys present).
+    strict=False: usable-output check — parses, legal recommendation, legal
+    risk types, string evidence. Optional-key omissions (notably `confidence`)
+    are tolerated. Both are reported; the strict number is the headline."""
     if not isinstance(p, dict):
         return False
     if p.get("recommendation") not in RECS:
@@ -76,10 +93,14 @@ def schema_ok(p):
             return False
         if not isinstance(r.get("evidence"), str):
             return False
-    if not (p.get("revised_prompt") is None or isinstance(p["revised_prompt"], str)):
+    if "revised_prompt" in p and not (
+            p["revised_prompt"] is None or isinstance(p["revised_prompt"], str)):
         return False
-    if not isinstance(p.get("confidence"), (int, float)):
-        return False
+    if strict:
+        if "revised_prompt" not in p:
+            return False
+        if not isinstance(p.get("confidence"), (int, float)):
+            return False
     return True
 
 
@@ -106,11 +127,13 @@ def score(data_path, pred_path):
         g, p = gold[i], preds[i]
         prompt = g["prompt"]
         parsed = p.get("parsed")
-        ok = schema_ok(parsed)
+        ok = schema_ok(parsed, strict=True)
+        usable = schema_ok(parsed, strict=False)
         m["n"] += 1
         m["schema_ok"] += ok
+        m["schema_usable"] += usable
         cat = g["category"]
-        if not ok:
+        if not usable:
             parsed = {"recommendation": "uncertain", "risks": [],
                       "revised_prompt": None, "confidence": 0.0}
         rec = parsed["recommendation"]
@@ -127,8 +150,9 @@ def score(data_path, pred_path):
         for r in parsed["risks"]:
             n_risks += 1
             ev = r.get("evidence", "")
-            grounded = bool(ev) and (ev in prompt)
-            if not grounded:
+            if ev and ev not in prompt and is_grounded(prompt, ev):
+                m["evidence_ws_only"] += 1
+            if not is_grounded(prompt, ev):
                 n_fab += 1
                 fab_examples.append((i, r.get("type"), ev[:80]))
                 continue
@@ -186,7 +210,10 @@ def score(data_path, pred_path):
                 rw["rewrite_of_clean"] += 1
 
     # aggregate
-    out = {"n": int(m["n"]), "schema_compliance": m["schema_ok"] / m["n"]}
+    out = {"n": int(m["n"]),
+           "schema_compliance": m["schema_ok"] / m["n"],
+           "schema_usable": m["schema_usable"] / m["n"],
+           "evidence_whitespace_only_diffs": int(m["evidence_ws_only"])}
     out["abstention_rate"] = m["abstain"] / m["n"]
     out["displayed_warning_precision"] = (
         m["warn_correct"] / m["warn_shown"] if m["warn_shown"] else None)

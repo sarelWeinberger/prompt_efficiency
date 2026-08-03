@@ -1,33 +1,33 @@
 {
-  "n": 61,
+  "n": 105,
   "schema_compliance": 1.0,
   "schema_usable": 1.0,
   "evidence_whitespace_only_diffs": 0,
   "abstention_rate": 0.0,
   "displayed_warning_precision": 1.0,
-  "warn_recall": 0.918918918918919,
+  "warn_recall": 0.9436619718309859,
   "neutral_fpr": 0.0,
   "fabricated_span_rate": 0.0,
-  "n_predicted_risks": 39,
+  "n_predicted_risks": 76,
   "per_family": {
     "multiple_approaches": {
-      "tp": 7,
+      "tp": 12,
       "fp": 0,
-      "fn": 1,
-      "precision": 1.0,
-      "recall": 0.875,
-      "f1": 0.9333333333333333
-    },
-    "max_certainty": {
-      "tp": 6,
-      "fp": 0,
-      "fn": 1,
+      "fn": 2,
       "precision": 1.0,
       "recall": 0.8571428571428571,
       "f1": 0.923076923076923
     },
+    "max_certainty": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.9285714285714286,
+      "f1": 0.962962962962963
+    },
     "deep_thinking": {
-      "tp": 6,
+      "tp": 13,
       "fp": 0,
       "fn": 0,
       "precision": 1.0,
@@ -35,15 +35,15 @@
       "f1": 1.0
     },
     "exhaustive_exploration": {
-      "tp": 6,
+      "tp": 12,
       "fp": 0,
       "fn": 1,
       "precision": 1.0,
-      "recall": 0.8571428571428571,
-      "f1": 0.923076923076923
+      "recall": 0.9230769230769231,
+      "f1": 0.9600000000000001
     },
     "adjacent_cleanup": {
-      "tp": 5,
+      "tp": 13,
       "fp": 0,
       "fn": 0,
       "precision": 1.0,
@@ -51,7 +51,7 @@
       "f1": 1.0
     },
     "missing_stop_conditions": {
-      "tp": 4,
+      "tp": 5,
       "fp": 0,
       "fn": 0,
       "precision": 1.0,
@@ -60,57 +60,63 @@
     }
   },
   "micro_precision": 1.0,
-  "micro_recall": 0.918918918918919,
+  "micro_recall": 0.9444444444444444,
   "macro_precision": 1.0,
-  "macro_recall": 0.9315476190476191,
+  "macro_recall": 0.9514652014652015,
   "selective_precision": {
     "0.0": {
-      "n_warnings": 34,
+      "n_warnings": 67,
       "precision": 1.0
     },
     "0.5": {
-      "n_warnings": 34,
+      "n_warnings": 67,
       "precision": 1.0
     },
     "0.7": {
-      "n_warnings": 34,
+      "n_warnings": 67,
       "precision": 1.0
     },
     "0.9": {
-      "n_warnings": 34,
+      "n_warnings": 67,
       "precision": 1.0
     }
   },
   "confusion": {
-    "no_change->no_change": 24,
-    "warn->no_change": 3,
-    "warn->warn": 34
+    "no_change->no_change": 34,
+    "warn->no_change": 4,
+    "warn->warn": 67
   },
   "per_category_confusion": {
     "adversarial_rewrite": {
-      "warn->no_change": 3
-    },
-    "hebrew": {
-      "no_change->no_change": 2,
+      "warn->no_change": 3,
       "warn->warn": 2
     },
-    "legit_lookalike": {
-      "no_change->no_change": 4
-    },
-    "mixed": {
+    "hebrew": {
+      "no_change->no_change": 3,
       "warn->warn": 3
     },
-    "paraphrase": {
+    "legit_lookalike": {
+      "no_change->no_change": 6
+    },
+    "mixed": {
       "warn->warn": 6
+    },
+    "paraphrase": {
+      "warn->warn": 12
+    },
+    "preservation": {
+      "no_change->no_change": 1,
+      "warn->warn": 2
     },
     "repo_ambiguous": {
       "warn->warn": 3
     },
     "repo_neutral": {
-      "no_change->no_change": 18
+      "no_change->no_change": 24
     },
     "repo_positive": {
-      "warn->warn": 20
+      "warn->no_change": 1,
+      "warn->warn": 39
     }
   },
   "rewrite": {
@@ -125,15 +131,19 @@
     "false_positives": [],
     "false_negatives": [
       [
-        "dev-adv-ma",
+        "hold-pos-py-low-03-multiple_approaches",
         "no_change"
       ],
       [
-        "dev-adv-mc",
+        "hold-adv-ma",
         "no_change"
       ],
       [
-        "dev-adv-ee",
+        "hold-adv-mc",
+        "no_change"
+      ],
+      [
+        "hold-adv-ee",
         "no_change"
       ]
     ],

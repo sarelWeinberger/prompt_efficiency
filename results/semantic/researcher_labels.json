@@ -1,0 +1,33 @@
+{
+  "_note": "Researcher labels recorded 2026-08-02 BEFORE viewing any judge annotation. Key fields only; counts follow rubric v1 definitions.",
+  "claude-code_Kimi-K2.7-Code_py-med-01_baseline_r2_341224": {
+    "composition": {"planning": 1, "alternative_approaches_considered": 0, "alternatives_implemented": 0, "error_diagnosis": 2, "self_corrections": 1, "final_validation": 0},
+    "waste": {"unused_branches": 0, "task_restatements": 2, "redundant_verification": 2, "speculative_architecture": 0, "post_solution_reasoning": 0},
+    "quality": {"premature_commitment": 0}
+  },
+  "claude-code_Kimi-K2.6_py-low-01_deep_thinking_r1_6ff512": {
+    "composition": {"planning": 2, "alternative_approaches_considered": 1, "alternatives_implemented": 1, "error_diagnosis": 2, "self_corrections": 2, "final_validation": 0},
+    "waste": {"unused_branches": 1, "task_restatements": 3, "redundant_verification": 3, "speculative_architecture": 0, "post_solution_reasoning": 0},
+    "quality": {"premature_commitment": 0}
+  },
+  "pi_Inkling_js-med-01_adjacent_cleanup_r1_982487": {
+    "composition": {"planning": 3, "alternative_approaches_considered": 0, "alternatives_implemented": 0, "error_diagnosis": 1, "self_corrections": 4, "final_validation": 2},
+    "waste": {"unused_branches": 0, "task_restatements": 0, "redundant_verification": 1, "speculative_architecture": 0, "post_solution_reasoning": 2},
+    "quality": {"premature_commitment": 0, "reversals_without_new_evidence": 3}
+  },
+  "pi_DeepSeek-V4-Pro_py-low-01_baseline_r2_29ac7c": {
+    "composition": {"planning": 1, "alternative_approaches_considered": 0, "alternatives_implemented": 0, "error_diagnosis": 0, "self_corrections": 0, "final_validation": 1},
+    "waste": {"unused_branches": 0, "task_restatements": 0, "redundant_verification": 0, "speculative_architecture": 0, "post_solution_reasoning": 0},
+    "quality": {"premature_commitment": 0}
+  },
+  "pi_Inkling_go-med-01_deep_thinking_r1_35701a": {
+    "composition": {"planning": 2, "alternative_approaches_considered": 0, "alternatives_implemented": 0, "error_diagnosis": 0, "self_corrections": 0, "final_validation": 1},
+    "waste": {"unused_branches": 0, "task_restatements": 0, "redundant_verification": 1, "speculative_architecture": 0, "post_solution_reasoning": 1},
+    "quality": {"premature_commitment": 0}
+  },
+  "pi_Kimi-K2.7-Code_py-low-01_max_certainty_r1_bf9a99": {
+    "composition": {"planning": 1, "alternative_approaches_considered": 0, "alternatives_implemented": 0, "error_diagnosis": 0, "self_corrections": 0, "final_validation": 1},
+    "waste": {"unused_branches": 0, "task_restatements": 0, "redundant_verification": 2, "speculative_architecture": 0, "post_solution_reasoning": 1},
+    "quality": {"premature_commitment": 0}
+  }
+}

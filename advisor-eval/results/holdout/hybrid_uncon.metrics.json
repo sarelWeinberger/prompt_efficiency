@@ -1,0 +1,156 @@
+{
+  "n": 105,
+  "schema_compliance": 0.9619047619047619,
+  "schema_usable": 1.0,
+  "evidence_whitespace_only_diffs": 0,
+  "abstention_rate": 0.0,
+  "displayed_warning_precision": 0.9726027397260274,
+  "warn_recall": 1.0,
+  "neutral_fpr": 0.058823529411764705,
+  "fabricated_span_rate": 0.0,
+  "n_predicted_risks": 82,
+  "per_family": {
+    "multiple_approaches": {
+      "tp": 14,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "max_certainty": {
+      "tp": 14,
+      "fp": 1,
+      "fn": 0,
+      "precision": 0.9333333333333333,
+      "recall": 1.0,
+      "f1": 0.9655172413793104
+    },
+    "deep_thinking": {
+      "tp": 13,
+      "fp": 1,
+      "fn": 0,
+      "precision": 0.9285714285714286,
+      "recall": 1.0,
+      "f1": 0.962962962962963
+    },
+    "exhaustive_exploration": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "adjacent_cleanup": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "missing_stop_conditions": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "micro_precision": 0.972972972972973,
+  "micro_recall": 1.0,
+  "macro_precision": 0.9769841269841271,
+  "macro_recall": 1.0,
+  "selective_precision": {
+    "0.0": {
+      "n_warnings": 73,
+      "precision": 0.9726027397260274
+    },
+    "0.5": {
+      "n_warnings": 69,
+      "precision": 0.9855072463768116
+    },
+    "0.7": {
+      "n_warnings": 69,
+      "precision": 0.9855072463768116
+    },
+    "0.9": {
+      "n_warnings": 69,
+      "precision": 0.9855072463768116
+    }
+  },
+  "confusion": {
+    "no_change->no_change": 32,
+    "no_change->warn": 2,
+    "warn->warn": 71
+  },
+  "per_category_confusion": {
+    "adversarial_rewrite": {
+      "warn->warn": 5
+    },
+    "hebrew": {
+      "no_change->no_change": 2,
+      "no_change->warn": 1,
+      "warn->warn": 3
+    },
+    "legit_lookalike": {
+      "no_change->no_change": 5,
+      "no_change->warn": 1
+    },
+    "mixed": {
+      "warn->warn": 6
+    },
+    "paraphrase": {
+      "warn->warn": 12
+    },
+    "preservation": {
+      "no_change->no_change": 1,
+      "warn->warn": 2
+    },
+    "repo_ambiguous": {
+      "warn->warn": 3
+    },
+    "repo_neutral": {
+      "no_change->no_change": 24
+    },
+    "repo_positive": {
+      "warn->warn": 40
+    }
+  },
+  "rewrite": {
+    "offered": 6,
+    "offered_rate": 0.05714285714285714,
+    "protected_item_preservation": 0.9444444444444444,
+    "critical_deletion_rate": 0.16666666666666666,
+    "language_violation_rate": 0.0,
+    "rewrites_of_clean_prompts": 2
+  },
+  "examples": {
+    "false_positives": [
+      [
+        "hold-leg-assurance",
+        [
+          "max_certainty"
+        ]
+      ],
+      [
+        "hold-he-autonomy",
+        [
+          "deep_thinking"
+        ]
+      ]
+    ],
+    "false_negatives": [],
+    "fabricated_spans": [],
+    "critical_deletions": [
+      [
+        "hold-he-autonomy",
+        [
+          "python3 -m pytest -q"
+        ]
+      ]
+    ]
+  }
+}

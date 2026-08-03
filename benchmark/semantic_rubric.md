@@ -112,8 +112,9 @@ Method B: every valid run in the ledger (all experiments).
 Method A: screening_pi (6 models × 16 dev tasks × 7 variants: baseline,
 deep_thinking, exhaustive_exploration, multiple_approaches, max_certainty,
 adjacent_cleanup, bounded_efficiency × 2 reps), screening_cc/pilot_b CC runs
-for the same variants where they exist, stress_pi misleading_context +
-ambiguous_scope vs baseline (H-S4), kimi3_pi (all), holdout_pi
+for the same variants where they exist, stress_pi misleading_architecture +
+ambiguous_scope vs baseline (H-S4; clerical name correction v1.0.1 -- the
+variant is named misleading_architecture in the generator), kimi3_pi (all), holdout_pi
 (multiple_approaches, deep_thinking, bounded_efficiency + baseline; annotated
 after freeze). claude-sonnet-5 excluded from Method A (no reasoning text;
 tier 5).

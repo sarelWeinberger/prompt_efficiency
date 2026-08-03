@@ -1,0 +1,16 @@
+hold-pos-go-high-02-multiple_approaches 164 -> warn
+hold-pos-js-low-02-max_certainty 181 -> warn
+hold-par-dt-1 140 -> warn
+hold-mix-ac 114 -> warn
+hold-he-ma 151 -> PARSE_FAIL
+hold-neu-go-high-02-baseline 117 -> no_change
+hold-leg-verify 85 -> no_change
+hold-leg-options 71 -> no_change
+hold-he-clean 93 -> no_change
+Traceback (most recent call last):
+  File "/home/sarel.weinberger/Desktop/PIDEV/advisor-eval/probe_thinking.py", line 65, in <module>
+    main()
+  File "/home/sarel.weinberger/Desktop/PIDEV/advisor-eval/probe_thinking.py", line 36, in main
+    ex = rows[sid]
+         ~~~~^^^^^
+KeyError: 'hold-neu-js-high-03-verbose_repetition'
