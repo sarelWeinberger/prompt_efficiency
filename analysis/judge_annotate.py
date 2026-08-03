@@ -15,6 +15,7 @@ Usage:
 """
 import argparse
 import json
+import re
 import random
 import sys
 from pathlib import Path
@@ -182,7 +183,7 @@ def build_request(r, judge, custom_id):
         "custom_id": custom_id,
         "params": {
             "model": JUDGE_MODELS[judge],
-            "max_tokens": 16000,
+            "max_tokens": 24000,
             "system": [{"type": "text", "text": system,
                         "cache_control": {"type": "ephemeral"}}],
             "output_config": {"format": {"type": "json_schema", "schema": SCHEMA}},
@@ -268,10 +269,16 @@ def main():
     if args.submit:
         pool = overlap_sample(sel, args.overlap) if args.overlap else sel
         reqs = []
+        idmap = {}
         for r in pool:
-            req = build_request(r, args.submit, r["run_id"])
+            cid = re.sub(r"[^a-zA-Z0-9_-]", "-", r["run_id"])[:64]
+            if cid in idmap:  # length-truncation collision guard
+                cid = cid[:56] + format(abs(hash(r["run_id"])) % 10**7, "07d")
+            idmap[cid] = r["run_id"]
+            req = build_request(r, args.submit, cid)
             if req:
                 reqs.append(req)
+        (OUT_DIR / f"idmap_{args.submit}.json").write_text(json.dumps(idmap))
         cl = client()
         ids = []
         for i in range(0, len(reqs), 9000):
@@ -283,12 +290,14 @@ def main():
 
     if args.collect:
         cl = client()
+        idmap = json.loads((OUT_DIR / f"idmap_{args.judge}.json").read_text())
         out = open(OUT_DIR / f"annotations_{args.judge}.jsonl", "a")
         n = ok = 0
         for res in cl.messages.batches.results(args.collect):
             n += 1
+            rid = idmap.get(res.custom_id, res.custom_id)
             if res.result.type != "succeeded":
-                out.write(json.dumps({"run_id": res.custom_id,
+                out.write(json.dumps({"run_id": rid,
                                       "error": res.result.type}) + "\n")
                 continue
             msg = res.result.message
@@ -298,7 +307,7 @@ def main():
                 ok += 1
             except (TypeError, json.JSONDecodeError):
                 ann = None
-            out.write(json.dumps({"run_id": res.custom_id, "annotation": ann}) + "\n")
+            out.write(json.dumps({"run_id": rid, "annotation": ann}) + "\n")
         out.close()
         print(f"collected {n} results, {ok} valid annotations -> annotations_{args.judge}.jsonl")
 
