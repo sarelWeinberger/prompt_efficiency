@@ -643,6 +643,32 @@ $\sim$5{,}600 new valid runs ($\sim$10{,}250 total), staged budget cap
 will never be merged into the original preregistered results; failed
 replications will be reported prominently.
 
+\paragraph{Completed arms (expansion evidence).} The paraphrase and
+stability arms are complete (2{,}105 valid runs of 2{,}106; 3 models
+$\times$ 6 tasks $\times$ 25 arms $\times$ 3 reps, and 2 models $\times$ 16
+tasks $\times$ 9 variants $\times$ 3 reps). \textbf{E11 --- mechanisms
+follow the semantic instruction, not its token sequence:} all four
+paraphrase forms of \texttt{multiple\_approaches}, \texttt{deep\_thinking},
+and \texttt{max\_certainty} elevate reasoning on every model tested (12/12
+condition$\times$model cells at 4/4 forms), while length-matched controls
+sit at 0.96--1.05\xd{} --- the effect is semantic, not length. All five
+\texttt{bounded\_efficiency} formulations are consistently at-or-below
+baseline (0.85--0.93\xd), a mild reduction robust to wording.
+\textbf{E12 --- lexical form modulates magnitude:} within
+\texttt{multiple\_approaches} the pooled effect ranges from 3.0\xd{}
+(concise form) to 6.7\xd{} (verbose form) --- the instruction always
+inflates, but its phrasing roughly doubles the inflation; instruction
+position (start vs.\ end) shifts effects modestly (e.g.\ 5.2 vs.\ 4.3\xd).
+\textbf{Repetition stability:} within-cell no-cache cost CV is 12--23\%
+across 5-repetition cells, success is unanimous in 81--97\% of cells, and
+the paired-effect \emph{direction never reversed} across repetitions for
+any confirmed waste variant (reversal probability 0.0); the only nonzero
+reversal rates (0.33) occur precisely on the two variants the original
+study classified as neutral (\texttt{verbose\_repetition},
+\texttt{no\_questions\_autonomy}) --- as expected when the true effect is
+$\approx$0. The new-task, second-holdout, and cross-harness arms remain in
+progress.
+
 \section{Related Work}
 
 \emph{Prompt sensitivity and prompt-induced agent behavior}: prompt

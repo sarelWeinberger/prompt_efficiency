@@ -1,0 +1,10 @@
+variant,n_cells,median_within_cell_cost_CV,median_within_cell_reasoning_CV,success_unanimous_share,median_sign_reversal_prob
+adjacent_cleanup,32,0.232,0.384,0.812,0.0
+baseline,32,0.146,0.269,0.969,
+bounded_efficiency,32,0.118,0.31,0.969,0.0
+deep_thinking,32,0.157,0.327,0.938,0.0
+exhaustive_exploration,32,0.139,0.235,0.969,0.0
+max_certainty,32,0.196,0.255,0.969,0.0
+multiple_approaches,32,0.164,0.245,0.906,0.0
+no_questions_autonomy,32,0.149,0.269,0.906,0.333
+verbose_repetition,32,0.165,0.268,0.906,0.333
