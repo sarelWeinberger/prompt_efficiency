@@ -122,7 +122,7 @@ experiments:
     repetitions: 3
   exp_stability:
     harness: pi
-    models: [zai-org/GLM-5.2, inclusionai/Inkling]
+    models: [zai-org/GLM-5.2, thinkingmachines/Inkling]
     tasks: [py-low-01, py-low-02, js-low-01, js-low-03, go-low-01, py-med-01, py-med-02, js-med-01, js-med-02, js-med-03, go-med-01, py-high-01, py-high-02, js-high-01, js-high-02, go-high-01]
     variants: [baseline, verbose_repetition, deep_thinking, exhaustive_exploration, multiple_approaches, max_certainty, adjacent_cleanup, no_questions_autonomy, bounded_efficiency]
     repetitions: 3
