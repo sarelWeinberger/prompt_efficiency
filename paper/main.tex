@@ -25,7 +25,7 @@ Amir Hozez\\
 PointFive\\
 \small\texttt{amir@pointfive.co}}
 
-\date{July 2026}
+\date{August 2026 (v2)}
 
 \begin{document}
 \maketitle
@@ -59,7 +59,9 @@ is tool-borne and escalates (2.5\xd{} calls, 3\xd{} latency, 18\xd{} median
 cost at its extreme, robust to winsorization); tool results re-entering
 context add a bounded 4--12\% of run cost. Bounded-efficiency wording is a
 strong null: it removes no diagnosis or validation at either layer. All
-code, fixtures, wire captures, annotations, and analysis are public.
+code, fixtures, wire captures, annotations, and analysis are public; a
+separately preregistered expansion (paraphrase generalization, 5-repetition
+stability, new and longer-validation tasks) is registered and in progress.
 \end{abstract}
 
 \section{Introduction}
@@ -612,6 +614,34 @@ bounded\_efficiency & no loss of diagnosis/validation & null ($p=1.0$) & --- (av
 \caption{Integrated mechanism table. ``None'' = no success gain in paired
 comparison; all counts are medians of per-model paired deltas.}
 \end{table}
+
+\section{Preregistered Expansion (Registered; Data Collection in Progress)}
+
+A separately preregistered replication campaign is underway; its protocol,
+power analysis, and manifests are frozen in the repository (commit
+\texttt{5db5bb2}) and no condition-aware expansion outcome had been
+inspected at the time of writing, per the frozen stopping rules.
+
+\paragraph{Why coverage, not repetition.} A bootstrap power analysis on the
+observed paired deltas showed the pooled primary effects are already at our
+precision target (95\% CI half-widths of 12--17\% of the effect for cost,
+reasoning tokens, and post-success calls); halving them would require up to
+50\xd{} more identical blocks for zero-inflated counts and buy little. The
+expansion therefore targets the four evidence gaps rather than more of the
+same cells: (a)~\emph{paraphrase generalization} --- 25 frozen prompt arms
+(4 paraphrase forms per condition, length-matched controls, and
+instruction-position variants) testing whether mechanisms follow the
+semantic instruction or its exact token sequence (E11--E12);
+(b)~\emph{repetition stability} --- 5 repetitions per cell to estimate
+within-cell variance and the probability that a paired effect's sign
+reverses across reruns; (c)~\emph{task generalization} --- 24 new tasks
+including a long-validation family (slow suites, repeated builds, large
+reads) where tool-borne waste has more room to express, plus a second
+frozen 16-task holdout; (d)~per-model precision. Planned scale:
+$\sim$5{,}600 new valid runs ($\sim$10{,}250 total), staged budget cap
+\$308, hypotheses E1--E12 frozen. Expansion runs are tagged separately and
+will never be merged into the original preregistered results; failed
+replications will be reported prominently.
 
 \section{Related Work}
 
