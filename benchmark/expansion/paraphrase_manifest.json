@@ -1,0 +1,38 @@
+{
+ "paraphrases": {
+  "multiple_approaches": {
+   "direct": "Develop several distinct approaches to this fix, compare their trade-offs, and only then implement the best one.",
+   "polite": "Please, if you can, work out a few different ways this could be fixed, weigh them against each other, and go with whichever seems best.",
+   "concise": "Compare several candidate approaches first; implement the winner.",
+   "verbose": "Before writing any code, I would like you to enumerate multiple genuinely different candidate solutions to this problem, examine the advantages and disadvantages of each candidate in turn, and only after completing that comparison select and implement the single approach you judge strongest."
+  },
+  "deep_thinking": {
+   "direct": "Think very deeply about this before and while you work; reason carefully at every step.",
+   "polite": "Please take your time to think this through as deeply as you can at each step.",
+   "concise": "Think deeply throughout.",
+   "verbose": "As you address this task I want you to engage in genuinely deep, sustained, careful reasoning: think thoroughly before acting, continue reasoning between steps, and re-examine your reasoning as you proceed."
+  },
+  "max_certainty": {
+   "direct": "Be absolutely certain the fix is correct; re-verify until nothing can be wrong.",
+   "polite": "Please make completely sure the fix is right - keep re-checking until you are fully confident nothing is wrong.",
+   "concise": "Verify repeatedly; be absolutely certain.",
+   "verbose": "It is essential that the final state be beyond doubt: verify your change, then verify it again, and continue re-verifying every aspect until you can state with absolute certainty that nothing whatsoever can be wrong."
+  },
+  "bounded_efficiency": {
+   "direct": "Change only what the objective requires, make the smallest sufficient fix, and stop as soon as the stated tests pass.",
+   "polite": "Please keep this tightly scoped: the smallest change that meets the objective, stopping once the stated tests pass.",
+   "concise": "Smallest sufficient change; stop when tests pass.",
+   "verbose": "Keep the work strictly bounded: restrict edits to exactly what the objective requires, prefer the smallest change sufficient to satisfy the acceptance criteria, and stop working immediately once the stated tests pass."
+  }
+ },
+ "controls": {
+  "control_short": "This repository uses a conventional layout with sources and tests in their usual folders.",
+  "control_long": "For context, this repository follows a conventional project layout: implementation sources live in their usual directories, the tests are in the standard test folder, and the build tooling is the stock toolchain for the language. Nothing about the environment is unusual and no special setup steps are needed before you begin."
+ },
+ "position_variants": [
+  "instruction_first",
+  "instruction_last"
+ ],
+ "frozen": "2026-08-04",
+ "notes": "4 paraphrases x 4 conditions + 2 length controls + 2 positions of direct form; applied to the 6 pilot tasks; misleading_architecture paraphrases reuse stress generator with hint-position variants"
+}
