@@ -163,6 +163,21 @@ semantic equivalence (ambiguity, conflicting constraints, irrelevant
 context, misleading hints, multi-turn splitting and restatement) and are
 analyzed separately.
 
+\paragraph{Exact wording.} Because prompt wording is the manipulated
+variable, condition names alone are insufficient for reproduction: lexical
+form, ordering, length, and position may themselves affect model behavior.
+Table~\ref{tab:prompts} therefore reproduces the exact frozen clause for
+every principal condition (byte-exact, SHA-256-verified against the run
+ledger by \texttt{paper/make\_prompt\_appendix.py}, with a regression test
+guarding staleness); Appendix~\ref{app:prompts} contains all 18 complete
+templates, the stress-family examples, the multi-turn sequences, and a full
+before-and-after rendering of one task. Our findings apply to these tested
+formulations; the preregistered expansion tests semantic vs.\ lexical
+generalization separately, and no invariance across paraphrases is claimed
+here.
+
+\input{prompt_table}
+
 \subsection{Metrics}
 Behavioral: reasoning tokens (provider-reported,
 \texttt{completion\_tokens\_details.reasoning\_tokens}), visible output
@@ -513,17 +528,20 @@ level 2 & 168 & 0.044 & 0.114 & 0.102 & [0.038, 0.050] & 9 \\
 level 3+ & 213 & \textbf{0.341} & 0.465 & 0.436 & [0.283, 0.394] & \textbf{15} \\
 \bottomrule
 \end{tabular}
-\caption{No-cache USD per run by judge-annotated redundant-verification
-level. The 18\xd{} median gradient survives winsorization at the 95th
-percentile (18.4\xd{} on winsorized means); the level-3+ lower quartile
-(\$0.19) is 10\xd{} the level-0 median. Wall-clock rises 11.4s
-$\to$ 35.3s.}
+\caption{Cost by judge-annotated redundant-verification level
+($n=1{,}585$ clean vs.\ 213 high-redundancy runs). Runs at level 3+ cost
+\textbf{18\xd} the clean-run median, execute 2.5\xd{} the tool calls, and
+take 3\xd{} the wall-clock, with no success gradient. The gradient
+survives winsorization at the 95th percentile (18.4\xd{} on winsorized
+means); the level-3+ lower quartile is 10\xd{} the level-0 median.
+Absolute dollar columns are retained as benchmark-specific calibration.}
 \end{table}
 
 Unused branches behave differently: the \emph{first} discarded branch
-approximately doubles run cost (\$0.020 $\to$ \$0.038, $n=1{,}934$ vs.\
-354) while tool calls stay near-flat (7 $\to$ 8), and the effect
-\emph{plateaus} at higher branch counts. \textbf{Exploratory waste is
+raises median run cost $\approx$1.9\xd{} ($n=1{,}934$ clean vs.\ 354
+one-branch runs; success flat) while median tool calls stay near-flat
+(7 $\to$ 8), and the effect \emph{plateaus} at higher branch counts
+(absolute medians \$0.020 $\to$ \$0.038, benchmark-specific calibration). \textbf{Exploratory waste is
 token-borne; redundant verification is tool-borne and escalates.}
 
 \begin{figure}[t]\centering
@@ -633,6 +651,16 @@ and context growth. Tool outputs create inference cost even when the
 tools themselves are free. Efficiency interventions should therefore be
 \emph{mechanism-specific}: trimming words treats token-borne waste;
 stopping rules treat tool-borne waste.
+
+\paragraph{Interpreting scale.} Absolute per-run charges are small in
+this benchmark because tasks are deliberately bounded and provider prices
+are low; the research result is the \emph{multiplicative} increase in work
+and cost under otherwise identical conditions. A 1.9\xd{} or 18\xd{}
+overhead applied across repeated agent sessions, larger models, longer
+repositories, paid tools, or thousands of users compounds; we therefore
+report ratios as the primary economic effect and absolute charges as
+benchmark-specific calibration. We do not extrapolate to any specific
+production total, since that requires explicit workload assumptions.
 
 \paragraph{Prompt-design implications.} Request multiple approaches only
 when the comparison itself is the deliverable, and say whether more than
@@ -765,5 +793,8 @@ S.~Kuhar.
 \emph{CORVUS: Context Optimization and Reduction Via Underlying
 Synchronization for LLM Coding Agents}. arXiv:2607.22711, 2026.
 \end{thebibliography}
+
+\appendix
+\input{prompt_appendix}
 
 \end{document}

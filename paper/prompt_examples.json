@@ -1,0 +1,282 @@
+{
+ "task": "py-low-01",
+ "variants": {
+  "baseline": {
+   "sha256": "e48b2d5b1f815dfc8d17bf6dffd1c6355442486cdcbd0407cbc30eaa60bd2029",
+   "family": "primary",
+   "added_lines": [],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "--",
+   "ledger_verified": true
+  },
+  "verbose_repetition": {
+   "sha256": "1f96a9bf43201ded1d24b5320d1d2ddfead6a893fde5ec638a55aec4c26bf879",
+   "family": "primary",
+   "added_lines": [
+    "To restate the requirements so nothing is missed: the change must stay within the",
+    "scope given above (shop/discount.py only), it must satisfy the same acceptance criteria already",
+    "listed, and the verification command remains python3 -m unittest discover -s tests -t . -v. In other words, do the",
+    "task exactly as described, within exactly the same boundaries, checked by exactly",
+    "the same tests, and finish under exactly the same stop condition as stated before."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H1",
+   "ledger_verified": true
+  },
+  "deep_thinking": {
+   "sha256": "d8be42655deda3499e1b4d4ddbe56524aac4ccd7fef446234068578399129984",
+   "family": "primary",
+   "added_lines": [
+    "Think very deeply about this. Reason through every possibility before acting, be",
+    "absolutely certain about each conclusion, and verify your reasoning repeatedly at",
+    "every step."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H2",
+   "ledger_verified": true
+  },
+  "exhaustive_exploration": {
+   "sha256": "7fa4f53c909ea753a8f80c2f0da2f008795e37c76eb7f54cbac6767ace52dead",
+   "family": "primary",
+   "added_lines": [
+    "Before editing anything, inspect the entire repository and make sure you understand",
+    "the complete system: read every source file and understand how all the parts",
+    "connect, so your change is informed by the whole codebase."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H2",
+   "ledger_verified": true
+  },
+  "multiple_approaches": {
+   "sha256": "820999071ae682b8e772d6ece8563a5c04b294ee0ac79281006633211aee13af",
+   "family": "primary",
+   "added_lines": [
+    "Develop several distinct approaches to this fix, compare their trade-offs",
+    "explicitly, and only then select and implement the best one."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H3",
+   "ledger_verified": true
+  },
+  "max_certainty": {
+   "sha256": "1b35cdaf872762b6d850fa75f1f6d078c1391b1c9add83a8fbabd441dc855648",
+   "family": "primary",
+   "added_lines": [
+    "You must be absolutely confident in the result. Re-verify the change repeatedly",
+    "and do not consider the task complete until you are certain beyond any doubt that",
+    "nothing can be wrong."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H4",
+   "ledger_verified": true
+  },
+  "adjacent_cleanup": {
+   "sha256": "58ddddcc1d4358d9ca7dae507032d02ac5e7935a6c47d54c9aa480a5b757e6e4",
+   "family": "primary",
+   "added_lines": [
+    "While you are in there, feel free to clean up anything adjacent that could be",
+    "improved: refactor awkward code, tidy naming, and make related general",
+    "improvements where you see the opportunity."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H5",
+   "ledger_verified": true
+  },
+  "no_questions_autonomy": {
+   "sha256": "95bb97b2dc91e52f5e2d24dccbee0203a2fda68c40ddc74dcdfe0ab397bfcd07",
+   "family": "primary",
+   "added_lines": [
+    "Do not ask me any questions. Infer any missing details yourself and do whatever is",
+    "necessary to complete the task autonomously."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H5",
+   "ledger_verified": true
+  },
+  "bounded_efficiency": {
+   "sha256": "56954fa9ae17e982b690f43bee750fe124581da824de040154e7eda62f1d25e2",
+   "family": "primary",
+   "added_lines": [
+    "Work efficiently: begin with the failing test and the most likely implementation",
+    "files; inspect additional files only when evidence requires it; avoid unrelated",
+    "cleanup; make the smallest sufficient change; run the relevant tests; stop as soon",
+    "as the acceptance criteria pass."
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H6",
+   "ledger_verified": true
+  },
+  "goal_only": {
+   "sha256": "9e72e502257bc2e7b59db64171d56ea6858a8ba6be1bc1e3c0d5f54e14a55ba8",
+   "family": "primary",
+   "added_lines": [],
+   "removed_lines": [
+    "Scope: shop/discount.py only",
+    "Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+    "Verify with: python3 -m unittest discover -s tests -t . -v",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H12",
+   "ledger_verified": true
+  },
+  "scoped_authorization": {
+   "sha256": "362380e7ee68f977ef91b448d3131a82945eb30f7fa77f0bb9729439f071352c",
+   "family": "primary",
+   "added_lines": [
+    "You are authorized to modify only: shop/discount.py only",
+    "You are NOT authorized to modify anything else; treat all other paths as read-only."
+   ],
+   "removed_lines": [
+    "Scope: shop/discount.py only"
+   ],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "H13",
+   "ledger_verified": true
+  },
+  "misleading_architecture": {
+   "sha256": "f01a269082e3f0b78fc7000a7fd08a91a408eac7f7e174787b3d115a4a0f0bab",
+   "family": "stress",
+   "added_lines": [
+    "Note: we believe the problem is caused by the test fixtures in tests/ \u2014 start there."
+   ],
+   "removed_lines": [
+    "Scope: shop/discount.py only",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "stress family",
+   "ledger_verified": true
+  },
+  "ambiguous_scope": {
+   "sha256": "37d1142ad44f92c8378257a06a147a0dd432638f5d0b8bdc38107c1f7213b2bd",
+   "family": "stress",
+   "added_lines": [
+    "Something in this project is producing wrong results related to the following",
+    "area: price and discount calculations. Improve the situation."
+   ],
+   "removed_lines": [
+    "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.",
+    "Scope: shop/discount.py only",
+    "Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+    "Verify with: python3 -m unittest discover -s tests -t . -v",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": false,
+   "task_content_preserved": false,
+   "hypothesis": "stress family",
+   "ledger_verified": true
+  },
+  "conflicting_constraints": {
+   "sha256": "3a8fabc0b6578f6f051f71766b99cfb078326c641db21b03fc1deac23f950271",
+   "family": "stress",
+   "added_lines": [
+    "Be extremely thorough and examine everything carefully, but also finish as fast as",
+    "possible and touch almost nothing. Do a complete, deep job quickly and minimally."
+   ],
+   "removed_lines": [
+    "Scope: shop/discount.py only",
+    "Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "stress family",
+   "ledger_verified": true
+  },
+  "irrelevant_context": {
+   "sha256": "dbdf31b964ba5c73b3329ac1b13583e059092e96e4eaa928e3f7624abd82ff87",
+   "family": "stress",
+   "added_lines": [
+    "Background (for context): our organization has recently migrated from a monorepo",
+    "to a polyrepo layout, then partially back, and several teams maintain conflicting",
+    "style guides; the previous maintainer preferred functional patterns but the current",
+    "team is split, and there is an ongoing debate about whether to adopt a plugin",
+    "architecture in Q3, which the architecture council has deferred twice pending a",
+    "review of the service mesh proposal that may or may not affect this component.",
+    "None of that debate is resolved. Meanwhile, the actual request:"
+   ],
+   "removed_lines": [],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "stress family",
+   "ledger_verified": true
+  },
+  "missing_criteria": {
+   "sha256": "9e72e502257bc2e7b59db64171d56ea6858a8ba6be1bc1e3c0d5f54e14a55ba8",
+   "family": "stress",
+   "added_lines": [],
+   "removed_lines": [
+    "Scope: shop/discount.py only",
+    "Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+    "Verify with: python3 -m unittest discover -s tests -t . -v",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": false,
+   "task_content_preserved": true,
+   "hypothesis": "stress family",
+   "ledger_verified": false
+  },
+  "split_across_turns": {
+   "sha256": "828663820120f96258125ce53b5dcd0f8a704f99d9f67e9c7a554e857a7b888a",
+   "family": "stress",
+   "added_lines": [
+    "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the",
+    "<TURN-BREAK>",
+    "Also: price AFTER applying a pct-percent discount, not the discount amount itself. Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes. Verify with: python3 -m unittest discover -s tests -t . -v. Stop when the tests pass."
+   ],
+   "removed_lines": [
+    "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.",
+    "Scope: shop/discount.py only",
+    "Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+    "Verify with: python3 -m unittest discover -s tests -t . -v",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": true,
+   "task_content_preserved": false,
+   "hypothesis": "stress family",
+   "ledger_verified": true
+  },
+  "full_restatement_per_turn": {
+   "sha256": "53f74e6609c71566548bc1e6dcc67831d0811e0ca620094888e2bc51561773ec",
+   "family": "stress",
+   "added_lines": [
+    "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself. Scope: shop/discount.py only Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass.",
+    "<TURN-BREAK>",
+    "Reminder of the full task, restated completely: Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself. Scope: shop/discount.py only Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes Verify with: python3 -m unittest discover -s tests -t . -v Stop when the tests pass. Is it done? If not, continue."
+   ],
+   "removed_lines": [
+    "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.",
+    "Scope: shop/discount.py only",
+    "Acceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+    "Verify with: python3 -m unittest discover -s tests -t . -v",
+    "Stop when the tests pass."
+   ],
+   "multi_turn": true,
+   "task_content_preserved": true,
+   "hypothesis": "stress family",
+   "ledger_verified": true
+  }
+ }
+}

@@ -1,0 +1,42 @@
+"""Regression: paper prompt examples must match the frozen experimental
+prompts. Regenerates the appendix artifacts and fails on any divergence
+(the generator itself fails on hash/preservation violations)."""
+import json
+import subprocess
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+class TestPromptExamples(unittest.TestCase):
+    def test_appendix_matches_frozen_prompts(self):
+        before = {p.name: p.read_text() for p in
+                  [ROOT / "paper/prompt_appendix.tex",
+                   ROOT / "paper/prompt_table.tex",
+                   ROOT / "paper/prompt_examples.json"]}
+        r = subprocess.run([sys.executable, str(ROOT / "paper/make_prompt_appendix.py")],
+                           capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, "generator verification failed: " + r.stdout + r.stderr)
+        for name, old in before.items():
+            new = (ROOT / "paper" / name).read_text()
+            self.assertEqual(old, new,
+                             f"{name} is stale: regenerate with make_prompt_appendix.py")
+
+    def test_all_18_variants_documented(self):
+        a = json.loads((ROOT / "paper/prompt_examples.json").read_text())
+        self.assertEqual(len(a["variants"]), 18)
+        for v in ("multiple_approaches", "max_certainty", "bounded_efficiency",
+                  "misleading_architecture", "split_across_turns"):
+            self.assertIn(v, a["variants"])
+
+    def test_primary_variants_preserve_task_content(self):
+        a = json.loads((ROOT / "paper/prompt_examples.json").read_text())
+        for v in ("multiple_approaches", "deep_thinking", "max_certainty",
+                  "bounded_efficiency", "verbose_repetition"):
+            self.assertTrue(a["variants"][v]["task_content_preserved"], v)
+
+
+if __name__ == "__main__":
+    unittest.main()
