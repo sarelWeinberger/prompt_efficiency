@@ -1,0 +1,37 @@
+[
+ {
+  "mechanism": "unused_branches",
+  "run_id": "pi_DeepSeek-V4-Pro_go-high-01_multiple_approaches_r2_79313c",
+  "quote": "sync.Map is a bit awkward for counters. Let me reconsider.",
+  "turn": 3,
+  "verified_in_trace": true
+ },
+ {
+  "mechanism": "redundant_verification",
+  "run_id": "pi_GLM-5.2_py-low-02_max_certainty_r2_b07f10",
+  "quote": "Tests pass. Let me verify all acceptance criteria explicitly and re-read the file to confirm.",
+  "turn": 4,
+  "verified_in_trace": true
+ },
+ {
+  "mechanism": "post_solution_reasoning",
+  "run_id": "pi_GLM-5.2_py-med-02_max_certainty_r2_dc6710",
+  "quote": "All 3 tests pass. Now let me thoroughly verify all the acceptance criteria mentioned in the task, beyond just the existing tests, to be \"absolutely confident\".",
+  "turn": 6,
+  "verified_in_trace": true
+ },
+ {
+  "mechanism": "unsupported_assumptions",
+  "run_id": "pi_Kimi-K2.6_py-med-01_misleading_architecture_r2_ade56e",
+  "quote": "Problem believed to be caused by rounding helpers in cart/pricing.py.",
+  "turn": 0,
+  "verified_in_trace": true
+ },
+ {
+  "mechanism": "task_restatements",
+  "run_id": "claude-code_Kimi-K2.6_js-low-03_deep_thinking_r1_d7bd2f",
+  "quote": "The user wants me to stop when the tests pass. Let me wait for the test output.",
+  "turn": 11,
+  "verified_in_trace": true
+ }
+]

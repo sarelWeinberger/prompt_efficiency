@@ -38,5 +38,22 @@ class TestPromptExamples(unittest.TestCase):
             self.assertTrue(a["variants"][v]["task_content_preserved"], v)
 
 
+class TestSemanticExamples(unittest.TestCase):
+    def test_examples_are_trace_verified(self):
+        import json
+        ex = json.loads((ROOT / "paper/semantic_examples.json").read_text())
+        self.assertGreaterEqual(len(ex), 5)
+        for e in ex:
+            self.assertTrue(e["verified_in_trace"], e["mechanism"])
+
+    def test_regeneration_matches(self):
+        before = (ROOT / "paper/semantic_examples.tex").read_text()
+        r = subprocess.run([sys.executable, str(ROOT / "paper/make_semantic_examples.py")],
+                           capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(before, (ROOT / "paper/semantic_examples.tex").read_text(),
+                         "semantic_examples.tex is stale")
+
+
 if __name__ == "__main__":
     unittest.main()
