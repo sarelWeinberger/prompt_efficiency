@@ -13,7 +13,7 @@ Section~\ref{sec:semantic} actually refer to.
 H-S1: branches elaborated then discarded; only one is implemented.
 Run: \texttt{DeepSeek-V4-Pro}, task \texttt{go-high-01}, condition \texttt{multiple\_approaches}, turn 3.
 \emph{Judge evidence quote (verbatim from the recorded trace):}\begin{quote}\small\ttfamily sync.Map is a bit awkward for counters. Let me reconsider.\end{quote}
-\emph{Surrounding trace context:}\begin{quote}\scriptsize\ttfamily .counts.LoadOrStore(key, new(int))     p := v.(*int)     atomic.AddInt32(p, 1)  // types don't match... \} ```  Actually sync.Map is a bit awkward for counters. Let me reconsider.  **Trade-offs:** - ❌ `sync.Map` doesn't have a simple atomic increment - ❌ Need CAS loop or store pointers - ❌ Complex, error-prone - ❌ `Get` returns `interface\{\}` - ❌ Not a good fi...\end{quote}
+\emph{Surrounding trace context:}\begin{quote}\scriptsize\ttfamily .counts.LoadOrStore(key, new(int))     p := v.(*int)     atomic.AddInt32(p, 1)  // types don't match... \} ```  Actually sync.Map is a bit awkward for counters. Let me reconsider.  **Trade-offs:** - [U+274C] `sync.Map` doesn't have a simple atomic increment - [U+274C] Need CAS loop or store pointers - [U+274C] Complex, error-prone - [U+274C] `Get` returns `interface\{\}` - [U+274C] Not a good fi...\end{quote}
 \paragraph{Redundant verification}
 H-S3: re-establishing an already-settled fact with no new evidence.
 Run: \texttt{GLM-5.2}, task \texttt{py-low-02}, condition \texttt{max\_certainty}, turn 4.

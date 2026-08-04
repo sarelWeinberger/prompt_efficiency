@@ -42,7 +42,22 @@ def load(v):
     return json.loads((GEN / f"{v}.json").read_text())
 
 
+def _ascii(s):
+    out = []
+    for ch in s:
+        o = ord(ch)
+        if o < 128:
+            out.append(ch)
+        else:
+            out.append({0x2014: "---", 0x2013: "--", 0x2018: "`", 0x2019: "'",
+                        0x201C: "``", 0x201D: "''", 0x00D7: "x",
+                        0x2192: "->", 0x2026: "...", 0xA0: " "
+                        }.get(o, f"[U+{o:04X}]"))
+    return "".join(out)
+
+
 def esc(s):
+    s = _ascii(s)
     for a, b in (("\\", r"\textbackslash{}"), ("&", r"\&"), ("%", r"\%"),
                  ("$", r"\$"), ("#", r"\#"), ("_", r"\_"), ("{", r"\{"),
                  ("}", r"\}"), ("~", r"\textasciitilde{}"), ("^", r"\^{}")):
