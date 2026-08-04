@@ -187,7 +187,7 @@ def main():
         r"\begin{table}[p]\centering\scriptsize",
         r"\begin{tabular}{p{2.5cm}p{9.2cm}p{3.2cm}}",
         r"\toprule",
-        r"Condition & Exact manipulated clause & Intended manipulation \ \midrule",
+        "Condition & Exact manipulated clause & Intended manipulation " + chr(92)*2 + " " + chr(92) + "midrule",
         "\n".join(rows),
         r"\bottomrule\end{tabular}",
         r"\caption{Principal prompt conditions with the exact frozen wording"
@@ -196,9 +196,11 @@ def main():
         r" Appendix~\ref{app:prompts}. Placeholders are instantiated per task,"
         r" identically across variants of the same task.}",
         r"\label{tab:prompts}\end{table}", ""])
+    import re as _re
     BS = chr(92)
-    table = table.replace(BS + " " + BS + "addlinespace", BS*2 + " " + BS + "addlinespace")
-    table = table.replace(BS + " " + BS + "midrule", BS*2 + " " + BS + "midrule")
+    # normalize ANY run of backslashes before \addlinespace / \midrule to exactly two
+    table = _re.sub(BS*2 + "+(?= " + BS*2 + "addlinespace)", lambda m: BS*2, table)
+    table = _re.sub(BS*2 + "+(?= " + BS*2 + "midrule)", lambda m: BS*2, table)
     (ROOT / "paper/prompt_table.tex").write_text(table)
     print(f"OK: {len(artifact['variants'])} variants documented; all displayed "
           f"prompts hash-verified against ledger; task content preserved for "
