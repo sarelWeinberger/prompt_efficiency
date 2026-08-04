@@ -8,11 +8,14 @@
 \usepackage{microtype}
 
 \newcommand{\pidev}{PI.DEV}
+\newcommand{\citet}[1]{\cite{#1}}
+\newcommand{\citep}[1]{\cite{#1}}
 \newcommand{\cc}{Claude Code}
 \newcommand{\xd}{$\times$}
 
-\title{Prompt-Induced Waste in Large Reasoning Models:\\
-A Preregistered Two-Harness Benchmark of Coding Agents}
+\title{Prompt-Induced Waste in Coding Agents:\\
+Reasoning Structure, Tool Behavior, and End-to-End Cost\\
+\large A Preregistered Two-Harness Benchmark}
 
 \author{Sarel Weinberger\\
 PointFive\\
@@ -28,45 +31,35 @@ PointFive\\
 \maketitle
 
 \begin{abstract}
-Large reasoning models deployed as coding agents bill for deliberation
-(``reasoning tokens''), tool calls, and agent turns --- yet the effect of
-user-prompt wording on this spend has not been measured under controlled
-conditions. We present a preregistered benchmark that isolates the causal
-effect of prompt formulation on agent waste across six large reasoning
-models (DeepSeek-V4-Pro, Kimi-K2.6, Kimi-K2.7-Code, Nemotron-3-Ultra,
-Inkling, GLM-5.2) served by a single provider, operated by two real agent
-harnesses (\pidev{} and \cc{} through a protocol-translation gateway), on
-24 deterministic coding tasks with hidden evaluators. Across 4{,}643 valid
-runs ($\sim$\$166 of billed compute) spanning a pilot, a complete
-1{,}728-run screening matrix, a stress family, a frozen 8-task holdout
-confirmation, a post-registration replication on Kimi-K3, and a
-post-registration cross-provider study on \texttt{claude-sonnet-5} via the
-first-party Anthropic API, we find:
-(1)~the instruction to \emph{develop several approaches and compare before
-choosing} is the most wasteful phrase tested, multiplying reasoning tokens
-2.4--7.4\xd{} on every model at zero correctness gain, holdout-confirmed;
-(2)~deep-thinking incantations replicate as pure waste (1.6--2.2\xd) across
-three datasets; (3)~a bounded-efficiency template (explicit scope,
-acceptance criteria, stop condition) is free on all models and halves
-reasoning on one; (4)~the harness dominates the prompt: identical
-model--task--prompt triples cost 5--30\xd{} more per success under \cc{}
-than under \pidev{} at equal success rates, driven by a 12--15\xd{} static
-prefix re-sent over 2--7\xd{} more turns; (5)~misleading architectural
-hints are the costliest input defect (2.61\xd), while irrelevant prose is
-nearly free (1.03\xd); and (6)~provider-side prompt caching rebates
-$\sim$61\% of billing without changing any behavioral metric, and must
-never be read as efficiency. A small replication on the newly released
-Kimi-K3 crossed our preregistered material-difference threshold in
-\emph{sensitivity} --- its deliberation floor is $\sim$6\xd{} lower, so
-thinking cues multiply reasoning $\sim$15\xd{} --- while preserving every
-effect direction. Finally, a reversal study on a frontier closed model
-(\texttt{claude-sonnet-5}, both harnesses on the first-party Anthropic API,
-\cc{} native) shows the effects transfer: solution-tournament wording costs
-2.5--2.7\xd{} there too, certainty pressure becomes the worst family under
-the native agentic harness (4.1\xd, 2.7\xd{} cost per success), and
-deep-thinking cues are the mildest measured (1.25--1.30\xd) --- adaptive
-thinking absorbs them. All code, task fixtures, prompt variants, raw usage
-ledgers, and analysis scripts are public.
+User-prompt wording is an unmeasured lever on what coding agents actually
+\emph{do}. We present a preregistered benchmark isolating the causal effect
+of prompt formulation on agent work across six open-weight reasoning models
+and a frontier closed model (claude-sonnet-5), two real harnesses (\pidev{}
+and \cc{}), and 24 deterministic tasks with hidden evaluators --- 4{,}644
+valid runs ($\sim$\$175 billed), of which 2{,}801 carry condition-blind,
+evidence-quoted semantic annotation of their recorded reasoning. The
+argument has four layers. (1)~\emph{Wording changes work and cost}:
+requesting several compared approaches multiplies reasoning tokens
+2.4--7.4\xd{} on every model at zero success gain (holdout-confirmed);
+harness choice dwarfs every prompt effect (5--30\xd{} cost per success).
+(2)~\emph{Wording changes observable reasoning structure}: on the seven
+models with recoverable traces, approach-comparison wording adds
+$\sim$3 elaborated-then-discarded solution branches per run (exactly $+1$
+implemented, replicated on the frozen holdout); deep-thinking cues add
+2.2\xd{} recorded text with \emph{zero} new observable functional units;
+certainty pressure adds re-verification of settled facts.
+(3)~\emph{Visible traces are not complete computation}: consistent with
+recent evidence that consequential computation can occur without an
+interpretable trace, we scope all semantic claims to provider-exposed
+reasoning text --- unavailable for claude-sonnet-5, which is therefore
+excluded from trace annotation. (4)~\emph{Waste mechanisms differ in cost
+carrier}: discarded branches are token-borne (the first branch
+$\approx$doubles run cost at flat tool calls), while redundant verification
+is tool-borne and escalates (2.5\xd{} calls, 3\xd{} latency, 18\xd{} median
+cost at its extreme, robust to winsorization); tool results re-entering
+context add a bounded 4--12\% of run cost. Bounded-efficiency wording is a
+strong null: it removes no diagnosis or validation at either layer. All
+code, fixtures, wire captures, annotations, and analysis are public.
 \end{abstract}
 
 \section{Introduction}
@@ -96,17 +89,34 @@ cost); (d)~evaluates success with hidden deterministic tests that never
 enter the agent's workspace; and (e)~runs every condition under two real
 harnesses to expose harness--prompt interactions.
 
+The paper makes a four-layer argument. Layer 1 (causal economics):
+identical tasks under matched model--harness--effort conditions cost
+materially different amounts depending only on user wording, with no
+success gain. Layer 2 (observable mechanisms): where providers return
+reasoning text, wording changes the \emph{semantic structure} of
+deliberation --- branches, grounding, verification --- not merely its
+volume. Layer 3 (epistemic scope): recorded traces are an observable
+behavioral artifact, not a complete transcript of computation; claims are
+scoped accordingly. Layer 4 (propagation): different waste mechanisms
+carry cost through different channels --- tokens versus tool executions,
+latency, and context growth.
+
 \paragraph{Contributions.}
-(1)~A reusable open benchmark: 24 deterministic multi-language coding
-tasks with hidden evaluators, 18 frozen prompt variants, a resumable
-budget-capped runner for two harnesses, and a dual-side capture gateway
-that preserves provider-reported reasoning and cache metadata.
-(2)~Holdout-confirmed causal findings on which prompt formulations waste
-reasoning-model compute, per model and per harness.
-(3)~A measured account of harness overhead, gateway metadata loss, and
-provider cache behavior that would otherwise confound any prompt study.
-(4)~A preregistered replication protocol demonstrated on a
-newly released model (Kimi-K3) within days of its availability.
+(1)~Controlled causal measurement of prompt-wording effects on
+coding-agent cost, holdout-confirmed per model and harness, on a reusable
+open benchmark (24 tasks, hidden evaluators, 18 frozen variants, dual-side
+wire capture). (2)~A semantic characterization of \emph{distinct
+observable waste mechanisms} in 2{,}801 annotated reasoning traces, under
+a frozen rubric with condition-blind, evidence-quoted judging.
+(3)~Evidence that these mechanisms use \emph{different cost carriers}:
+token-borne branch tournaments versus tool-borne verification loops.
+(4)~Measurement of \emph{tool-induced model cost} --- inference cost
+created by tool results re-entering context --- bounded at 4--12\% of run
+cost. (5)~A careful separation of provider-exposed traces from latent
+computation, including explicit exclusion of claude-sonnet-5 from
+trace-level claims. To our knowledge, prior work has not jointly measured
+this prompt-wording $\to$ reasoning-structure $\to$ tool-cost chain under
+a controlled paired coding-agent design (\S Related Work).
 
 \section{Benchmark Design}
 
@@ -167,6 +177,48 @@ reasoning of the same model--harness--task block. Task-clustered bootstrap
 yields 95\% intervals. A variant is classified \emph{wasteful} only when
 the median ratio exceeds 1.5 with CI lower bound above 1.1, no material
 success gain, and the effect appears on multiple tasks.
+
+\subsection{Reasoning-trace availability and semantic annotation}
+A five-tier audit of all run artifacts preceded any semantic design. Full
+provider-exposed reasoning text is recorded for all seven open-weight
+models on both harnesses (\pidev{} turn events; \cc{} transcripts via the
+gateway's translation of the provider \texttt{reasoning} field, verifiable
+against raw wire captures). \textbf{claude-sonnet-5 has no recoverable
+reasoning text} --- its thinking blocks are empty and reasoning is billed
+inside output accounting --- so it is included in cost, success, turn,
+latency, and deterministic tool-level analyses, and \emph{excluded} from
+all trace annotation; we neither estimate its reasoning units nor infer
+its reasoning structure from tool behavior. A frozen rubric (14
+composition counts, 6 waste mechanisms, ordinal quality scores; hypotheses
+H-S1--H-S6) was committed before any annotation. A condition-blind judge
+(never shown variant text or names) with grammar-constrained JSON output
+and \emph{mandatory evidence quotes} annotated 2{,}801 runs (98.9\% valid;
+91.1\% of nonzero counts evidence-backed). Validation: researcher-blind
+hand labels agreed within $\pm1$ on 84.9\% of fields; same-model
+prompt-sensitivity $\kappa=0.44$; cross-judge-model $\kappa=0.28$ overall
+but 0.55--0.68 on the hypothesis-critical fields (unused branches,
+alternatives, redundant verification). Judge-sensitive labels
+(task restatements, post-solution reasoning) are carried by deterministic
+proxies instead.
+
+\subsection{Tool taxonomy and cost decomposition}
+A second frozen rubric fixes a deterministic tool taxonomy (navigation,
+search, read, edit, test, build, lint, git, environment, recovery),
+conservative redundancy rules (duplicate normalized commands with no
+intervening edit; re-reads of unchanged files; re-runs of already-green
+test scopes), and a completion proxy (last edit \emph{and} first
+fully-green visible test) --- hidden-evaluator mid-run satisfaction is not
+recoverable. Unit tests freeze the rules; blind hand-derived labels on
+fully-read traces validated the extractor (and caught one real TAP
+pass-detection bug, fixed before any condition-aware analysis). Cost is
+decomposed into model cost (ledger), \emph{direct tool cost} (none exists:
+every tool is local --- counts and wall-clock are reported, no dollar
+figure fabricated), and \emph{tool-induced model cost}: tool results
+re-entering context, bounded below and above because exact per-turn
+billing attribution is impossible. Count variables are zero-inflated and
+heavy-tailed (e.g.\ 94\% of runs have zero post-green repeat tests, max
+6); analyses use per-task paired medians with task-clustered bootstrap and
+sign-flip permutation tests, never pooled correlations alone.
 
 \section{Calibration: Harness Overhead and Metadata Integrity}
 
@@ -367,66 +419,295 @@ provider's cache rebated 69--75\% of billing (vs.\ $\sim$61\%) at
 identical behavioral metrics --- reinforcing that rebates must never be
 read as efficiency.
 
+\section{Observable Reasoning Mechanisms}
+
+For the seven models with recoverable traces, 2{,}801 runs were annotated
+under the frozen rubric (paired vs.\ baseline; medians across the six
+screening models [min,max]). claude-sonnet-5 is excluded throughout this
+section.
+
+\paragraph{Approach tournaments produce discarded branches (H-S1,
+holdout-replicated).} \texttt{multiple\_approaches} adds \textbf{$+3.5$
+approaches considered} $[+3,+4]$ of which \textbf{$+3.0$ become unused
+branches} $[+2,+3]$; implemented approaches rise by exactly $+1.0$ on
+every model --- from 0 (a lone solution is not an ``alternative'') to 1
+(the chosen branch). The tournament never yields a second implemented
+idea. Frozen-holdout deltas are identical ($+3.5/+3.0/+1.0$).
+
+\paragraph{Deep thinking: more text per observable unit (H-S2, refined).}
+Under \texttt{deep\_thinking} the judge finds \emph{no} new functional
+units --- hypotheses, evidence, verification, grounding all $+0.0$
+(evidence collection $+0.5$ at most) --- while recorded reasoning volume
+rises 2.2\xd{} and intra-text redundancy rises on 6/6 models
+(compression-ratio $+0.05$). Deep-thinking cues therefore produce
+\emph{more text per observable reasoning unit under our frozen rubric},
+not more observable units and not better grounding. This does not
+establish that no additional latent computation occurred (\S Visible
+reasoning).
+
+\paragraph{Certainty pressure buys re-proofs (H-S3).} \texttt{max\_certainty}
+adds $+1.0$ redundant re-verification of already-established facts on 6/6
+models, $+1.25$ testing-verification units, and post-completion activity
+(\S Cost carriers).
+
+\paragraph{Misleading hints inject ungrounded hypotheses (H-S4).}
+\texttt{misleading\_architecture} adds $+1.0$ unsupported assumptions and
+$+1.0$ stated hypotheses while \emph{grounded} hypotheses stay at $+0.0$,
+with 4.2\xd{} pre-first-edit deliberation (deterministic). Unsupported
+assumptions are also the one semantic marker negatively associated with
+success ($\rho=-0.19$).
+
+\paragraph{Bounded efficiency removes nothing useful (H-S5).} Error
+diagnosis $+0.0$, final validation $+0.0$, unused branches $+0.0$: the
+efficiency template declines to add waste without suppressing diagnosis
+or validation.
+
+\paragraph{Harnesses change what reasoning is about (H-S6).} At baseline,
+\cc{} shifts composition toward planning (0.16 vs.\ 0.11 share),
+error recovery (0.09 vs.\ 0.00 --- much of it harness-environment
+friction), and self-correction; \pidev{} spends relatively more on
+evidence collection (0.14 vs.\ 0.08) and implementation reasoning.
+
+\paragraph{Correlations.} Unused branches track reasoning tokens
+($\rho=0.54$); redundant verification tracks turns ($\rho=0.58$) and tool
+calls ($\rho=0.52$); every waste mechanism correlates $\approx0$ with
+success ($-0.09$ to $+0.11$). Deterministic reconstruction and judge
+annotation are reported separately throughout; fields with weak
+cross-judge agreement (task restatements, post-solution reasoning) rest
+on deterministic proxies only.
+
+\paragraph{Visible reasoning is not the full computation.}
+\citet{baherwani2026} show that consequential model computation can occur
+without a semantically interpretable chain-of-thought trace: filler or
+non-explanatory tokens can alter performance, dependent on model, task,
+token identity, order, and context. This external result refines, not
+invalidates, our claims: we distinguish observable semantic reasoning
+units, provider-exposed reasoning text, latent computation, and downstream
+agent behavior --- and all semantic findings here concern the first two.
+Prompt formulation can affect both observable agent behavior and
+computation that may not be faithfully exposed in a readable trace; this
+study characterizes the former in controlled coding-agent executions and
+claims no access to the latter. Nothing in \citet{baherwani2026}
+demonstrates hidden reasoning inside our benchmark; it establishes why
+complete-process readings of visible traces would be unjustified.
+
+\section{From Reasoning Structure to Tool Behavior and End-to-End Cost}
+
+All 4{,}644 valid runs (claude-sonnet-5 included) enter this deterministic
+layer; the frozen tool rubric fixes the taxonomy, conservative redundancy
+rules, and the completion proxy (last edit and first fully-green visible
+test).
+
+\paragraph{The two dominant mechanisms have different cost carriers.}
+Joining judge-annotated mechanism levels to deterministic telemetry
+(Fig.~\ref{fig:carriers}; success is flat across all levels, 0.86--0.97):
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Redundant verification & $n$ & median \$ & mean \$ & wins.\ mean \$ & 95\% CI (median) & calls \\
+\midrule
+level 0 & 1{,}585 & 0.019 & 0.026 & 0.024 & [0.018, 0.019] & 6 \\
+level 1 & 835 & 0.028 & 0.046 & 0.040 & [0.027, 0.030] & 8 \\
+level 2 & 168 & 0.044 & 0.114 & 0.102 & [0.038, 0.050] & 9 \\
+level 3+ & 213 & \textbf{0.341} & 0.465 & 0.436 & [0.283, 0.394] & \textbf{15} \\
+\bottomrule
+\end{tabular}
+\caption{No-cache USD per run by judge-annotated redundant-verification
+level. The 18\xd{} median gradient survives winsorization at the 95th
+percentile (18.4\xd{} on winsorized means); the level-3+ lower quartile
+(\$0.19) is 10\xd{} the level-0 median. Wall-clock rises 11.4s
+$\to$ 35.3s.}
+\end{table}
+
+Unused branches behave differently: the \emph{first} discarded branch
+approximately doubles run cost (\$0.020 $\to$ \$0.038, $n=1{,}934$ vs.\
+354) while tool calls stay near-flat (7 $\to$ 8), and the effect
+\emph{plateaus} at higher branch counts. \textbf{Exploratory waste is
+token-borne; redundant verification is tool-borne and escalates.}
+
+\begin{figure}[t]\centering
+\includegraphics[width=\linewidth]{fig_cost_carriers.pdf}
+\caption{Cost carriers by mechanism (generated from
+\texttt{tool\_cost\_by\_mechanism.csv}). Left: unused-branch level ---
+cost doubles at level 1, tool calls flat. Right: redundant-verification
+level --- calls, latency, and cost escalate together.}
+\label{fig:carriers}
+\end{figure}
+
+\paragraph{Prompt-level tool effects (paired; median across 6 models;
+sign-flip permutation $p$).} \texttt{max\_certainty} adds $+1.75$
+post-success calls $[+1.0,+2.5]$ (sign-consistent 6/6), $+1$ test
+execution, and $+4$s latency; the corpus-worst loop is Kimi-K2.6
+re-running an already-green suite six times. \texttt{deep\_thinking}
+leaves the tool layer effectively unchanged (calls $+1.0$, $p=.26$); its
+significant cost increase ($p=.03$) is token-borne.
+\texttt{multiple\_approaches} shows code edits $+0.0$ on 6/6 models and
+near-zero abandoned-exploration deltas: the tournament is elaborated in
+reasoning, not explored through the repository (its tool-call delta,
+$+1.5$, $p\approx.06$, is directional only). \texttt{misleading\_architecture}
+is likewise directional at the tool layer ($+1.75$ calls, $+0.5$ failed
+calls); its robust effect is reasoning-borne (\S H-S4).
+\texttt{bounded\_efficiency} is a \textbf{perfect tool-layer null}: every
+redundancy metric $+0.00$ $[0,0]$ ($p=1.0$) with tests, edits, and
+diagnosis unchanged --- it does not suppress useful work; its value is
+avoiding the other mechanisms.
+
+\paragraph{Tool-induced model cost.} Tools with no monetary price still
+create inference cost: results re-enter context, add input tokens, affect
+cache accounting, and induce further turns. Across the benchmark this
+accounts for an estimated \textbf{4--12\% of run cost} --- a bounded
+estimate (exact per-turn attribution is impossible because a turn's input
+mixes tool results, assistant output, and harness scaffolding). No
+benchmark tool had a direct monetary charge; none is fabricated. Dollars,
+latency, and call counts are reported as separate dimensions.
+
+\paragraph{Harness tool composition (H-T6).} Half of \cc{}'s tool calls
+are test executions (52\%) vs.\ 22\% under \pidev{}, which is
+inspection-dominated (40\% reads vs.\ 21\%) --- Fig.~\ref{fig:harness}.
+claude-sonnet-5 makes $\approx$2.6\xd{} fewer calls than the open models
+under \cc{} with a higher edit share; this is a tool-level observation
+only, not a reasoning-level interpretation. Extreme failed-call runs
+(77--79 failures) are \cc{}+GLM permission-friction loops occurring across
+different variants: harness-caused, not prompt-caused.
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.8\linewidth]{fig_harness_composition.pdf}
+\caption{Baseline tool-call composition (generated from
+\texttt{tool\_cost\_by\_tool\_type.csv}).}
+\label{fig:harness}
+\end{figure}
+
+\begin{table}[h]\centering\scriptsize
+\begin{tabular}{p{2.4cm}p{3.2cm}p{2.8cm}p{2.0cm}p{1.6cm}p{2.2cm}}
+\toprule
+Condition & Observable reasoning effect & Tool-layer effect & Cost carrier & Success & Evidence \\
+\midrule
+multiple\_approaches & $+3$ discarded branches; $+1$ implemented & weak/secondary ($p\approx.06$); edits $+0$ & token-borne & none & strong semantic; directional tool \\
+deep\_thinking & 2.2\xd{} text, zero new functional units & none ($p=.26$) & token-borne & none & strong \\
+max\_certainty & $+1$ redundant re-verification (6/6) & $+1.75$ post-success calls; repeat tests & tool-borne + induced tokens & none & strong \\
+misleading\_hints & $+1$ unsupported assumption; 4.2\xd{} pre-edit deliberation & directional ($+1.75$ calls, $+0.5$ failed) & reasoning-borne & none / possible harm ($\rho=-0.19$) & mixed \\
+bounded\_efficiency & no loss of diagnosis/validation & null ($p=1.0$) & --- (avoids waste) & preserved & strong null \\
+\bottomrule
+\end{tabular}
+\caption{Integrated mechanism table. ``None'' = no success gain in paired
+comparison; all counts are medians of per-model paired deltas.}
+\end{table}
+
+\section{Related Work}
+
+\emph{Prompt sensitivity and prompt-induced agent behavior}: prompt
+folklore is widely exchanged but rarely measured under matched agentic
+conditions; our contribution is a controlled paired design over real
+harnesses. \emph{Reasoning length and test-time compute}: work on
+overthinking studies how much models deliberate; we measure what
+deliberation is made of and what it triggers. \emph{Faithfulness of
+chain-of-thought}: \citet{baherwani2026} show visible traces
+under-represent computation; we adopt their implication as an epistemic
+scope on all trace claims. \emph{Tool selection and efficiency}:
+When2Tool \citep{sun2026when2tool} shows models latently know when a call
+is necessary and suppresses unnecessary calls. \emph{Cost-aware
+planning}: CostBench \citep{liu2025costbench} benchmarks cost-optimal
+plan adaptation; CATP-LLM \citep{wu2024catp} trains cost-aware tool
+planning; \citet{yang2026efficient} survey efficiency levers across
+memory, tool learning, and planning. \emph{Context optimization in coding
+agents}: CORVUS \citep{zheng2026corvus} reduces the context cost of
+file-read observations. \emph{Positioning}: prior work primarily asks
+whether, when, or how cheaply an agent should call tools, or how to slim
+their observations. Our study holds the agent fixed and asks how
+\emph{user-prompt wording} causally changes observable reasoning
+structure, and whether those changes produce downstream tool execution
+and end-to-end cost. None of the reviewed papers measures this chain;
+we claim no priority beyond that reviewed scope.
+
 \section{Discussion}
 
-\paragraph{For practitioners.}
-Five rules survived every replication stage: never request several
-compared approaches unless the comparison itself is the deliverable; never
-add deep-thinking incantations; keep scope-expanding and autonomy language
-out unless expansion is wanted (it is the only phrasing family that widens
-diffs); a bounded-efficiency template is free insurance everywhere; and
-judge prompts on reasoning/tool/turn metrics priced at no-cache cost,
-never on the cached bill. Input hygiene matters asymmetrically: cutting
-fluff saves almost nothing, but removing \emph{unverified architectural
-hints} and \emph{ambiguity} saves a lot.
+\textbf{The cost of an agent is determined not only by how long it
+reasons, but by what that reasoning causes the agent to do.} Different
+phrases trigger different mechanisms, and not all waste reaches the
+repository: solution tournaments are expensive even when the visible
+trajectory barely changes, because their cost is carried by tokens;
+verification language is the one family that reliably converts into
+escalating downstream execution --- repeated tests, extra turns, latency,
+and context growth. Tool outputs create inference cost even when the
+tools themselves are free. Efficiency interventions should therefore be
+\emph{mechanism-specific}: trimming words treats token-borne waste;
+stopping rules treat tool-borne waste.
 
-\paragraph{For harness and gateway builders.}
-The harness is the largest cost decision a user makes --- larger than
-model choice and far larger than any prompt effect. Static-prefix size and
-turn discipline dominate. Protocol translators can silently invalidate
-benchmarks (dropped tool schemas, empty reasoning continuations, dropped
-usage detail); dual-side wire capture should be considered mandatory
-instrumentation for any cross-provider agent evaluation.
+\paragraph{Prompt-design implications.} Request multiple approaches only
+when the comparison itself is the deliverable, and say whether more than
+one approach must be implemented or experimentally evaluated. Replace
+``maximum certainty'' with an explicit stopping rule (``run the suite
+after the final edit; re-run only after a relevant change or a
+failure''). Do not include unverified architectural hints. Use
+bounded-efficiency language freely: it preserves diagnosis and final
+validation while avoiding the other mechanisms.
 
-\paragraph{For benchmark methodology.}
-Preregistration caught us twice: a screening signal
-(\texttt{no\_questions\_autonomy} reasoning effect) that died on holdout,
-and a replication threshold that fired for a reason (denominator
-sensitivity) the ratio metric alone would have misrepresented --- the
-absolute-token view had to be reported alongside. Both would likely have
-become confident false claims in an unregistered study.
+\paragraph{For harness and gateway builders.} The harness remains the
+largest cost decision a user makes --- larger than model choice and far
+larger than any prompt effect. Static-prefix size, turn discipline, and
+now \emph{tool composition} (half of \cc{}'s calls are test executions)
+dominate. Protocol translators can silently invalidate benchmarks;
+dual-side wire capture should be mandatory instrumentation.
+
+\paragraph{For benchmark methodology.} Preregistration caught us three
+times: a screening signal that died on holdout, a replication threshold
+that fired for a denominator reason ratios alone would misrepresent, and
+a blind hand-label check that exposed a real extraction bug before any
+condition-aware analysis. Waste-inducing prompt formulations do not
+impose a uniform overhead; they activate distinct observable cost
+pathways --- and characterizing provider-exposed reasoning and action
+never requires claiming that visible traces contain the entirety of model
+computation.
 
 \section{Limitations}
 
-Tasks are small ($\leq$4 files) and success ceilings are high under
-\pidev{} (92--97\%), limiting power to detect correctness effects of
-wasteful prompting; effects at real-repository scale are unmeasured. One
-provider, one region, essentially one gateway implementation; the \cc{}
-holdout and Kimi-K3 \cc{} arms are directional (budget-capped per
-preregistered ceilings). Collection spanned three days --- an accidental
-temporal-robustness check the findings passed, but not true cross-day
-replication design. Reasoning-token semantics differ across model
-families; all effects are within-model normalized, and the Kimi-K3 case
-shows why absolute tokens must accompany ratios. Classification
-thresholds are configurable; published CSVs carry CIs for re-analysis.
+Visible reasoning is not necessarily faithful or complete
+\citep{baherwani2026}; semantic labels describe observable text under a
+frozen rubric, never hidden cognition. claude-sonnet-5 has no recoverable
+reasoning trace in this dataset (empty thinking blocks; reasoning billed
+inside output) and is excluded from all trace-level claims; its inclusion
+is limited to cost, success, turn, latency, and deterministic tool-level
+analyses. Reasoning-text availability is provider- and gateway-dependent.
+Exact per-turn cost attribution is unavailable; tool-induced model cost
+is a bounded estimate (4--12\%). No direct tool API charge exists in this
+benchmark; local CPU/GPU/memory telemetry was not recorded; \pidev{}
+lacks per-call timing. ``Post-success'' rests on the visible-test
+completion proxy, not hidden-evaluator satisfaction. Tool counts are
+heavy-tailed and zero-inflated (94\% of runs have zero post-green repeat
+tests); H-T1 and H-T4 tool-layer effects are directional, not
+paper-robust. Judge validation was useful but imperfect:
+researcher-blind labels agreed within $\pm1$ on 84.9\% of fields;
+same-model prompt sensitivity $\kappa=0.44$; cross-judge-model agreement
+was lower overall ($\kappa=0.28$) though 0.55--0.68 on
+hypothesis-critical fields. Tasks are small ($\leq$4 files) with high
+success ceilings; the token-borne character of branch waste may weaken on
+repository-scale tasks where alternatives demand real exploration, and
+findings may not transfer unchanged to long-horizon production agents.
+Harness and model effects may interact; the \cc{} arms are smaller by
+design. Cost figures use pinned catalog prices at collection time.
 
 \section{Conclusion}
 
-Prompt wording causes large, replicable, model- and harness-dependent
-differences in reasoning-model agent cost at equal task quality. The
-cheapest interventions are subtractive: delete thinking theater, delete
-solution tournaments, delete unverified hints --- and state scope,
-criteria, and a stop condition. Everything needed to reproduce, extend, or
-re-analyze this benchmark --- fixtures, hidden evaluators, prompt
-generators, runners, wire captures, ledgers, and analysis --- is available
-in the repository.
+Prompt wording changes not only how much a coding agent spends, but
+\emph{how} it spends it. Some instructions produce longer internal
+deliberation with little repository impact; others trigger repeated
+testing, additional turns, latency, and context growth. These observable
+mechanisms do not generally improve success, and bounded-efficiency
+instructions preserve necessary work while avoiding them. Because visible
+reasoning traces are incomplete and unavailable for some models, this
+paper characterizes observable reasoning and action rather than claiming
+full access to internal computation. Everything needed to reproduce,
+extend, or re-analyze the benchmark --- fixtures, hidden evaluators,
+prompt generators, runners, wire captures, annotation rubrics, ledgers,
+and analysis --- is public.
 
 \section*{Acknowledgments}
 Experiments, infrastructure, and analysis were carried out with Claude
 (Anthropic) operating as an autonomous research assistant under the
 authors' direction and budget approvals.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{19}
 \bibitem{repo}
 S.~Weinberger. \emph{prompt\_efficiency: benchmark code, task fixtures,
 prompt variants, raw ledgers, and analysis}.
@@ -450,6 +731,39 @@ BerriAI. \emph{LiteLLM proxy (v1.93.0)}.
 \bibitem{kimi}
 Moonshot AI. \emph{Kimi K3 technical blog}.
 \url{https://www.kimi.com/blog/kimi-k3}, 2026.
+
+\bibitem{baherwani2026}
+V.~Baherwani, T.~Goldstein, and A.~Panda.
+\emph{Not All LLM Reasoning Is Visible in the Chain-of-Thought}.
+arXiv:2607.22925, 2026.
+
+\bibitem{sun2026when2tool}
+C.-E.~Sun, L.~Liu, G.~Yan, Z.~Wang, and T.-W.~Weng.
+\emph{LLM Agents Already Know When to Call Tools --- Even Without
+Reasoning} (When2Tool). arXiv:2605.09252, 2026.
+
+\bibitem{liu2025costbench}
+J.~Liu, C.~Qian, Z.~Su, Q.~Zong, S.~Huang, B.~He, and Y.~R.~Fung.
+\emph{CostBench: Evaluating Multi-Turn Cost-Optimal Planning and
+Adaptation in Dynamic Environments for LLM Tool-Use Agents}.
+arXiv:2511.02734, 2025.
+
+\bibitem{wu2024catp}
+D.~Wu, J.~Wang, Y.~Meng, Y.~Zhang, L.~Sun, and Z.~Wang.
+\emph{CATP-LLM: Empowering Large Language Models for Cost-Aware Tool
+Planning}. arXiv:2411.16313, 2024.
+
+\bibitem{yang2026efficient}
+X.~Yang, L.~Li, H.~Zhou, T.~Zhu, X.~Qu, Y.~Fan, Q.~Wei, R.~Ye, L.~Kang,
+Y.~Qin, D.~Liu, Q.~Li, N.~Ding, S.~Chen, and J.~Shao.
+\emph{Toward Efficient Agents: Memory, Tool Learning, and Planning}.
+arXiv:2601.14192, 2026.
+
+\bibitem{zheng2026corvus}
+M.~Zheng, D.~O'Brien, S.~Cui, P.~Pashakhanloo, R.~Mukherjee, M.~Kim, and
+S.~Kuhar.
+\emph{CORVUS: Context Optimization and Reduction Via Underlying
+Synchronization for LLM Coding Agents}. arXiv:2607.22711, 2026.
 \end{thebibliography}
 
 \end{document}
