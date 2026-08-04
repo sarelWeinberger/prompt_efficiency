@@ -1,0 +1,22 @@
+{
+ "task_id": "py-med-01",
+ "variant": "xp_deep_thinking_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "deep_thinking",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nAs you address this task I want you to engage in genuinely deep, sustained, careful reasoning: think thoroughly before acting, continue reasoning between steps, and re-examine your reasoning as you proceed.",
+ "char_count": 619,
+ "byte_count": 619,
+ "est_prompt_tokens": 155,
+ "sha256": "cf5460eb94d108deb5cc70e95c17d3b41b14ce070884ede712fa638e39f34ba5",
+ "generator_version": "1+exp1",
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

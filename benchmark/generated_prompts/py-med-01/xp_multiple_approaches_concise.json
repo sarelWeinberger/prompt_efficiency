@@ -1,0 +1,22 @@
+{
+ "task_id": "py-med-01",
+ "variant": "xp_multiple_approaches_concise",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "multiple_approaches",
+  "form": "concise",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nCompare several candidate approaches first; implement the winner.",
+ "char_count": 478,
+ "byte_count": 478,
+ "est_prompt_tokens": 120,
+ "sha256": "28558579962c2d0fd21d0480b2dddb8afae95f205584f173ef65fd2274dc2503",
+ "generator_version": "1+exp1",
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

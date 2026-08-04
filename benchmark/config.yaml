@@ -114,6 +114,18 @@ experiments:
     tasks: [py-low-01, js-med-03, js-high-01]
     variants: [baseline, multiple_approaches, deep_thinking, bounded_efficiency]
     repetitions: 2
+  exp_paraphrase:
+    harness: pi
+    models: [zai-org/GLM-5.2, moonshotai/Kimi-K2.6, deepseek-ai/DeepSeek-V4-Pro]
+    tasks: [py-low-01, go-low-01, py-med-01, js-med-03, js-high-01, go-high-01]
+    variants: [xp_multiple_approaches_direct, xp_multiple_approaches_polite, xp_multiple_approaches_concise, xp_multiple_approaches_verbose, xp_multiple_approaches_direct_first, xp_deep_thinking_direct, xp_deep_thinking_polite, xp_deep_thinking_concise, xp_deep_thinking_verbose, xp_deep_thinking_direct_first, xp_max_certainty_direct, xp_max_certainty_polite, xp_max_certainty_concise, xp_max_certainty_verbose, xp_max_certainty_direct_first, xp_bounded_efficiency_direct, xp_bounded_efficiency_polite, xp_bounded_efficiency_concise, xp_bounded_efficiency_verbose, xp_bounded_efficiency_direct_first, xp_control_short, xp_control_long, baseline]
+    repetitions: 3
+  exp_stability:
+    harness: pi
+    models: [zai-org/GLM-5.2, inclusionai/Inkling]
+    tasks: [py-low-01, py-low-02, js-low-01, js-low-03, go-low-01, py-med-01, py-med-02, js-med-01, js-med-02, js-med-03, go-med-01, py-high-01, py-high-02, js-high-01, js-high-02, go-high-01]
+    variants: [baseline, verbose_repetition, deep_thinking, exhaustive_exploration, multiple_approaches, max_certainty, adjacent_cleanup, no_questions_autonomy, bounded_efficiency]
+    repetitions: 3
   anthropic_pi:
     harness: pi
     models: [claude-sonnet-5]

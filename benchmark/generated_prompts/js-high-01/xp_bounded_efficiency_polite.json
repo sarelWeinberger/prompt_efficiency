@@ -1,0 +1,22 @@
+{
+ "task_id": "js-high-01",
+ "variant": "xp_bounded_efficiency_polite",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "bounded_efficiency",
+  "form": "polite",
+  "position": "last"
+ },
+ "turns": [
+  "Fix two related defects in src/fetchCache.js: (1) concurrent get() calls for the same key must trigger the loader only once (in-flight deduplication); (2) a loader failure must NOT be cached \u2014 the next get() for that key must retry the loader.\nScope: src/fetchCache.js only\nAcceptance criteria: two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Fix two related defects in src/fetchCache.js: (1) concurrent get() calls for the same key must trigger the loader only once (in-flight deduplication); (2) a loader failure must NOT be cached \u2014 the next get() for that key must retry the loader.\nScope: src/fetchCache.js only\nAcceptance criteria: two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nPlease keep this tightly scoped: the smallest change that meets the objective, stopping once the stated tests pass.",
+ "char_count": 606,
+ "byte_count": 608,
+ "est_prompt_tokens": 152,
+ "sha256": "8c120edc1ae3a5d8e92d8d0811fd64c63cdf8b934cda55774fd30fa21cf83781",
+ "generator_version": "1+exp1",
+ "task_criteria": "two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes",
+ "task_scope": "src/fetchCache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

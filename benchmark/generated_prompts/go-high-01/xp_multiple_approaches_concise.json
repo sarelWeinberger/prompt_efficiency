@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-01",
+ "variant": "xp_multiple_approaches_concise",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "multiple_approaches",
+  "form": "concise",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nCompare several candidate approaches first; implement the winner.",
+ "char_count": 476,
+ "byte_count": 476,
+ "est_prompt_tokens": 119,
+ "sha256": "a0b2a81b7b3678c3cd93e6027b85fff597981552f83405ca2d8a50a0ccfbfb65",
+ "generator_version": "1+exp1",
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "xp_max_certainty_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "max_certainty",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nIt is essential that the final state be beyond doubt: verify your change, then verify it again, and continue re-verifying every aspect until you can state with absolute certainty that nothing whatsoever can be wrong.",
+ "char_count": 528,
+ "byte_count": 528,
+ "est_prompt_tokens": 132,
+ "sha256": "d0fa18f7410768c14a7c3fd6f630478f9adddd0fd442e5373a272950d28ff2b9",
+ "generator_version": "1+exp1",
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

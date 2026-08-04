@@ -1,0 +1,22 @@
+{
+ "task_id": "py-med-01",
+ "variant": "xp_max_certainty_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "max_certainty",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nIt is essential that the final state be beyond doubt: verify your change, then verify it again, and continue re-verifying every aspect until you can state with absolute certainty that nothing whatsoever can be wrong.",
+ "char_count": 629,
+ "byte_count": 629,
+ "est_prompt_tokens": 157,
+ "sha256": "cf8dd4ffc52f8517cb5ddb50505102d0280f70c43ffb0b252d104139ff1ee4f0",
+ "generator_version": "1+exp1",
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

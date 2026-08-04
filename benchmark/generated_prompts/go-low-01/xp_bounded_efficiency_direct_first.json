@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "xp_bounded_efficiency_direct_first",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "bounded_efficiency",
+  "form": "direct",
+  "position": "first"
+ },
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Change only what the objective requires, make the smallest sufficient fix, and stop as soon as the stated tests pass.\nFix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.",
+ "char_count": 429,
+ "byte_count": 429,
+ "est_prompt_tokens": 107,
+ "sha256": "f2ce97f616cac50e8aa459105a4df20d989421ceeb8ef62986cc1c108092fa96",
+ "generator_version": "1+exp1",
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "js-med-03",
+ "variant": "xp_bounded_efficiency_polite",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "bounded_efficiency",
+  "form": "polite",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Fix the cache-expiration bug in src/cache.js: ttl is given in SECONDS but the expiry check compares it against elapsed MILLISECONDS, so entries expire ~1000x too early. An entry must expire strictly after ttl seconds (at exactly ttl seconds it is still valid).\nScope: src/cache.js only\nAcceptance criteria: entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nPlease keep this tightly scoped: the smallest change that meets the objective, stopping once the stated tests pass.",
+ "char_count": 627,
+ "byte_count": 627,
+ "est_prompt_tokens": 157,
+ "sha256": "88afe2d119323fbe5c90fe033bb2c1fed6656c2683273a74169e188f1e1baea8",
+ "generator_version": "1+exp1",
+ "task_criteria": "entry with ttl 5 still present after 2000ms and gone after 6000ms; boundary at exactly 5000ms still valid; every test under tests/ passes",
+ "task_scope": "src/cache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

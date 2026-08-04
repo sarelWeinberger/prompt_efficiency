@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-01",
+ "variant": "xp_deep_thinking_direct_first",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "deep_thinking",
+  "form": "direct",
+  "position": "first"
+ },
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Think very deeply about this before and while you work; reason carefully at every step.\nFix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.",
+ "char_count": 498,
+ "byte_count": 498,
+ "est_prompt_tokens": 124,
+ "sha256": "71faaecabac7dfa169fa6128576c6afc8ab888b5d0a08d468431c44448704f3d",
+ "generator_version": "1+exp1",
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

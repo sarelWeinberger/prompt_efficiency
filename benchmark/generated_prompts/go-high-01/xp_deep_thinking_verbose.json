@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-01",
+ "variant": "xp_deep_thinking_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "deep_thinking",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nAs you address this task I want you to engage in genuinely deep, sustained, careful reasoning: think thoroughly before acting, continue reasoning between steps, and re-examine your reasoning as you proceed.",
+ "char_count": 617,
+ "byte_count": 617,
+ "est_prompt_tokens": 154,
+ "sha256": "5ec100676e182d6b8405bf80f21cdf97167b8026c5e89309ec0b63d9bf51e92b",
+ "generator_version": "1+exp1",
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

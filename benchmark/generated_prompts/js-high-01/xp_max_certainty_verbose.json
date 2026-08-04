@@ -1,0 +1,22 @@
+{
+ "task_id": "js-high-01",
+ "variant": "xp_max_certainty_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "max_certainty",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix two related defects in src/fetchCache.js: (1) concurrent get() calls for the same key must trigger the loader only once (in-flight deduplication); (2) a loader failure must NOT be cached \u2014 the next get() for that key must retry the loader.\nScope: src/fetchCache.js only\nAcceptance criteria: two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass."
+ ],
+ "text": "Fix two related defects in src/fetchCache.js: (1) concurrent get() calls for the same key must trigger the loader only once (in-flight deduplication); (2) a loader failure must NOT be cached \u2014 the next get() for that key must retry the loader.\nScope: src/fetchCache.js only\nAcceptance criteria: two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes\nVerify with: node --test tests/*.test.js\nStop when the tests pass.\nIt is essential that the final state be beyond doubt: verify your change, then verify it again, and continue re-verifying every aspect until you can state with absolute certainty that nothing whatsoever can be wrong.",
+ "char_count": 707,
+ "byte_count": 709,
+ "est_prompt_tokens": 177,
+ "sha256": "26673934a4f66abaf440433ad386f64050642b4ede5852529f99f4e5e72f558f",
+ "generator_version": "1+exp1",
+ "task_criteria": "two concurrent gets for one key call the loader once; a rejected load is retried on the next get; every test under tests/ passes",
+ "task_scope": "src/fetchCache.js only",
+ "task_test_cmd": "node --test tests/*.test.js"
+}

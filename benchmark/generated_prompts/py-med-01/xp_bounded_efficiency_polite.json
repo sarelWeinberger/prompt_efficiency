@@ -1,0 +1,22 @@
+{
+ "task_id": "py-med-01",
+ "variant": "xp_bounded_efficiency_polite",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "bounded_efficiency",
+  "form": "polite",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nPlease keep this tightly scoped: the smallest change that meets the objective, stopping once the stated tests pass.",
+ "char_count": 528,
+ "byte_count": 528,
+ "est_prompt_tokens": 132,
+ "sha256": "24f8820d5d03421ba57755f0e975ce1d10e35073f8697754cd104a1ee170bbd9",
+ "generator_version": "1+exp1",
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

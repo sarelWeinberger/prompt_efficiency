@@ -1,0 +1,22 @@
+{
+ "task_id": "py-med-01",
+ "variant": "xp_deep_thinking_polite",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "deep_thinking",
+  "form": "polite",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the checkout total bug: the flat coupon amount must be deducted from the subtotal BEFORE tax is applied (see the docstring in cart/checkout.py), but the current code deducts it after tax.\nScope: the cart package (cart/)\nAcceptance criteria: total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nPlease take your time to think this through as deeply as you can at each step.",
+ "char_count": 491,
+ "byte_count": 491,
+ "est_prompt_tokens": 123,
+ "sha256": "772ad15f295134e7a49f75ee62b4cd92bdec37870c94ffe5e067d4b5837c4880",
+ "generator_version": "1+exp1",
+ "task_criteria": "total(100, 10) == 99.0 and total(200, 50) == 165.0; every test under tests/ passes",
+ "task_scope": "the cart package (cart/)",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

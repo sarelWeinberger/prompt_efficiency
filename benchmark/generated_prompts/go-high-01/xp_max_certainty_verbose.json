@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-01",
+ "variant": "xp_max_certainty_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "max_certainty",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nIt is essential that the final state be beyond doubt: verify your change, then verify it again, and continue re-verifying every aspect until you can state with absolute certainty that nothing whatsoever can be wrong.",
+ "char_count": 627,
+ "byte_count": 627,
+ "est_prompt_tokens": 157,
+ "sha256": "0b0ced88fe3191a583954718bc48a7525b17510cb53442e4e56b8d4e71c64958",
+ "generator_version": "1+exp1",
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}

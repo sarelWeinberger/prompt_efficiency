@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-01",
+ "variant": "xp_deep_thinking_concise",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "deep_thinking",
+  "form": "concise",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nThink deeply throughout.",
+ "char_count": 388,
+ "byte_count": 388,
+ "est_prompt_tokens": 97,
+ "sha256": "3381e3942c40d7efb832132d10b1afec50314502448d2b88489f4465f8764e19",
+ "generator_version": "1+exp1",
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-01",
+ "variant": "xp_deep_thinking_verbose",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "deep_thinking",
+  "form": "verbose",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nAs you address this task I want you to engage in genuinely deep, sustained, careful reasoning: think thoroughly before acting, continue reasoning between steps, and re-examine your reasoning as you proceed.",
+ "char_count": 570,
+ "byte_count": 570,
+ "est_prompt_tokens": 142,
+ "sha256": "2ad6020a222c2c47df9040f2a7533375df4a7962d718ec4780b3f14ed9664cbf",
+ "generator_version": "1+exp1",
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

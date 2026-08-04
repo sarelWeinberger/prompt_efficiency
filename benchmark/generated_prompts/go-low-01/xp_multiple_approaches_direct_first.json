@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "xp_multiple_approaches_direct_first",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "multiple_approaches",
+  "form": "direct",
+  "position": "first"
+ },
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Develop several distinct approaches to this fix, compare their trade-offs, and only then implement the best one.\nFix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.",
+ "char_count": 424,
+ "byte_count": 424,
+ "est_prompt_tokens": 106,
+ "sha256": "63ed24174c992788a4109911cccc710f733c4c102f5873622f82db95e7c02ea4",
+ "generator_version": "1+exp1",
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

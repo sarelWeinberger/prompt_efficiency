@@ -1,0 +1,22 @@
+{
+ "task_id": "py-low-01",
+ "variant": "xp_bounded_efficiency_direct",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "bounded_efficiency",
+  "form": "direct",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass."
+ ],
+ "text": "Fix the discount bug in shop/discount.py: apply_discount(price, pct) must return the price AFTER applying a pct-percent discount, not the discount amount itself.\nScope: shop/discount.py only\nAcceptance criteria: apply_discount(100, 20) == 80.0 and every test under tests/ passes\nVerify with: python3 -m unittest discover -s tests -t . -v\nStop when the tests pass.\nChange only what the objective requires, make the smallest sufficient fix, and stop as soon as the stated tests pass.",
+ "char_count": 481,
+ "byte_count": 481,
+ "est_prompt_tokens": 120,
+ "sha256": "a08d630a40b78e6cff9b3bf8cdd4a6c3fd6e23808fe2196a331d33c40f8df2c6",
+ "generator_version": "1+exp1",
+ "task_criteria": "apply_discount(100, 20) == 80.0 and every test under tests/ passes",
+ "task_scope": "shop/discount.py only",
+ "task_test_cmd": "python3 -m unittest discover -s tests -t . -v"
+}

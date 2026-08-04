@@ -1,0 +1,22 @@
+{
+ "task_id": "go-low-01",
+ "variant": "xp_control_long",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "control",
+  "form": "control_long",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the arithmetic bug in stats/stats.go: Average must return the true mean as a float64 (currently integer division truncates it).\nScope: stats/stats.go only\nAcceptance criteria: Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nFor context, this repository follows a conventional project layout: implementation sources live in their usual directories, the tests are in the standard test folder, and the build tooling is the stock toolchain for the language. Nothing about the environment is unusual and no special setup steps are needed before you begin.",
+ "char_count": 638,
+ "byte_count": 638,
+ "est_prompt_tokens": 160,
+ "sha256": "938a1e325de3647e8e255fe9e05169fb46fc9de56736ca227fccf69d9cdc9c05",
+ "generator_version": "1+exp1",
+ "task_criteria": "Average([]int{1, 2}) == 1.5; empty slice still returns 0; go test ./... passes",
+ "task_scope": "stats/stats.go only",
+ "task_test_cmd": "go test ./..."
+}

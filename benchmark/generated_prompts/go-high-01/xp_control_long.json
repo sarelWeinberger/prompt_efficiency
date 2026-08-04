@@ -1,0 +1,22 @@
+{
+ "task_id": "go-high-01",
+ "variant": "xp_control_long",
+ "family": "exp_paraphrase",
+ "features": {
+  "condition": "control",
+  "form": "control_long",
+  "position": "last"
+ },
+ "turns": [
+  "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass."
+ ],
+ "text": "Fix the concurrency bug in counter/counter.go: Inc and Get are called from many goroutines and currently corrupt state (or crash with concurrent map writes). Make Counter safe for concurrent use while keeping its API unchanged.\nScope: counter/counter.go only\nAcceptance criteria: 50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes\nVerify with: go test ./...\nStop when the tests pass.\nFor context, this repository follows a conventional project layout: implementation sources live in their usual directories, the tests are in the standard test folder, and the build tooling is the stock toolchain for the language. Nothing about the environment is unusual and no special setup steps are needed before you begin.",
+ "char_count": 737,
+ "byte_count": 737,
+ "est_prompt_tokens": 184,
+ "sha256": "d273143ccff89f6ef5aef5830fe52c64a1ec10e8934f437ea02395bfb9738adf",
+ "generator_version": "1+exp1",
+ "task_criteria": "50 goroutines x 100 Inc yield exactly 5000 and no crash; go test ./... passes",
+ "task_scope": "counter/counter.go only",
+ "task_test_cmd": "go test ./..."
+}
