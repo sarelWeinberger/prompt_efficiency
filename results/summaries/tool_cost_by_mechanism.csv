@@ -1,0 +1,10 @@
+mechanism,level,n_runs,median_tool_calls,median_exploration_calls,median_abandoned_exploration,median_post_green_repeat_tests,median_post_success_calls,median_est_result_tokens,median_induced_lower_usd,median_nocache_cost,median_wall_s,success_rate
+redundant_verification,0,1585,6.0,2.0,1.0,0.0,0.0,458.0,0.000768,0.018652,11.42,0.899
+redundant_verification,1,835,8.0,3.0,1.0,0.0,1.0,567.0,0.001036,0.02774,17.28,0.938
+redundant_verification,2,168,9.0,3.0,1.0,0.0,1.0,618.0,0.0013800000000000002,0.0440535,20.585,0.923
+redundant_verification,3,213,15.0,4.0,1.0,0.0,0.0,601.0,0.003951,0.341296,35.3,0.901
+unused_branches,0,1934,7.0,3.0,1.0,0.0,0.0,446.5,0.00079,0.0198255,11.629999999999999,0.917
+unused_branches,1,354,8.0,3.0,1.0,0.0,0.5,632.5,0.0013495,0.0377085,22.245,0.862
+unused_branches,2,226,8.0,3.0,1.0,0.0,1.0,647.5,0.0013295,0.038805,27.71,0.881
+unused_branches,3,228,8.0,3.0,1.0,0.0,1.0,627.5,0.0012615,0.035781,25.73,0.969
+unused_branches,4,59,8.0,4.0,1.0,0.0,1.0,706.0,0.001206,0.034953,24.56,0.966
