@@ -709,6 +709,46 @@ now \emph{tool composition} (half of \cc{}'s calls are test executions)
 dominate. Protocol translators can silently invalidate benchmarks;
 dual-side wire capture should be mandatory instrumentation.
 
+\paragraph{Could provider-side safety classifiers explain the harness
+gap?} No, on the evidence available. First, the 5--30\xd{} cost-per-success
+gap was measured primarily with \cc{} driving Together-hosted open models
+through our protocol-translation gateway; those requests never used
+Anthropic's model-serving path, so Anthropic-side components such as a
+prompt-injection classifier or a permission (Auto Mode) classifier could
+not have produced that gap. The gap is already accounted for by directly
+measured harness mechanics --- the 15{,}983--20{,}330-token fixed prefix
+($\approx$12--15\xd{} \pidev's, comprising the $\approx$6.7\,KB system
+prompt and 24 tool schemas), $\approx$2--7\xd{} more turns on matched
+runs, and a verification-heavy tool composition ($\approx$52\% of \cc{}
+calls are test executions) --- with dual-side wire capture recording the
+transmitted requests and tool loops, so the attribution does not rest on
+any assumed hidden mechanism. Second, for the 54 native \cc{} runs against
+claude-sonnet-5 on the first-party API, recorded total cost reconciles
+from the visible usage categories alone (uncached input, cache reads,
+cache writes, output at the standard price table): the median discrepancy
+is zero and 53/54 runs reconcile within 1\%
+(\texttt{results/summaries/cc\_native\_billing\_reconciliation.csv}).
+The initially apparent residuals were pricing-reconciliation artifacts,
+not hidden charges: a uniform 33.3\% offset arose from comparing standard
+against introductory pricing, and the remaining per-run differences solve
+to implied cache-write rates whose median and 90th percentile equal the
+documented five-minute rate (\$3.75 per million tokens), with a small
+upper tail consistent with one-hour-TTL writes (\$6.00 per million)
+mixed within a run. Critically, the residual tracks \emph{cache-write
+token volume}; a per-request classifier surcharge would instead scale
+with request count, turns, or classified input volume. No separately
+billed classifier cost was detectable in these runs --- which is a claim
+about billing, not about provider-side compute: classifiers may well run
+and consume resources on Anthropic's side. Part of \cc{}'s large system
+prompt likely implements safety, permission, and prompt-injection
+scaffolding; any token cost of that scaffolding is already included in
+the measured static-prefix overhead rather than constituting an
+additional hidden charge. In sum: the harness gap is attributable to
+measured prefix size, turn count, and verification-heavy tool
+composition; provider-side classifiers add no measurable separately
+billed cost on either serving path, although their latency and
+provider-side compute cost remain unmeasured.
+
 \paragraph{For benchmark methodology.} Preregistration caught us three
 times: a screening signal that died on holdout, a replication threshold
 that fired for a denominator reason ratios alone would misrepresent, and
@@ -745,6 +785,11 @@ repository-scale tasks where alternatives demand real exploration, and
 findings may not transfer unchanged to long-horizon production agents.
 Harness and model effects may interact; the \cc{} arms are smaller by
 design. Cost figures use pinned catalog prices at collection time.
+Provider-side safety classifiers may affect \emph{latency}: their
+server-side execution time is not exposed in usage fields, so wall-clock
+time cannot be decomposed into classification, queueing, and generation
+components, and the absence of unexplained billing is not evidence that
+no classifier executes.
 
 \section{Conclusion}
 
