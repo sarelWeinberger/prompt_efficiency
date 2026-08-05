@@ -5,4 +5,4 @@ Contents:
   main.tex   - complete single-file LaTeX source (pdflatex, no external figures)
 
 Compile: pdflatex main.tex (run twice for references).
-Code and data: https://github.com/sarelWeinberger/prompt_efficiency
+Code and data: https://github.com/PointFiveLabs/prompt-efficiency-benchmark

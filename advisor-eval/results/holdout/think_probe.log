@@ -8,9 +8,9 @@ hold-leg-verify 85 -> no_change
 hold-leg-options 71 -> no_change
 hold-he-clean 93 -> no_change
 Traceback (most recent call last):
-  File "/home/sarel.weinberger/Desktop/PIDEV/advisor-eval/probe_thinking.py", line 65, in <module>
+  File "/home/user/Desktop/PIDEV/advisor-eval/probe_thinking.py", line 65, in <module>
     main()
-  File "/home/sarel.weinberger/Desktop/PIDEV/advisor-eval/probe_thinking.py", line 36, in main
+  File "/home/user/Desktop/PIDEV/advisor-eval/probe_thinking.py", line 36, in main
     ex = rows[sid]
          ~~~~^^^^^
 KeyError: 'hold-neu-js-high-03-verbose_repetition'

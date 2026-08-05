@@ -60,7 +60,7 @@ Five logical sections (token estimates are tokenizer-based, scaled to the measur
 | 2 | Available-tools prose list | ~48 | one line each for read/bash/edit/write (redundant with the schemas in 3.7!) |
 | 3 | Guidelines (11 bullets) | ~113 | edit-tool discipline (exact match, no overlaps, merge nearby edits), prefer bash for ls/rg, be concise |
 | 4 | **pi self-documentation paths** | **~206** | absolute paths to pi's README/docs/examples under your nvm install, plus routing rules ("extensions → docs/extensions.md...") |
-| 5 | Current working directory | ~10 | `/home/sarel.weinberger/Desktop/PIDEV` |
+| 5 | Current working directory | ~10 | `/home/user/Desktop/PIDEV` |
 
 **Biggest system-prompt waste: section 4** — half the system prompt tells the model where pi's own documentation lives. That's only useful when you ask pi about pi. On every other prompt it's ~200 dead tokens.
 
