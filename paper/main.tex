@@ -36,7 +36,7 @@ User-prompt wording is an unmeasured lever on what coding agents actually
 of prompt formulation on agent work across six open-weight reasoning models
 and a frontier closed model (claude-sonnet-5), two real harnesses (\pidev{}
 and \cc{}), and 24 deterministic tasks with hidden evaluators --- 4{,}644
-valid runs ($\sim$\$175 billed), of which 2{,}801 carry condition-blind,
+valid runs, of which 2{,}801 carry condition-blind,
 evidence-quoted semantic annotation of their recorded reasoning. The
 argument has four layers. (1)~\emph{Wording changes work and cost}:
 requesting several compared approaches multiplies reasoning tokens
@@ -336,7 +336,7 @@ misdirection.
 
 On matched model--task--prompt cells, both harnesses solved the pilot
 tasks at $\approx$100\%, but \cc{} cost \textbf{5--30\xd{} more per
-success} (e.g., Nemotron: \$0.32 vs.\ \$0.018), driven multiplicatively by
+success} (e.g., Nemotron: $\approx$18\xd{} \pidev's cost per success), driven multiplicatively by
 the 12--15\xd{} prefix and 2--7\xd{} more turns (10--41 vs.\ 5--7).
 Harness--model interaction is strong: Kimi-K2.7-Code stays at $\sim$10
 turns under \cc{} while GLM-5.2, Kimi-K2.6, and Nemotron thrash toward the
@@ -349,7 +349,7 @@ methodology) on 4/5 models, and exploration cues amplify 4--4.8\xd{} under
 \subsection{Cache behavior}
 
 Provider-side prefix caching is automatic, free to populate, and rebated
-$\sim$61\% of the would-be bill (\$390 estimated no-cache vs.\ \$153
+$\sim$61\% of the would-be bill (billed cost $\approx$39\% of the no-cache
 actual) while leaving every behavioral metric unchanged --- the purest
 possible demonstration that cache savings must never be reported as
 efficiency. Hits are probabilistic (full/partial/none alternate under
@@ -365,7 +365,7 @@ ignored it.
 \section{Post-Registration Replication: Kimi-K3}
 
 Within a day of Kimi-K3's appearance on the provider (2.8T-parameter MoE
-per its announcement; 1M context; \$3/\$15 per M tokens), we froze a
+per its announcement; 1M context; unit prices 2.5--3.3\xd{} the K2 generation), we froze a
 replication protocol --- six pilot tasks, four variants
 (\texttt{baseline}, \texttt{multiple\_approaches},
 \texttt{deep\_thinking}, \texttt{bounded\_efficiency}), 72 \pidev{} runs
@@ -374,7 +374,7 @@ plus a 24-run \cc{} directional arm, and material-difference thresholds
 classification flips, $>$5pp scope-compliant-success change) --- before
 viewing any result.
 
-The \pidev{} arm completed 72/72 at 100\% success (\$0.82 actual; the
+The \pidev{} arm completed 72/72 at 100\% success (the
 model's cache rebate was 81\%). The threshold \emph{was} crossed, in an
 instructive direction: Kimi-K3's baseline deliberation floor is
 $\sim$6\xd{} lower (median 55 reasoning tokens vs.\ 351/195), so
@@ -383,7 +383,7 @@ $\sim$6\xd{} lower (median 55 reasoning tokens vs.\ 351/195), so
 baseline --- yet \emph{absolute} waste tokens remain at or below
 K2-generation levels (625 vs.\ 1{,}606 median under
 \texttt{multiple\_approaches}) and cost per compliant success is the
-lowest of the three generations at baseline (\$0.0062) despite
+lowest of the three generations at baseline despite
 2.5--3.3\xd{} unit prices. \texttt{bounded\_efficiency} confirmed neutral
 (0.89\xd, CI entirely below 1). Every effect direction and classification
 was preserved; no new compatibility, metadata, or cache behavior appeared.
@@ -400,7 +400,7 @@ are artifacts of that stack, we reversed it: both harnesses against the
 its native environment --- no gateway, no aliasing, its own prompt-caching
 path. The protocol (9 variants, the 6 pilot tasks, 2 repetitions; 108
 \pidev{} runs plus a 54-run native-\cc{} arm) was frozen before any result
-existed. All 162 runs were valid (\$8.81 billed, \$34.31 no-cache).
+existed. All 162 runs were valid (cache rebate 69--75\% of the no-cache bill).
 
 \paragraph{Measurement constraint (preregistered).} The Anthropic API
 bills thinking inside \texttt{output\_tokens} and never reports it
@@ -419,7 +419,7 @@ open-model range (2.1--4.0\xd) on the same tasks and metric. The neutral
 set replicates exactly: verbose repetition $\approx$1\xd, autonomy
 language $\approx$1\xd, bounded-efficiency framing free (0.93--1.02\xd).
 The harness economics persist on the frontier stack: native-\cc{} baseline
-cost per compliant success is $\sim$15\xd{} \pidev's (\$0.41 vs.\ \$0.027
+cost per compliant success is $\sim$15\xd{} \pidev's (no-cache,
 no-cache). Two divergences are instructive. First,
 \texttt{max\_certainty} --- mostly a DeepSeek quirk on open models
 (1.85\xd) --- is the \emph{worst} family measured on Sonnet~5 under native
@@ -523,12 +523,12 @@ Joining judge-annotated mechanism levels to deterministic telemetry
 \begin{table}[h]\centering\small
 \begin{tabular}{lrrrrrr}
 \toprule
-Redundant verification & $n$ & median \$ & mean \$ & wins.\ mean \$ & 95\% CI (median) & calls \\
+Redundant verification & $n$ & median (rel.) & mean (rel.) & wins.\ mean (rel.) & 95\% CI (median, rel.) & calls \\
 \midrule
-level 0 & 1{,}585 & 0.019 & 0.026 & 0.024 & [0.018, 0.019] & 6 \\
-level 1 & 835 & 0.028 & 0.046 & 0.040 & [0.027, 0.030] & 8 \\
-level 2 & 168 & 0.044 & 0.114 & 0.102 & [0.038, 0.050] & 9 \\
-level 3+ & 213 & \textbf{0.341} & 0.465 & 0.436 & [0.283, 0.394] & \textbf{15} \\
+level 0 & 1{,}585 & 1.00\xd & 1.00\xd & 1.00\xd & [0.96, 1.03] & 6 \\
+level 1 & 835 & 1.48\xd & 1.77\xd & 1.70\xd & [1.44, 1.58] & 8 \\
+level 2 & 168 & 2.36\xd & 4.34\xd & 4.28\xd & [2.01, 2.67] & 9 \\
+level 3+ & 213 & \textbf{18.25\xd} & 17.74\xd & 18.38\xd & [15.13, 21.06] & \textbf{15} \\
 \bottomrule
 \end{tabular}
 \caption{Cost by judge-annotated redundant-verification level
@@ -537,14 +537,16 @@ level 3+ & 213 & \textbf{0.341} & 0.465 & 0.436 & [0.283, 0.394] & \textbf{15} \
 take 3\xd{} the wall-clock, with no success gradient. The gradient
 survives winsorization at the 95th percentile (18.4\xd{} on winsorized
 means); the level-3+ lower quartile is 10\xd{} the level-0 median.
-Absolute dollar columns are retained as benchmark-specific calibration.}
+All cost columns are normalized to the clean-run (level-0) median;
+absolute values are retained in the public artifact
+(\texttt{rv\_cost\_robustness.json}).}
 \end{table}
 
 Unused branches behave differently: the \emph{first} discarded branch
 raises median run cost $\approx$1.9\xd{} ($n=1{,}934$ clean vs.\ 354
 one-branch runs; success flat) while median tool calls stay near-flat
 (7 $\to$ 8), and the effect \emph{plateaus} at higher branch counts
-(absolute medians \$0.020 $\to$ \$0.038, benchmark-specific calibration). \textbf{Exploratory waste is
+\textbf{Exploratory waste is
 token-borne; redundant verification is tool-borne and escalates.}
 
 \begin{figure}[t]\centering
@@ -639,7 +641,7 @@ including a long-validation family (slow suites, repeated builds, large
 reads) where tool-borne waste has more room to express, plus a second
 frozen 16-task holdout; (d)~per-model precision. Planned scale:
 $\sim$5{,}600 new valid runs ($\sim$10{,}250 total), staged budget cap
-\$308, hypotheses E1--E12 frozen. Expansion runs are tagged separately and
+hypotheses E1--E12 frozen, staged budget caps. Expansion runs are tagged separately and
 will never be merged into the original preregistered results; failed
 replications will be reported prominently.
 
@@ -758,8 +760,8 @@ The initially apparent residuals were pricing-reconciliation artifacts,
 not hidden charges: a uniform 33.3\% offset arose from comparing standard
 against introductory pricing, and the remaining per-run differences solve
 to implied cache-write rates whose median and 90th percentile equal the
-documented five-minute rate (\$3.75 per million tokens), with a small
-upper tail consistent with one-hour-TTL writes (\$6.00 per million)
+documented five-minute write premium (1.25\xd{} the input rate), with a small
+upper tail consistent with one-hour-TTL writes (2\xd{} the input rate)
 mixed within a run. Critically, the residual tracks \emph{cache-write
 token volume}; a per-request classifier surcharge would instead scale
 with request count, turns, or classified input volume. No separately
@@ -839,9 +841,9 @@ authors' direction and budget approvals.
 
 \begin{thebibliography}{19}
 \bibitem{repo}
-S.~Weinberger. \emph{prompt\_efficiency: benchmark code, task fixtures,
+PointFive Labs. \emph{prompt-efficiency-benchmark: benchmark code, task fixtures,
 prompt variants, raw ledgers, and analysis}.
-\url{https://github.com/sarelWeinberger/prompt_efficiency}, 2026.
+\url{https://github.com/PointFiveLabs/prompt-efficiency-benchmark}, 2026.
 
 \bibitem{pi}
 Earendil Works. \emph{Pi: an AI agent toolkit and coding-agent CLI}.
